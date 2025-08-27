@@ -1,25 +1,28 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Expand, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Expand } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 interface ProductImageGalleryProps {
-  images: string[]
-  productName: string
+  images: string[];
+  productName: string;
 }
 
-export function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState(0)
+export function ProductImageGallery({
+  images,
+  productName,
+}: ProductImageGalleryProps) {
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const nextImage = () => {
-    setSelectedImage((prev) => (prev + 1) % images.length)
-  }
+    setSelectedImage((prev) => (prev + 1) % images.length);
+  };
 
   const previousImage = () => {
-    setSelectedImage((prev) => (prev - 1 + images.length) % images.length)
-  }
+    setSelectedImage((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <div className="flex gap-6">
@@ -30,7 +33,9 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
             key={index}
             onClick={() => setSelectedImage(index)}
             className={`relative w-20 h-20 border-2 overflow-hidden rounded-sm transition-all ${
-              selectedImage === index ? "border-black" : "border-gray-200 hover:border-gray-300"
+              selectedImage === index
+                ? "border-black"
+                : "border-gray-200 hover:border-gray-300"
             }`}
           >
             <Image
@@ -52,10 +57,10 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
           className="object-cover"
           priority
         />
-        
+
         {/* Expand Button - Top Right */}
         <Button
-          variant="ghost" 
+          variant="ghost"
           size="icon"
           className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-white rounded shadow-sm backdrop-blur-sm"
         >
@@ -82,5 +87,5 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
         </Button>
       </div>
     </div>
-  )
+  );
 }

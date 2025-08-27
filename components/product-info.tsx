@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Star, Minus, Plus, Heart } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Heart, Star } from "lucide-react";
+import { useState } from "react";
 
 interface ProductInfoProps {
-  title: string
-  price: number
-  originalPrice?: number
-  rating: number
-  reviewCount: number
-  description: string
-  sizes: string[]
-  colors?: string[]
-  inStock: boolean
+  title: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  reviewCount: number;
+  description: string;
+  sizes: string[];
+  colors?: string[];
+  inStock: boolean;
 }
 
 export function ProductInfo({
@@ -25,31 +25,39 @@ export function ProductInfo({
   description,
   sizes,
   colors = [],
-  inStock
+  inStock,
 }: ProductInfoProps) {
-  const [selectedSize, setSelectedSize] = useState("M")
-  const [selectedColor, setSelectedColor] = useState("orange")
-  const [quantity, setQuantity] = useState(1)
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedColor, setSelectedColor] = useState("orange");
+  const [quantity, setQuantity] = useState(1);
 
-  const formatPrice = (price: number) => `BDT ${price.toFixed(2)}`
+  const formatPrice = (price: number) => `BDT ${price.toFixed(2)}`;
 
   return (
     <div className="space-y-6 max-w-[480px]">
       {/* NEW IN Chip */}
       <div className="inline-block">
-        <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">New Item</span>
+        <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
+          New Item
+        </span>
       </div>
 
       {/* Title */}
       <div>
-        <h1 className="text-[32px] font-bold text-black leading-tight mb-2">{title}</h1>
+        <h1 className="text-[32px] font-bold text-black leading-tight mb-2">
+          {title}
+        </h1>
       </div>
 
       {/* Price */}
       <div className="flex items-baseline gap-3">
-        <span className="text-[32px] font-bold text-black">{formatPrice(price)}</span>
+        <span className="text-[32px] font-bold text-black">
+          {formatPrice(price)}
+        </span>
         {originalPrice && (
-          <span className="text-[18px] text-gray-400 line-through">{formatPrice(4500.00)}</span>
+          <span className="text-[18px] text-gray-400 line-through">
+            {formatPrice(4500.0)}
+          </span>
         )}
       </div>
 
@@ -63,38 +71,56 @@ export function ProductInfo({
             <Star
               key={i}
               className={`w-4 h-4 ${
-                i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-300 text-gray-300"
+                i < Math.floor(rating)
+                  ? "fill-yellow-400 text-yellow-400"
+                  : "fill-gray-300 text-gray-300"
               }`}
             />
           ))}
         </div>
         <span className="text-sm text-gray-600">24 Reviews</span>
         <span className="text-sm text-gray-600">Sku: KD-566498</span>
-        <span className="text-sm text-green-600 bg-green-100 px-2 py-1 rounded text-xs">In Stock</span>
+        <span className="text-sm text-green-600 bg-green-100 px-2 py-1 rounded text-xs">
+          In Stock
+        </span>
       </div>
 
       {/* Color Selection */}
       <div>
-        <h3 className="text-sm font-medium text-gray-900 mb-3">Colour Orange</h3>
+        <h3 className="text-sm font-medium text-gray-900 mb-3">
+          Colour Orange
+        </h3>
         <div className="flex gap-2">
-          <button 
+          <button
             onClick={() => setSelectedColor("orange")}
-            className={`w-6 h-6 rounded-full bg-orange-500 ${selectedColor === "orange" ? "ring-2 ring-orange-600 ring-offset-2" : ""}`}
+            className={`w-6 h-6 rounded-full bg-orange-500 ${
+              selectedColor === "orange"
+                ? "ring-2 ring-orange-600 ring-offset-2"
+                : ""
+            }`}
           />
-          <button 
+          <button
             onClick={() => setSelectedColor("black")}
-            className={`w-6 h-6 rounded-full bg-black ${selectedColor === "black" ? "ring-2 ring-black ring-offset-2" : ""}`}
+            className={`w-6 h-6 rounded-full bg-black ${
+              selectedColor === "black" ? "ring-2 ring-black ring-offset-2" : ""
+            }`}
           />
-          <button 
+          <button
             onClick={() => setSelectedColor("gray")}
-            className={`w-6 h-6 rounded-full bg-gray-400 ${selectedColor === "gray" ? "ring-2 ring-gray-400 ring-offset-2" : ""}`}
+            className={`w-6 h-6 rounded-full bg-gray-400 ${
+              selectedColor === "gray"
+                ? "ring-2 ring-gray-400 ring-offset-2"
+                : ""
+            }`}
           />
         </div>
       </div>
 
       {/* Size Selection */}
       <div>
-        <h3 className="text-sm font-medium text-gray-900 mb-3">Size: Extra Large</h3>
+        <h3 className="text-sm font-medium text-gray-900 mb-3">
+          Size: Extra Large
+        </h3>
         <div className="flex gap-2">
           {sizes.map((size) => (
             <button
@@ -114,7 +140,8 @@ export function ProductInfo({
 
       {/* Stock Alert */}
       <p className="text-red-600 text-sm font-medium">
-        Hurry! Only <span className="font-semibold">24 items</span> left in stock.
+        Hurry! Only <span className="font-semibold">24 items</span> left in
+        stock.
       </p>
 
       {/* Quantity and Add to Cart */}
@@ -126,7 +153,9 @@ export function ProductInfo({
           >
             -
           </button>
-          <span className="px-4 py-2 border-x border-gray-300 min-w-[50px] text-center">3</span>
+          <span className="px-4 py-2 border-x border-gray-300 min-w-[50px] text-center">
+            3
+          </span>
           <button
             onClick={() => setQuantity(quantity + 1)}
             className="px-3 py-2 text-gray-600 hover:text-gray-800"
@@ -134,12 +163,16 @@ export function ProductInfo({
             +
           </button>
         </div>
-        
+
         <Button className="flex-1 bg-black text-white hover:bg-gray-800 h-12 font-medium">
           ADD TO CART
         </Button>
-        
-        <Button variant="ghost" size="icon" className="h-12 w-12 border border-gray-300">
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-12 w-12 border border-gray-300"
+        >
           <Heart className="h-5 w-5" />
         </Button>
       </div>
@@ -161,5 +194,5 @@ export function ProductInfo({
         </div>
       </div>
     </div>
-  )
+  );
 }

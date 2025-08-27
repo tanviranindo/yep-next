@@ -1,6 +1,6 @@
-import { Search, Heart, ShoppingBag, User } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { Button } from "@/components/ui/button";
+import { Heart, Search, ShoppingBag, User } from "lucide-react";
+import Image from "next/image";
 
 export function Header() {
   return (
@@ -23,7 +23,10 @@ export function Header() {
               SHOP
             </a>
             <div className="relative">
-              <a href="#" className="text-black hover:text-gray-600 font-medium">
+              <a
+                href="#"
+                className="text-black hover:text-gray-600 font-medium"
+              >
                 CATEGORIES
               </a>
             </div>
@@ -53,5 +56,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

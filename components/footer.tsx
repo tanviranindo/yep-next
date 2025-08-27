@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react"
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,8 +9,9 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold mb-4">FASHION</h3>
             <p className="text-gray-400 mb-4">
-              Discover fashion that fits your lifestyle. From casual looks to formal attire, we have everything you need
-              to express your unique style.
+              Discover fashion that fits your lifestyle. From casual looks to
+              formal attire, we have everything you need to express your unique
+              style.
             </p>
             <p className="text-gray-400">+880 1567-3 34566</p>
           </div>
@@ -141,5 +142,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
