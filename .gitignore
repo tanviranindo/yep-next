@@ -2,6 +2,7 @@
 node_modules/
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # Testing
 /coverage
@@ -25,6 +26,9 @@ yarn-error.log*
 # Local env files
 .env*.local
 .env
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Vercel
 .vercel
@@ -34,19 +38,27 @@ yarn-error.log*
 next-env.d.ts
 
 # IDE
-.vscode/
+.claude
 .idea/
 *.swp
 *.swo
 
 # OS
-Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 ehthumbs.db
-Desktop.ini
+Thumbs.db
 
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
 # Runtime data
 pids
@@ -56,8 +68,13 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -85,10 +102,34 @@ jspm_packages/
 .cache
 .parcel-cache
 
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
+# Next.js build output
+.next
+out
 
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-sta
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Bun
+.bun
+
+# Turbo
+.turbo
