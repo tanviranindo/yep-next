@@ -1,72 +1,256 @@
-import Link from 'next/link'
+"use client";
+
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-base-100">
-      <div className="hero min-h-screen bg-gradient-to-br from-primary to-secondary">
-        <div className="hero-content text-center text-primary-content">
-          <div className="max-w-2xl">
-            <h1 className="text-6xl font-bold mb-4">Welcome to Yep Next</h1>
-            <p className="text-xl mb-8">A modern Next.js boilerplate with DaisyUI components and app routing.</p>
-            
-            <div className="alert alert-info mb-6 text-info-content">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              <span>DaisyUI is successfully integrated! Check out the components test page.</span>
-            </div>
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <Link href="/landing" className="btn btn-primary btn-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m7 7 5 5 5-5" /></svg>
-                Landing Page
+  const categories = [
+    {
+      name: "Fashion",
+      slug: "/fashion",
+      emoji: "👗",
+      description:
+        "Discover the latest trends in fashion. Premium quality, sustainable materials, and timeless designs.",
+      color: "from-slate-900 to-slate-700",
+      theme: "fashion",
+      features: ["NEW", "WOMEN", "MEN", "ACCESSORIES", "SALE"],
+    },
+    {
+      name: "Beauty",
+      slug: "/beauty",
+      emoji: "💄",
+      description:
+        "Your trusted beauty destination for premium skincare, makeup, and fragrance from the world's best brands.",
+      color: "from-pink-300 to-purple-600",
+      theme: "beauty",
+      features: ["Skincare", "Makeup", "Fragrance", "Hair Care", "Sale"],
+    },
+    {
+      name: "Gadgets",
+      slug: "/gadgets",
+      emoji: "📱",
+      description:
+        "Latest tech and electronics. Cutting-edge gadgets for the modern lifestyle.",
+      color: "from-blue-600 to-blue-800",
+      theme: "gadgets",
+      features: ["Smartphones", "Laptops", "Audio", "Gaming", "Sale"],
+    },
+    {
+      name: "Furniture",
+      slug: "/furniture",
+      emoji: "🛋️",
+      description:
+        "Premium home and office furniture. Quality craftsmanship meets modern design.",
+      color: "from-amber-600 to-amber-800",
+      theme: "furniture",
+      features: ["Living Room", "Bedroom", "Kitchen", "Office", "Sale"],
+    },
+    {
+      name: "Kids & Mom",
+      slug: "/kids-mom",
+      emoji: "👶",
+      description:
+        "Everything for families. Safe, fun, and practical products for kids and moms.",
+      color: "from-purple-400 to-pink-400",
+      theme: "kidsmom",
+      features: ["0-12 months", "1-3 years", "4-8 years", "Mom Care", "Sale"],
+    },
+  ];
+
+  return (
+    <div className="min-h-screen" data-theme="light">
+      {/* Main Navigation */}
+      <div className="navbar bg-base-100 shadow-lg">
+        <div className="navbar-start">
+          <Link href="/" className="text-2xl font-bold text-primary">
+            YEP NEXT
+          </Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link
+                href="/products"
+                className="text-base-content hover:text-primary"
+              >
+                All Products
               </Link>
-              
-              <Link href="/products" className="btn btn-secondary btn-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                Products
-              </Link>
-              
-              <Link href="/faq" className="btn btn-accent btn-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </li>
+            <li>
+              <Link
+                href="/faq"
+                className="text-base-content hover:text-primary"
+              >
                 FAQ
               </Link>
-              
-              <Link href="/components-test" className="btn btn-warning btn-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                Test Components
+            </li>
+            <li>
+              <Link
+                href="/welcome"
+                className="text-base-content hover:text-primary"
+              >
+                About
               </Link>
-            </div>
+            </li>
+          </ul>
+        </div>
+        <div className="navbar-end">
+          <Link href="/products" className="btn btn-primary">
+            Shop Now
+          </Link>
+        </div>
+      </div>
 
-            <div className="stats shadow bg-base-100 text-base-content">
-              <div className="stat">
-                <div className="stat-figure text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <div className="stat-title">Framework</div>
-                <div className="stat-value text-primary">Next.js 15</div>
-                <div className="stat-desc">App Router</div>
-              </div>
-              
-              <div className="stat">
-                <div className="stat-figure text-secondary">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path></svg>
-                </div>
-                <div className="stat-title">UI Library</div>
-                <div className="stat-value text-secondary">DaisyUI</div>
-                <div className="stat-desc">+ Tailwind CSS</div>
-              </div>
-              
-              <div className="stat">
-                <div className="stat-figure text-accent">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 100-4h14a2 2 0 100 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-                </div>
-                <div className="stat-title">Language</div>
-                <div className="stat-value text-accent">TypeScript</div>
-                <div className="stat-desc">Type-safe</div>
-              </div>
-            </div>
+      {/* Hero Section */}
+      <div className="hero min-h-96 bg-gradient-to-br from-primary to-secondary">
+        <div className="hero-overlay bg-opacity-40"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-2xl">
+            <h1 className="mb-5 text-6xl font-bold">Welcome to YEP Next</h1>
+            <p className="mb-5 text-xl">
+              Your ultimate multi-category e-commerce destination. Discover
+              premium products across Fashion, Beauty, Gadgets, Furniture, and
+              Kids & Mom categories.
+            </p>
+            <Link href="/products" className="btn btn-primary btn-lg">
+              Explore All Products
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Category Navigation */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
+          <p className="text-lg opacity-70">
+            Choose your favorite category to start shopping
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {categories.map((category) => (
+            <Link key={category.slug} href={category.slug} className="group">
+              <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div
+                  className={`hero min-h-48 bg-gradient-to-r ${category.color}`}
+                >
+                  <div className="hero-overlay bg-opacity-40"></div>
+                  <div className="hero-content text-center text-neutral-content">
+                    <div>
+                      <div className="text-6xl mb-2">{category.emoji}</div>
+                      <h3 className="text-2xl font-bold">{category.name}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <h2 className="card-title justify-center">{category.name}</h2>
+                  <p className="text-center opacity-70 text-sm">
+                    {category.description}
+                  </p>
+
+                  {/* Category Features */}
+                  <div className="flex flex-wrap justify-center gap-2 mt-4">
+                    {category.features.map((feature, index) => (
+                      <span
+                        key={index}
+                        className="badge badge-outline badge-sm"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="card-actions justify-center mt-4">
+                    <button className="btn btn-primary btn-sm group-hover:btn-lg transition-all">
+                      Shop {category.name}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Additional Navigation */}
+        <div className="mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link
+              href="/products"
+              className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+            >
+              <div className="card-body text-center">
+                <div className="text-4xl mb-4">🛍️</div>
+                <h3 className="card-title justify-center">All Products</h3>
+                <p>Browse our complete product catalog</p>
+                <div className="card-actions justify-center">
+                  <button className="btn btn-outline">View All</button>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/faq"
+              className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+            >
+              <div className="card-body text-center">
+                <div className="text-4xl mb-4">❓</div>
+                <h3 className="card-title justify-center">FAQ</h3>
+                <p>Find answers to common questions</p>
+                <div className="card-actions justify-center">
+                  <button className="btn btn-outline">Get Help</button>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/welcome"
+              className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+            >
+              <div className="card-body text-center">
+                <div className="text-4xl mb-4">ℹ️</div>
+                <h3 className="card-title justify-center">About Us</h3>
+                <p>Learn more about YEP Next</p>
+                <div className="card-actions justify-center">
+                  <button className="btn btn-outline">Learn More</button>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="footer footer-center p-10 bg-base-200 text-base-content">
+        <div>
+          <h3 className="text-2xl font-bold text-primary">YEP Next</h3>
+          <p className="font-bold">Your Multi-Category E-commerce Platform</p>
+          <p>Copyright © 2024 - All right reserved</p>
+        </div>
+        <div>
+          <div className="grid grid-flow-col gap-4">
+            <Link href="/fashion" className="link link-hover">
+              Fashion
+            </Link>
+            <Link href="/beauty" className="link link-hover">
+              Beauty
+            </Link>
+            <Link href="/gadgets" className="link link-hover">
+              Gadgets
+            </Link>
+            <Link href="/furniture" className="link link-hover">
+              Furniture
+            </Link>
+            <Link href="/kids-mom" className="link link-hover">
+              Kids & Mom
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
-  )
+  );
 }
