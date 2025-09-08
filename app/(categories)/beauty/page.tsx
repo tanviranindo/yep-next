@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 export default function BeautyPage() {
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'beauty')
-  }, [])
+    document.documentElement.setAttribute("data-theme", "beauty");
+  }, []);
 
   return (
     <div className="min-h-screen" data-theme="beauty">
@@ -17,19 +17,19 @@ export default function BeautyPage() {
       {/* Navbar */}
       <div className="navbar bg-base-100 shadow-lg">
         <div className="navbar-start">
-          <h1 className="text-3xl font-bold text-primary tracking-wide">GLAMOUR</h1>
+          <h1 className="text-3xl font-bold text-primary tracking-wide">
+            GLAMOUR
+          </h1>
         </div>
         <div className="navbar-center flex-1 max-w-md mx-8">
           <div className="form-control w-full">
             <div className="input-group">
-              <input 
-                type="text" 
-                placeholder="Search for skincare, makeup..." 
-                className="input input-bordered w-full rounded-full" 
+              <input
+                type="text"
+                placeholder="Search for skincare, makeup..."
+                className="input input-bordered w-full rounded-full"
               />
-              <button className="btn btn-primary rounded-full">
-                🔍
-              </button>
+              <button className="btn btn-primary rounded-full">🔍</button>
             </div>
           </div>
         </div>
@@ -45,7 +45,8 @@ export default function BeautyPage() {
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">💄 Beauty</h1>
             <p className="mb-5">
-              Your trusted beauty destination for premium skincare, makeup, and fragrance from the world's best brands.
+              Your trusted beauty destination for premium skincare, makeup, and
+              fragrance from the world's best brands.
             </p>
             <button className="btn btn-primary">Explore Beauty</button>
           </div>
@@ -56,10 +57,18 @@ export default function BeautyPage() {
       <div className="bg-base-100 py-4">
         <div className="container mx-auto px-4">
           <div className="flex justify-center space-x-8">
-            <a className="text-base-content hover:text-primary font-medium">Skincare</a>
-            <a className="text-base-content hover:text-primary font-medium">Makeup</a>
-            <a className="text-base-content hover:text-primary font-medium">Fragrance</a>
-            <a className="text-base-content hover:text-primary font-medium">Hair Care</a>
+            <a className="text-base-content hover:text-primary font-medium">
+              Skincare
+            </a>
+            <a className="text-base-content hover:text-primary font-medium">
+              Makeup
+            </a>
+            <a className="text-base-content hover:text-primary font-medium">
+              Fragrance
+            </a>
+            <a className="text-base-content hover:text-primary font-medium">
+              Hair Care
+            </a>
             <a className="text-red-500 hover:text-red-600 font-bold">Sale</a>
           </div>
         </div>
@@ -69,7 +78,9 @@ export default function BeautyPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
-          <p className="text-lg opacity-70">Discover our most loved beauty essentials</p>
+          <p className="text-lg opacity-70">
+            Discover our most loved beauty essentials
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -80,7 +91,9 @@ export default function BeautyPage() {
             </figure>
             <div className="card-body p-4">
               <h2 className="card-title text-lg">Hydrating Serum</h2>
-              <p className="opacity-70 text-sm">Advanced hydration for all skin types</p>
+              <p className="opacity-70 text-sm">
+                Advanced hydration for all skin types
+              </p>
               <div className="card-actions justify-between items-center mt-4">
                 <span className="text-xl font-bold text-primary">$89</span>
                 <button className="btn btn-primary btn-sm">Add to Cart</button>
@@ -108,7 +121,9 @@ export default function BeautyPage() {
             </figure>
             <div className="card-body p-4">
               <h2 className="card-title text-lg">Face Mask</h2>
-              <p className="opacity-70 text-sm">Weekly deep cleansing treatment</p>
+              <p className="opacity-70 text-sm">
+                Weekly deep cleansing treatment
+              </p>
               <div className="card-actions justify-between items-center mt-4">
                 <span className="text-xl font-bold text-primary">$45</span>
                 <button className="btn btn-primary btn-sm">Add to Cart</button>
@@ -135,9 +150,12 @@ export default function BeautyPage() {
         <div className="mt-16">
           <div className="card bg-secondary text-secondary-content">
             <div className="card-body text-center">
-              <h2 className="card-title justify-center text-2xl mb-4">💡 Beauty Tip of the Day</h2>
+              <h2 className="card-title justify-center text-2xl mb-4">
+                💡 Beauty Tip of the Day
+              </h2>
               <p className="text-lg mb-6">
-                Always apply skincare products from thinnest to thickest consistency for optimal absorption.
+                Always apply skincare products from thinnest to thickest
+                consistency for optimal absorption.
               </p>
               <div className="card-actions justify-center">
                 <button className="btn btn-primary">View More Tips</button>
@@ -147,5 +165,5 @@ export default function BeautyPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
