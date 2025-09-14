@@ -18,7 +18,6 @@ Based on the design specifications, this project will implement a comprehensive 
 ```
 yep-next/
 ├── app/                          # Next.js App Router
-│   ├── components-test/          # Component testing page
 │   ├── faq/                     # FAQ page
 │   ├── landing/                 # Landing page
 │   ├── products/                # Product pages
