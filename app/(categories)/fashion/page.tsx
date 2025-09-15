@@ -1,33 +1,23 @@
-import ThemeShowcaseLayout from '@/components/Layout/ThemeShowcaseLayout'
-import { defaultSelectionByCategory } from '@/lib/showcase'
-import { layoutsByCategory } from '@/lib/layouts'
+import FashionUI1 from '@/components/Layout/FashionUI1'
+import FAQVariant1 from '@/components/FAQ/variant-1'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 
-export default function FashionPage({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>
-}) {
-  const defaults = defaultSelectionByCategory.fashion
-  const layout = Number(Array.isArray(searchParams.layout) ? searchParams.layout[0] : searchParams.layout)
-  const preset = layoutsByCategory.fashion.find((l) => l.id === layout)
-  const navbar = preset?.navbar || Number(Array.isArray(searchParams.navbar) ? searchParams.navbar[0] : searchParams.navbar) || defaults.navbar
-  const footer = preset?.footer || Number(Array.isArray(searchParams.footer) ? searchParams.footer[0] : searchParams.footer) || defaults.footer
-  const card = preset?.productCard || Number(Array.isArray(searchParams.card) ? searchParams.card[0] : searchParams.card) || defaults.productCard
-
-  const navbarClamped = ([1, 2, 3, 4, 5] as number[]).includes(navbar) ? (navbar as any) : defaults.navbar
-  const footerClamped = ([1, 2, 3] as number[]).includes(footer) ? (footer as any) : defaults.footer
-  const cardClamped = ([1, 2, 3] as number[]).includes(card) ? (card as any) : defaults.productCard
-
+export default function FashionPage() {
+  const faqItems = [
+    { q: 'The Order', a: 'Information about placing and modifying orders.' },
+    { q: 'Shipping', a: 'Standard and express shipping options explained.' },
+    { q: 'Returns, Exchanges And Complaints', a: 'How to return, exchange, or submit a complaint.' },
+    { q: 'Refund Policy', a: 'Refund timeframes and eligibility.' },
+    { q: 'Order Cancellation', a: 'How to cancel before fulfillment.' },
+    { q: 'Delivery Time', a: 'Typical delivery windows by region.' },
+    { q: 'Delivery Charge', a: 'Cost breakdown and free shipping thresholds.' },
+    { q: 'Track Order', a: 'How to track parcels using your order ID.' },
+  ]
   return (
-    <ThemeShowcaseLayout
-      category="fashion"
-      navbar={navbarClamped}
-      footer={footerClamped}
-      productCard={cardClamped}
-      basePath="/fashion"
-      searchParams={searchParams}
-    />
+    <div>
+      <FashionUI1 />
+      <FAQVariant1 items={faqItems} columns={2} />
+    </div>
   )
 }

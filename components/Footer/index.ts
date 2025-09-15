@@ -4,7 +4,7 @@ export { default as FooterVariant2 } from './variant-2'
 export { default as FooterVariant3 } from './variant-3'
 
 // Category-specific exports  
-export { default as FashionFooter } from './variant-1'
+export { default as FashionFooter } from './FashionFooter'
 export { default as GadgetsFooter } from './variant-1'
 export { default as BeautyFooter } from './variant-2'
 export { default as FurnitureFooter } from './variant-2'

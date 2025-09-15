@@ -1,66 +1,161 @@
-// Fashion Navbar - Minimalist & Premium
+"use client";
+
+// Fashion Navbar - Responsive design matching mobile and desktop references
+import Link from "next/link";
+import { useState } from "react";
 
 export default function FashionNavbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <div className="navbar bg-base-100 shadow-lg">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
+    <div className="bg-white">
+      {/* Mobile Layout */}
+      <div className="block md:hidden">
+        <div className="flex items-center justify-between px-4 py-4 h-16">
+          {/* Logo */}
+          <div className="border border-gray-800 p-2 w-fit">
+            <div className="text-lg font-bold text-gray-800">FASHION</div>
+            <div className="text-xs text-center text-gray-800">STUDIO</div>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li><a>NEW</a></li>
-            <li><a>WOMEN</a></li>
-            <li><a>MEN</a></li>
-            <li><a>ACCESSORIES</a></li>
-            <li><a className="text-red-500 font-bold">SALE</a></li>
-          </ul>
+
+          {/* Right Section - Hamburger Menu and Notification Chips */}
+          <div className="flex items-center space-x-3">
+            {/* Hamburger Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-gray-800 hover:text-gray-600"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+
+            {/* Notification Chips */}
+            <div className="flex items-center space-x-2">
+              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                3
+              </div>
+              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                6
+              </div>
+            </div>
+          </div>
         </div>
-        <a className="btn btn-ghost text-xl font-bold tracking-wider">FASHION.</a>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200">
+            <div className="px-4 py-2 space-y-1">
+              <Link
+                href="#"
+                className="block px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100"
+              >
+                HOME
+              </Link>
+              <Link
+                href="#"
+                className="block px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100"
+              >
+                SHOP
+              </Link>
+              <Link
+                href="#"
+                className="block px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100"
+              >
+                CATEGORIES
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-      
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li><a className="hover:text-primary">NEW</a></li>
-          <li><a className="hover:text-primary">WOMEN</a></li>
-          <li><a className="hover:text-primary">MEN</a></li>
-          <li><a className="hover:text-primary">ACCESSORIES</a></li>
-          <li><a className="text-red-500 hover:text-red-600 font-bold">SALE</a></li>
-        </ul>
-      </div>
-      
-      <div className="navbar-end">
-        <div className="flex items-center space-x-2">
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+
+      {/* Desktop Layout */}
+      <div className="hidden md:block">
+        <div className="flex items-center justify-between px-6 py-4 h-16">
+          {/* Logo */}
+          <div className="border border-gray-800 p-2 w-fit">
+            <div className="text-lg font-bold text-gray-800">FASHION</div>
+            <div className="text-xs text-center text-gray-800">STUDIO</div>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex items-center space-x-8">
+            <Link
+              href="#"
+              className="text-sm font-medium text-gray-800 hover:text-gray-600"
+            >
+              HOME
+            </Link>
+            <Link
+              href="#"
+              className="text-sm font-medium text-gray-800 hover:text-gray-600"
+            >
+              SHOP
+            </Link>
+            <div className="flex items-center space-x-1">
+              <Link
+                href="#"
+                className="text-sm font-medium text-gray-800 hover:text-gray-600"
+              >
+                CATEGORIES
+              </Link>
+              <svg
+                className="w-3 h-3 text-gray-800"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
-          </button>
-          
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </div>
+
+          {/* Right Section - Search and Notification Chips */}
+          <div className="flex items-center space-x-4">
+            {/* Search Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
+            </button>
+
+            {/* Notification Chips */}
+            <div className="flex items-center space-x-2">
+              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                3
+              </div>
+              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                6
+              </div>
             </div>
-          </button>
-          
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13L5.4 7M7 13l2.5 5M14 13v6a2 2 0 01-2 2h-2a2 2 0 01-2-2v-6" />
-              </svg>
-              <span className="badge badge-sm indicator-item">3</span>
-            </div>
-          </button>
-          
-          <button className="btn btn-primary">Shop Now</button>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
