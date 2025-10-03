@@ -109,7 +109,7 @@ export default function HomePage() {
       <div className="hero min-h-96 bg-gradient-to-br from-primary to-secondary">
         <div className="hero-overlay bg-opacity-40"></div>
         <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-2xl">
+          <div className="w-full">
             <h1 className="mb-5 text-6xl font-bold">Welcome to YEP Next</h1>
             <p className="mb-5 text-xl">
               Your ultimate multi-category e-commerce destination. Discover
@@ -124,7 +124,7 @@ export default function HomePage() {
       </div>
 
       {/* Category Navigation */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="w-full px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
           <p className="text-lg opacity-70">

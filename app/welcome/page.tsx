@@ -5,7 +5,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-base-100">
       <div className="hero min-h-screen bg-gradient-to-br from-primary to-secondary">
         <div className="hero-content text-center text-primary-content">
-          <div className="max-w-2xl">
+          <div className="w-full">
             <h1 className="text-6xl font-bold mb-4">Welcome to YEP Next</h1>
             <p className="text-xl mb-8">
               A modern multi-category e-commerce platform with Fashion, Beauty,
@@ -91,8 +91,6 @@ export default function HomePage() {
                 </svg>
                 FAQ
               </Link>
-
-              
             </div>
 
             <div className="stats shadow bg-base-100 text-base-content">

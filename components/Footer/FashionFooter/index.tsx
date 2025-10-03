@@ -2,7 +2,7 @@
 export default function FashionFooter() {
   return (
     <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+      <div className="w-full px-4 md:px-6 py-12">
         {/* Mobile Layout */}
         <div className="block md:hidden space-y-8">
           {/* Navigation Sections - Mobile */}

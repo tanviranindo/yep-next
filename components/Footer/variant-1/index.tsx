@@ -2,7 +2,7 @@
 export default function FooterVariant1() {
   return (
     <footer className="bg-neutral text-neutral-content">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="w-full px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           <div className="md:col-span-2 space-y-2 text-sm">
             <div className="text-lg font-bold tracking-wider">FASHION.</div>
@@ -37,10 +37,10 @@ export default function FooterVariant1() {
         </div>
       </div>
       <div className="border-t border-base-300/30">
-        <div className="max-w-7xl mx-auto px-6 py-4 text-center text-xs opacity-80">
+        <div className="w-full px-6 py-4 text-center text-xs opacity-80">
           © 2024 FASHION. All rights reserved.
         </div>
       </div>
     </footer>
-  )
+  );
 }

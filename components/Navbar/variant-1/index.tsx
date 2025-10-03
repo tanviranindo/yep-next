@@ -3,12 +3,20 @@
 // Fashion Navbar - Responsive design matching mobile and desktop references
 import Link from "next/link";
 import { useState } from "react";
+import {
+  FiChevronDown,
+  FiHeart,
+  FiMenu,
+  FiSearch,
+  FiShoppingBag,
+  FiUser,
+} from "react-icons/fi";
 
 export default function FashionNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white sticky top-0 z-50 shadow-sm">
       {/* Mobile Layout */}
       <div className="block md:hidden">
         <div className="flex items-center justify-between px-4 py-4 h-16">
@@ -18,37 +26,36 @@ export default function FashionNavbar() {
             <div className="text-xs text-center text-gray-800">STUDIO</div>
           </div>
 
-          {/* Right Section - Hamburger Menu and Notification Chips */}
-          <div className="flex items-center space-x-3">
+          {/* Right Section - Icons and Menu */}
+          <div className="flex items-center space-x-2">
+            {/* Search Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors">
+              <FiSearch className="w-5 h-5" />
+            </button>
+
+            {/* Wishlist Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors relative">
+              <FiHeart className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                2
+              </span>
+            </button>
+
+            {/* Shopping Cart Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors relative">
+              <FiShoppingBag className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                3
+              </span>
+            </button>
+
             {/* Hamburger Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-gray-800 hover:text-gray-600"
+              className="p-2 text-gray-800 hover:text-gray-600 transition-colors"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <FiMenu className="w-6 h-6" />
             </button>
-
-            {/* Notification Chips */}
-            <div className="flex items-center space-x-2">
-              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                3
-              </div>
-              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                6
-              </div>
-            </div>
           </div>
         </div>
 
@@ -81,7 +88,7 @@ export default function FashionNavbar() {
 
       {/* Desktop Layout */}
       <div className="hidden md:block">
-        <div className="flex items-center justify-between px-6 py-4 h-16">
+        <div className="flex items-center justify-between px-6 py-4 h-16 w-full">
           {/* Logo */}
           <div className="border border-gray-800 p-2 w-fit">
             <div className="text-lg font-bold text-gray-800">FASHION</div>
@@ -109,50 +116,37 @@ export default function FashionNavbar() {
               >
                 CATEGORIES
               </Link>
-              <svg
-                className="w-3 h-3 text-gray-800"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              <FiChevronDown className="w-3 h-3 text-gray-800" />
             </div>
           </div>
 
-          {/* Right Section - Search and Notification Chips */}
+          {/* Right Section - Icons */}
           <div className="flex items-center space-x-4">
             {/* Search Icon */}
-            <button className="p-2 text-gray-800 hover:text-gray-600">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors">
+              <FiSearch className="w-5 h-5" />
             </button>
 
-            {/* Notification Chips */}
-            <div className="flex items-center space-x-2">
-              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            {/* Wishlist Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors relative">
+              <FiHeart className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                2
+              </span>
+            </button>
+
+            {/* Shopping Cart Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors relative">
+              <FiShoppingBag className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 3
-              </div>
-              <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                6
-              </div>
-            </div>
+              </span>
+            </button>
+
+            {/* User Account Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 transition-colors">
+              <FiUser className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-private_assets/
+# private_assets/
 progress/
 # Dependencies
 node_modules/

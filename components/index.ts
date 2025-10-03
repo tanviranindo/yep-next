@@ -1,5 +1,6 @@
 // Main component exports
-export * from './Navbar'
-export * from './Footer'
-export * from './Layout'
-export { default as ThemeSwitcher } from './ThemeSwitcher'
+export { default as AnimatedText } from "./AnimatedText";
+export * from "./Footer";
+export * from "./Layout";
+export * from "./Navbar";
+export { default as ThemeSwitcher } from "./ThemeSwitcher";
