@@ -1,24 +1,35 @@
+import type { Product } from "@/components/ProductCard";
+import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
 export default function ProductsPage() {
-  const products = [
+  const products: Product[] = [
     {
-      id: 1,
+      id: "1",
       name: "Product 1",
-      price: "$99",
       description: "Amazing product description",
+      image: "/items/product1.png",
+      url: "/products/1",
+      price: 99,
+      currency: "USD",
     },
     {
-      id: 2,
+      id: "2",
       name: "Product 2",
-      price: "$149",
       description: "Another great product",
+      image: "/items/product1.png",
+      url: "/products/2",
+      price: 149,
+      currency: "USD",
     },
     {
-      id: 3,
+      id: "3",
       name: "Product 3",
-      price: "$199",
       description: "Premium quality product",
+      image: "/items/product1.png",
+      url: "/products/3",
+      price: 199,
+      currency: "USD",
     },
   ];
 
@@ -46,24 +57,8 @@ export default function ProductsPage() {
         <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <div key={product.id} className="card w-full bg-base-200 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">{product.name}</h2>
-                <p>{product.description}</p>
-                <div className="text-2xl font-bold text-primary">
-                  {product.price}
-                </div>
-                <div className="card-actions justify-end">
-                  <Link
-                    href={`/products/${product.id}`}
-                    className="btn btn-primary"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            </div>
+          {products.map((p) => (
+            <ProductCard key={p.id} variant={4} product={p} />
           ))}
         </div>
       </div>

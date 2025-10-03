@@ -33,7 +33,7 @@ export default function ProductCardVariant4({
       <div className="relative">
         <div className="relative w-full h-80">
           <Image
-            src={product.image}
+            src={product.image || "/items/product1.png"}
             alt={product.name}
             fill
             className="object-cover"
@@ -41,34 +41,34 @@ export default function ProductCardVariant4({
           />
         </div>
         {/* Bottom overlay add-to-cart bar to match design */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
           {cta?.href ? (
             <Link
               href={cta.href}
-              className="btn btn-xs bg-base-100 text-base-content border-base-300"
+              className="px-10 py-3 bg-white text-neutral-900 tracking-[0.2em] uppercase rounded-none shadow border border-neutral-200"
             >
               {cta.label.toUpperCase()}
             </Link>
           ) : (
-            <button className="btn btn-xs bg-base-100 text-base-content border-base-300">
+            <button className="px-10 py-3 bg-white text-neutral-900 tracking-[0.2em] uppercase rounded-none shadow border border-neutral-200">
               {cta.label.toUpperCase()}
             </button>
           )}
         </div>
-        <div className="absolute top-3 right-3 flex flex-col gap-2">
+        <div className="absolute top-1/2 -translate-y-1/2 right-3 flex flex-col gap-3">
           {actions.map((action, i) =>
             action.href ? (
               <Link
                 key={i}
                 href={action.href}
-                className="btn btn-xs btn-circle bg-base-100/90 border border-base-300"
+                className="grid place-items-center w-9 h-9 rounded-full bg-white/95 border border-neutral-200 shadow"
               >
                 {action.icon as any}
               </Link>
             ) : (
               <button
                 key={i}
-                className="btn btn-xs btn-circle bg-base-100/90 border border-base-300"
+                className="grid place-items-center w-9 h-9 rounded-full bg-white/95 border border-neutral-200 shadow"
                 aria-label={action.label}
               >
                 {action.icon as any}
@@ -93,13 +93,6 @@ export default function ProductCardVariant4({
               {product.currency} {product.price.toLocaleString()}.00
             </span>
           </div>
-          {cta?.href ? (
-            <Link href={cta.href} className="btn btn-xs btn-outline">
-              {cta.label}
-            </Link>
-          ) : (
-            <button className="btn btn-xs btn-outline">{cta.label}</button>
-          )}
         </div>
       </div>
       <script
