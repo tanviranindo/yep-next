@@ -47,19 +47,18 @@ export default function FashionHeroVariant1({
   },
 }: HeroV1Props) {
   return (
-    <section className="relative">
-      <div className="grid md:grid-cols-2 h-[85vh]">
+    <section className="relative -mt-16 pt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-[70vh] sm:h-[75vh] md:h-[80vh] lg:h-[85vh]">
         {/* Left Side - Content */}
-        <div className="bg-white/90 backdrop-blur-sm p-6 flex flex-col justify-between relative z-10">
+        <div className="bg-white/90 backdrop-blur-sm p-4 sm:p-6 flex flex-col justify-between relative z-10 h-full">
           {/* Row 1: LATEST COLLECTIONS OF + Summer 2025 */}
-          <div className="mb-2">
+          <div className="mb-1">
             {eyebrow && (
               <p
-                className="uppercase text-gray-600 mb-1"
+                className="uppercase text-gray-600 mb-0.5 text-sm sm:text-base md:text-lg lg:text-xl"
                 style={{
                   fontFamily: "var(--font-outfit)",
                   fontWeight: 500,
-                  fontSize: "20px",
                   lineHeight: "100%",
                   letterSpacing: "5%",
                 }}
@@ -69,11 +68,10 @@ export default function FashionHeroVariant1({
             )}
             {sublabel && (
               <p
-                className="text-gray-500 mb-1"
+                className="text-gray-500 mb-0.5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 style={{
                   fontFamily: "var(--font-outfit)",
                   fontWeight: 400,
-                  fontSize: "45px",
                   lineHeight: "100%",
                   letterSpacing: "6%",
                 }}
@@ -84,13 +82,12 @@ export default function FashionHeroVariant1({
           </div>
 
           {/* Row 2: LET'S CREATE YOUR OWN + Fashion Statement */}
-          <div className="mb-2">
+          <div className="mb-1">
             <h1
-              className="text-gray-800"
+              className="text-gray-800 text-lg sm:text-xl md:text-2xl lg:text-3xl"
               style={{
                 fontFamily: "var(--font-outfit)",
                 fontWeight: 500,
-                fontSize: "24px",
                 lineHeight: "100%",
                 letterSpacing: "20%",
               }}
@@ -98,11 +95,10 @@ export default function FashionHeroVariant1({
               LET'S CREATE YOUR OWN
             </h1>
             <h1
-              className="text-gray-800"
+              className="text-gray-800 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
               style={{
                 fontFamily: "var(--font-outfit)",
                 fontWeight: 800,
-                fontSize: "70px",
                 lineHeight: "100%",
                 letterSpacing: "-2%",
               }}
@@ -112,14 +108,11 @@ export default function FashionHeroVariant1({
           </div>
 
           {/* Row 3: Images + Navigation + Product Info */}
-          <div className="flex items-end gap-6">
+          <div className="flex flex-col sm:flex-row items-end gap-4 sm:gap-6">
             {/* All Images (1, 2, 3) with different sizes */}
-            <div className="flex gap-4 items-end">
+            <div className="flex gap-2 sm:gap-4 items-end">
               {/* Image 1 - Larger */}
-              <div
-                className="relative bg-base-300 rounded"
-                style={{ width: "100px", height: "150px" }}
-              >
+              <div className="relative bg-base-300 rounded w-16 h-24 sm:w-20 sm:h-28 md:w-24 md:h-36 lg:w-28 lg:h-40">
                 <Image
                   src={thumbnails[0]}
                   alt="product-1"
@@ -131,10 +124,10 @@ export default function FashionHeroVariant1({
               {/* Images 2 & 3 - Smaller with navigation above */}
               <div className="flex flex-col gap-1">
                 {/* Navigation arrows above images */}
-                <div className="flex gap-3 justify-center">
-                  <button className="w-5 h-5 flex items-center justify-center hover:opacity-70 transition-opacity text-gray-700">
+                <div className="flex gap-2 sm:gap-3 justify-center">
+                  <button className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center hover:opacity-70 transition-opacity text-gray-700">
                     <svg
-                      className="w-3 h-3"
+                      className="w-2 h-2 sm:w-3 sm:h-3"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -147,9 +140,9 @@ export default function FashionHeroVariant1({
                       />
                     </svg>
                   </button>
-                  <button className="w-5 h-5 flex items-center justify-center hover:opacity-70 transition-opacity text-gray-700">
+                  <button className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center hover:opacity-70 transition-opacity text-gray-700">
                     <svg
-                      className="w-3 h-3"
+                      className="w-2 h-2 sm:w-3 sm:h-3"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -165,12 +158,9 @@ export default function FashionHeroVariant1({
                 </div>
 
                 {/* Images 2 & 3 */}
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3">
                   {/* Image 2 */}
-                  <div
-                    className="relative bg-base-300 rounded"
-                    style={{ width: "65px", height: "110px" }}
-                  >
+                  <div className="relative bg-base-300 rounded w-12 h-16 sm:w-16 sm:h-24 md:w-18 md:h-28 lg:w-20 lg:h-32">
                     <Image
                       src={thumbnails[1]}
                       alt="product-2"
@@ -180,10 +170,7 @@ export default function FashionHeroVariant1({
                   </div>
 
                   {/* Image 3 */}
-                  <div
-                    className="relative bg-base-300 rounded"
-                    style={{ width: "65px", height: "110px" }}
-                  >
+                  <div className="relative bg-base-300 rounded w-12 h-16 sm:w-16 sm:h-24 md:w-18 md:h-28 lg:w-20 lg:h-32">
                     <Image
                       src={thumbnails[2]}
                       alt="product-3"
@@ -196,14 +183,13 @@ export default function FashionHeroVariant1({
             </div>
 
             {/* Product Info */}
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-1 sm:space-y-2">
               <div>
                 <h3
-                  className="text-gray-800 mb-2"
+                  className="text-gray-800 mb-0.5 sm:mb-1 text-sm sm:text-base md:text-lg lg:text-xl"
                   style={{
                     fontFamily: "var(--font-outfit)",
                     fontWeight: 700,
-                    fontSize: "20px",
                     lineHeight: "100%",
                     letterSpacing: "2%",
                   }}
@@ -211,11 +197,10 @@ export default function FashionHeroVariant1({
                   {productCarousel.title}
                 </h3>
                 <p
-                  className="text-gray-600 mb-3"
+                  className="text-gray-600 mb-1 sm:mb-2 text-xs sm:text-sm md:text-base"
                   style={{
                     fontFamily: "var(--font-outfit)",
                     fontWeight: 400,
-                    fontSize: "16px",
                     lineHeight: "17px",
                     letterSpacing: "0%",
                   }}
@@ -225,7 +210,7 @@ export default function FashionHeroVariant1({
               </div>
               <Link
                 href={productCarousel.cta.href}
-                className="inline-block px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-black text-white text-xs sm:text-sm font-medium hover:bg-gray-800 transition-colors rounded"
               >
                 {productCarousel.cta.label}
               </Link>
@@ -234,7 +219,7 @@ export default function FashionHeroVariant1({
         </div>
 
         {/* Right Side - Hero Image */}
-        <div className="relative">
+        <div className="relative h-full">
           <div className="relative w-full h-full">
             <Image
               src={heroImage}
@@ -246,16 +231,17 @@ export default function FashionHeroVariant1({
           </div>
 
           {/* Social Media Icons on Right Edge - Exact Figma specs */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2">
-            <div className="bg-black rounded-full flex flex-col items-center justify-center py-6 px-3 gap-4">
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 hidden sm:block">
+            <div className="bg-black rounded-full flex flex-col items-center justify-center py-4 px-3 sm:py-5 sm:px-4 gap-3 sm:gap-4">
               {/* Twitter Icon */}
               <Link
                 href="#"
                 className="flex items-center justify-center hover:opacity-80 transition-opacity"
               >
                 <svg
-                  width="14"
-                  height="12"
+                  width="18"
+                  height="15"
+                  className="sm:w-5 sm:h-4"
                   viewBox="0 0 14 12"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -273,8 +259,9 @@ export default function FashionHeroVariant1({
                 className="flex items-center justify-center hover:opacity-80 transition-opacity"
               >
                 <svg
-                  width="14"
-                  height="14"
+                  width="18"
+                  height="18"
+                  className="sm:w-5 sm:h-5"
                   viewBox="0 0 14 14"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -292,8 +279,9 @@ export default function FashionHeroVariant1({
                 className="flex items-center justify-center hover:opacity-80 transition-opacity"
               >
                 <svg
-                  width="14"
-                  height="12"
+                  width="18"
+                  height="15"
+                  className="sm:w-5 sm:h-4"
                   viewBox="0 0 14 12"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

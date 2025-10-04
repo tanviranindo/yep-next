@@ -8,7 +8,7 @@ const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
   id: `fashion-${i + 1}`,
   name: ["Outfit", "Denim Jacket", "City Sneaker", "Chino Pants"][i % 4],
   description: "Premium materials with timeless style",
-  image: "/placeholder.svg",
+  image: "/items/product1.jpg",
   url: `/products/fashion-${i + 1}`,
   price: [3500, 4500, 2500, 3200][i % 4],
   currency: "BDT",
@@ -58,9 +58,14 @@ export default function FashionUI1Layout() {
 
       {/* Main content with filter + grid */}
       <section className="w-full px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-[16rem,1fr] gap-6">
-          <FilterSidebarVariant1 />
-          <div>
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Filter Sidebar */}
+          <div className="w-full lg:w-80 flex-shrink-0">
+            <FilterSidebarVariant1 />
+          </div>
+
+          {/* Products Grid */}
+          <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">New Arrivals</h2>
               <div className="join">
