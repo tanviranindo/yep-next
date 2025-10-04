@@ -5,13 +5,13 @@ import { useId, useMemo, useState } from "react";
 function SquareCheckbox({
   name,
   value,
-  defaultChecked,
+  checked,
   label,
   onChange,
 }: {
   name: string;
   value: string;
-  defaultChecked?: boolean;
+  checked?: boolean;
   label: string;
   onChange?: (checked: boolean) => void;
 }) {
@@ -23,7 +23,7 @@ function SquareCheckbox({
         type="checkbox"
         name={name}
         value={value}
-        defaultChecked={defaultChecked}
+        checked={checked}
         onChange={(e) => onChange?.(e.target.checked)}
         className="peer sr-only"
       />
@@ -202,7 +202,7 @@ export default function FilterSidebarVariant1({
         <button
           type="button"
           onClick={clearAllFilters}
-          className="border border-gray-300 px-3 py-1.5 text-[12px] uppercase tracking-[0.15em] leading-none text-gray-600 hover:border-gray-400 hover:text-gray-800 transition-colors duration-200"
+          className="border border-gray-300 px-3 py-1.5 text-[12px] uppercase tracking-[0.15em] leading-none text-gray-600 hover:border-gray-400 hover:text-gray-800 transition-colors duration-200 cursor-pointer"
         >
           CLEAR FILTERS
         </button>
@@ -255,8 +255,13 @@ export default function FilterSidebarVariant1({
               BDT {minValue.toLocaleString()} — BDT {maxValue.toLocaleString()}
             </div>
             <button
-              className="bg-black text-white px-6 py-2 text-[12px] uppercase tracking-[0.25em] leading-none"
-              type="submit"
+              className="bg-black text-white px-6 py-2 text-[12px] uppercase tracking-[0.25em] leading-none hover:bg-gray-800 active:bg-gray-900 cursor-pointer"
+              type="button"
+              onClick={() => {
+                console.log("Applying filters:");
+                console.log("Selected Filters:", selectedFilters);
+                console.log("Price Range:", { minValue, maxValue });
+              }}
             >
               {applyLabel}
             </button>
@@ -316,7 +321,7 @@ export default function FilterSidebarVariant1({
                     <SquareCheckbox
                       name={g.name}
                       value={o}
-                      defaultChecked={
+                      checked={
                         selectedFilters[g.name]?.includes(o) || false
                       }
                       label={o}

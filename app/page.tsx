@@ -1,5 +1,6 @@
 "use client";
 
+import { FooterVariant1 } from "@/components/Footer";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -225,32 +226,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="footer footer-center p-10 bg-base-200 text-base-content">
-        <div>
-          <h3 className="text-2xl font-bold text-primary">YEP Next</h3>
-          <p className="font-bold">Your Multi-Category E-commerce Platform</p>
-          <p>Copyright © 2024 - All right reserved</p>
-        </div>
-        <div>
-          <div className="grid grid-flow-col gap-4">
-            <Link href="/fashion" className="link link-hover">
-              Fashion
-            </Link>
-            <Link href="/beauty" className="link link-hover">
-              Beauty
-            </Link>
-            <Link href="/gadgets" className="link link-hover">
-              Gadgets
-            </Link>
-            <Link href="/furniture" className="link link-hover">
-              Furniture
-            </Link>
-            <Link href="/kids-mom" className="link link-hover">
-              Kids & Mom
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <FooterVariant1 />
     </div>
   );
 }

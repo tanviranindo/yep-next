@@ -1,4 +1,6 @@
 // Beauty Navbar - Search-focused & Elegant
+import { beautyCategories } from "@/lib/navbarCategories";
+import MenuBar from "../MenuBar";
 
 export default function BeautyNavbar() {
   return (
@@ -82,10 +84,11 @@ export default function BeautyNavbar() {
 
         <div className="navbar-end">
           <div className="hidden lg:flex items-center space-x-6 mr-4">
-            <a className="hover:text-primary cursor-pointer">Skincare</a>
-            <a className="hover:text-primary cursor-pointer">Makeup</a>
-            <a className="hover:text-primary cursor-pointer">Fragrance</a>
-            <a className="hover:text-primary cursor-pointer">Hair Care</a>
+            <MenuBar
+              label="Categories"
+              items={beautyCategories}
+              buttonClassName="hover:text-primary cursor-pointer"
+            />
             <a className="text-red-500 hover:text-red-600 font-bold cursor-pointer">
               Sale
             </a>

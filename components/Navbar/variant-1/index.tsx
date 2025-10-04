@@ -1,10 +1,10 @@
 "use client";
 
 // Fashion Navbar - Responsive design matching mobile and desktop references
+import { fashionCategories } from "@/lib/navbarCategories";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
-  FiChevronDown,
   FiChevronRight,
   FiHeart,
   FiMenu,
@@ -12,313 +12,14 @@ import {
   FiShoppingBag,
   FiUser,
 } from "react-icons/fi";
+import MenuBar from "../MenuBar";
 
 export default function FashionNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
-  const [isWomenOpen, setIsWomenOpen] = useState(false);
-  const [isMenOpen, setIsMenOpen] = useState(false);
-  const [isAccessoriesOpen, setIsAccessoriesOpen] = useState(false);
   const [isMobileWomenOpen, setIsMobileWomenOpen] = useState(false);
   const [isMobileMenOpen, setIsMobileMenOpen] = useState(false);
   const [isMobileAccessoriesOpen, setIsMobileAccessoriesOpen] = useState(false);
-
-  // Dynamic menu state management
-  const [openMenus, setOpenMenus] = useState<Set<string>>(new Set());
-
-  // Helper functions for dynamic menu management
-  const toggleMenu = (menuId: string) => {
-    setOpenMenus((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(menuId)) {
-        newSet.delete(menuId);
-        // Close all child menus when parent is closed
-        const childMenus = Array.from(prev).filter((id) =>
-          id.startsWith(menuId + "-")
-        );
-        childMenus.forEach((childId) => newSet.delete(childId));
-      } else {
-        newSet.add(menuId);
-      }
-      return newSet;
-    });
-  };
-
-  const isMenuOpen = (menuId: string) => openMenus.has(menuId);
-
-  const closeAllMenus = () => {
-    setOpenMenus(new Set());
-  };
-
-  // Dynamic menu data structure
-  const menuData = {
-    women: {
-      label: "Women",
-      children: {
-        dresses: {
-          label: "Dresses",
-          children: {
-            "evening-dresses": {
-              label: "Evening Dresses",
-              children: {
-                "cocktail-dresses": { label: "Cocktail Dresses", href: "#" },
-                "formal-gowns": { label: "Formal Gowns", href: "#" },
-                "black-tie": { label: "Black Tie", href: "#" },
-                "red-carpet": { label: "Red Carpet", href: "#" },
-              },
-            },
-            "casual-dresses": {
-              label: "Casual Dresses",
-              children: {
-                "day-dresses": { label: "Day Dresses", href: "#" },
-                "summer-dresses": { label: "Summer Dresses", href: "#" },
-                "work-dresses": { label: "Work Dresses", href: "#" },
-                "weekend-dresses": { label: "Weekend Dresses", href: "#" },
-              },
-            },
-            "party-dresses": { label: "Party Dresses", href: "#" },
-            "maxi-dresses": { label: "Maxi Dresses", href: "#" },
-          },
-        },
-        tops: {
-          label: "Tops & Blouses",
-          children: {
-            "t-shirts": { label: "T-Shirts", href: "#" },
-            blouses: { label: "Blouses", href: "#" },
-            "tank-tops": { label: "Tank Tops", href: "#" },
-            sweaters: { label: "Sweaters", href: "#" },
-          },
-        },
-        "pants-jeans": { label: "Pants & Jeans", href: "#" },
-        skirts: { label: "Skirts", href: "#" },
-      },
-    },
-    men: {
-      label: "Men",
-      children: {
-        shirts: {
-          label: "Shirts",
-          children: {
-            "dress-shirts": { label: "Dress Shirts", href: "#" },
-            "casual-shirts": { label: "Casual Shirts", href: "#" },
-            "polo-shirts": { label: "Polo Shirts", href: "#" },
-            "button-downs": { label: "Button Downs", href: "#" },
-          },
-        },
-        "t-shirts": { label: "T-Shirts", href: "#" },
-        "pants-jeans-men": { label: "Pants & Jeans", href: "#" },
-        jackets: { label: "Jackets", href: "#" },
-      },
-    },
-    accessories: {
-      label: "Accessories",
-      children: {
-        bags: {
-          label: "Bags",
-          children: {
-            handbags: {
-              label: "Handbags",
-              children: {
-                "designer-bags": { label: "Designer Bags", href: "#" },
-                "leather-bags": { label: "Leather Bags", href: "#" },
-                "clutch-bags": { label: "Clutch Bags", href: "#" },
-                "shoulder-bags": { label: "Shoulder Bags", href: "#" },
-              },
-            },
-            "tote-bags": { label: "Tote Bags", href: "#" },
-            "crossbody-bags": { label: "Crossbody Bags", href: "#" },
-            backpacks: { label: "Backpacks", href: "#" },
-          },
-        },
-        shoes: {
-          label: "Shoes",
-          children: {
-            sneakers: {
-              label: "Sneakers",
-              children: {
-                "running-shoes": { label: "Running Shoes", href: "#" },
-                "basketball-shoes": { label: "Basketball Shoes", href: "#" },
-                "lifestyle-sneakers": {
-                  label: "Lifestyle Sneakers",
-                  href: "#",
-                },
-                "high-top-sneakers": { label: "High-Top Sneakers", href: "#" },
-              },
-            },
-            heels: { label: "Heels", href: "#" },
-            boots: { label: "Boots", href: "#" },
-            sandals: { label: "Sandals", href: "#" },
-          },
-        },
-        jewelry: {
-          label: "Jewelry",
-          children: {
-            necklaces: { label: "Necklaces", href: "#" },
-            earrings: { label: "Earrings", href: "#" },
-            rings: { label: "Rings", href: "#" },
-            bracelets: { label: "Bracelets", href: "#" },
-          },
-        },
-        watches: { label: "Watches", href: "#" },
-      },
-    },
-  };
-
-  // Render submenu panels for open menus
-  const renderSubmenuPanels = () => {
-    const panels = [];
-
-    // Check each main category for open submenus
-    Object.entries(menuData).forEach(([categoryKey, category]) => {
-      if (category.children) {
-        Object.entries(category.children).forEach(([subKey, subItem]) => {
-          const subPath = `${categoryKey}-${subKey}`;
-          if (isMenuOpen(subPath) && subItem.children) {
-            // Check if this submenu has any children to display
-            const hasChildrenToShow = Object.values(subItem.children).some(
-              (child: any) => child.href || child.children
-            );
-
-            if (hasChildrenToShow) {
-              panels.push(
-                <div key={subPath} className="w-48 border-r border-gray-200">
-                  <div className="py-2">
-                    <div className="px-4 py-2">
-                      <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                        {subItem.label}
-                      </h4>
-                      <div className="space-y-1">
-                        {Object.entries(subItem.children).map(
-                          ([childKey, childItem]: [string, any]) => {
-                            const childPath = `${subPath}-${childKey}`;
-                            const childIsOpen = isMenuOpen(childPath);
-
-                            if (childItem.href) {
-                              return (
-                                <Link
-                                  key={childKey}
-                                  href={childItem.href}
-                                  className="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded"
-                                >
-                                  {childItem.label}
-                                </Link>
-                              );
-                            } else if (childItem.children) {
-                              return (
-                                <button
-                                  key={childKey}
-                                  onClick={() => toggleMenu(childPath)}
-                                  className="w-full text-left px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded flex items-center justify-between"
-                                >
-                                  <span>{childItem.label}</span>
-                                  <FiChevronRight
-                                    className={`w-3 h-3 transition-transform duration-200 ${
-                                      childIsOpen ? "rotate-90" : ""
-                                    }`}
-                                  />
-                                </button>
-                              );
-                            }
-                            return null;
-                          }
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-          }
-        });
-      }
-    });
-
-    // Check for third level panels (sub-submenus)
-    Object.entries(menuData).forEach(([categoryKey, category]) => {
-      if (category.children) {
-        Object.entries(category.children).forEach(([subKey, subItem]) => {
-          const subPath = `${categoryKey}-${subKey}`;
-          if (subItem.children) {
-            Object.entries(subItem.children).forEach(
-              ([childKey, childItem]: [string, any]) => {
-                const childPath = `${subPath}-${childKey}`;
-                if (isMenuOpen(childPath) && childItem.children) {
-                  // Check if this third level has any children to display
-                  const hasChildrenToShow = Object.values(
-                    childItem.children
-                  ).some(
-                    (grandChild: any) => grandChild.href || grandChild.children
-                  );
-
-                  if (hasChildrenToShow) {
-                    panels.push(
-                      <div
-                        key={childPath}
-                        className="w-48 border-r border-gray-200"
-                      >
-                        <div className="py-2">
-                          <div className="px-4 py-2">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                              {childItem.label}
-                            </h4>
-                            <div className="space-y-1">
-                              {Object.entries(childItem.children).map(
-                                ([grandChildKey, grandChildItem]: [
-                                  string,
-                                  any
-                                ]) => {
-                                  const grandChildPath = `${childPath}-${grandChildKey}`;
-                                  const grandChildIsOpen =
-                                    isMenuOpen(grandChildPath);
-
-                                  if (grandChildItem.href) {
-                                    return (
-                                      <Link
-                                        key={grandChildKey}
-                                        href={grandChildItem.href}
-                                        className="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded"
-                                      >
-                                        {grandChildItem.label}
-                                      </Link>
-                                    );
-                                  } else if (grandChildItem.children) {
-                                    return (
-                                      <button
-                                        key={grandChildKey}
-                                        onClick={() =>
-                                          toggleMenu(grandChildPath)
-                                        }
-                                        className="w-full text-left px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded flex items-center justify-between"
-                                      >
-                                        <span>{grandChildItem.label}</span>
-                                        <FiChevronRight
-                                          className={`w-3 h-3 transition-transform duration-200 ${
-                                            grandChildIsOpen ? "rotate-90" : ""
-                                          }`}
-                                        />
-                                      </button>
-                                    );
-                                  }
-                                  return null;
-                                }
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                }
-              }
-            );
-          }
-        });
-      }
-    });
-
-    return panels;
-  };
 
   // Sub-dropdown states for mobile
   const [isMobileDressesOpen, setIsMobileDressesOpen] = useState(false);
@@ -337,11 +38,10 @@ export default function FashionNavbar() {
         categoriesRef.current &&
         !categoriesRef.current.contains(event.target as Node)
       ) {
-        setIsCategoriesOpen(false);
-        setIsWomenOpen(false);
-        setIsMenOpen(false);
-        setIsAccessoriesOpen(false);
-        closeAllMenus();
+        setIsMobileCategoriesOpen(false);
+        setIsMobileWomenOpen(false);
+        setIsMobileMenOpen(false);
+        setIsMobileAccessoriesOpen(false);
       }
     };
 
@@ -787,100 +487,11 @@ export default function FashionNavbar() {
             </Link>
 
             {/* Categories Dropdown */}
-            <div className="relative" ref={categoriesRef}>
-              <button
-                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                className="text-sm font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 px-3 py-2 rounded-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 flex items-center space-x-1"
-              >
-                <span>CATEGORIES</span>
-                <FiChevronDown
-                  className={`w-3 h-3 transition-transform duration-200 ${
-                    isCategoriesOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {isCategoriesOpen && (
-                <div
-                  className={`absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 ${
-                    renderSubmenuPanels().length > 0 ? "w-[800px]" : "w-48"
-                  }`}
-                >
-                  <div className="flex">
-                    {/* Left Panel - Main Categories */}
-                    <div
-                      className={`${
-                        renderSubmenuPanels().length > 0
-                          ? "w-48 border-r border-gray-200"
-                          : "w-full"
-                      }`}
-                    >
-                      <div className="py-2">
-                        {Object.entries(menuData).map(
-                          ([key, item]: [string, any], index) => (
-                            <div key={key}>
-                              <div className="px-4 py-2">
-                                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                                  {item.label}
-                                </h3>
-                                <div className="space-y-1">
-                                  {Object.entries(item.children).map(
-                                    ([childKey, childItem]: [string, any]) => {
-                                      const childPath = `${key}-${childKey}`;
-                                      const childIsOpen = isMenuOpen(childPath);
-
-                                      if (childItem.href) {
-                                        // Leaf node
-                                        return (
-                                          <Link
-                                            key={childKey}
-                                            href={childItem.href}
-                                            className="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded"
-                                          >
-                                            {childItem.label}
-                                          </Link>
-                                        );
-                                      } else if (childItem.children) {
-                                        // Parent node
-                                        return (
-                                          <button
-                                            key={childKey}
-                                            onClick={() =>
-                                              toggleMenu(childPath)
-                                            }
-                                            className="w-full text-left px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded flex items-center justify-between"
-                                          >
-                                            <span>{childItem.label}</span>
-                                            <FiChevronRight
-                                              className={`w-3 h-3 transition-transform duration-200 ${
-                                                childIsOpen ? "rotate-90" : ""
-                                              }`}
-                                            />
-                                          </button>
-                                        );
-                                      }
-                                      return null;
-                                    }
-                                  )}
-                                </div>
-                              </div>
-                              {index < Object.keys(menuData).length - 1 && (
-                                <div className="border-t border-gray-100"></div>
-                              )}
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Dynamic Multi-Panel System */}
-                    {renderSubmenuPanels().length > 0 && (
-                      <div className="flex">{renderSubmenuPanels()}</div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+            <MenuBar
+              label="CATEGORIES"
+              items={fashionCategories}
+              buttonClassName="text-sm font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 px-3 py-2 rounded-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 flex items-center space-x-1"
+            />
           </div>
 
           {/* Right Section - Icons */}

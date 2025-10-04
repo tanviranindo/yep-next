@@ -27,3 +27,7 @@
 .animate-scroll-left {
   animation: scroll-left 40s linear infinite;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

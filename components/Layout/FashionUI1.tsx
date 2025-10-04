@@ -1,8 +1,10 @@
+"use client";
+
 import FilterSidebarVariant1 from "@/components/Filters/Sidebar/variant-1";
-import { FashionFooter } from "@/components/Footer";
 import FashionHeroVariant1 from "@/components/Hero/variant-1";
 import { FashionNavbar } from "@/components/Navbar";
 import ProductCard, { Product } from "@/components/ProductCard";
+import { useEffect, useState } from "react";
 
 const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
   id: `fashion-${i + 1}`,
@@ -17,8 +19,18 @@ const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
 }));
 
 export default function FashionUI1Layout() {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  useEffect(() => {
+    if (isFilterOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isFilterOpen]);
+
   return (
-    <div data-theme="fashion" className="bg-base-100 min-h-screen">
+    <div data-theme="fashion" className="bg-white min-h-screen">
       {/* Navbar */}
       <FashionNavbar />
 
@@ -57,23 +69,45 @@ export default function FashionUI1Layout() {
       </div>
 
       {/* Main content with filter + grid */}
-      <section className="w-full px-4 py-10">
-        <div className="flex flex-col lg:flex-row gap-6">
+      <section className="w-full px-4 py-10 bg-gray-50">
+        <div className="md:hidden mb-4">
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="btn bg-black text-white w-full"
+          >
+            Filter
+          </button>
+        </div>
+
+        {isFilterOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            onClick={() => setIsFilterOpen(false)}
+          >
+            <div
+              className="fixed inset-y-0 left-0 w-3/4 bg-white p-4 z-50 overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsFilterOpen(false)}
+                className="btn btn-ghost btn-circle absolute top-2 right-2"
+              >
+                ✕
+              </button>
+              <FilterSidebarVariant1 />
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-col md:flex-row gap-4">
           {/* Filter Sidebar */}
-          <div className="w-full lg:w-80 flex-shrink-0">
+          <div className="hidden md:block w-full md:w-1/4 lg:w-1/5 xl:w-1/6 flex-shrink-0">
             <FilterSidebarVariant1 />
           </div>
 
           {/* Products Grid */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">New Arrivals</h2>
-              <div className="join">
-                <button className="btn btn-xs join-item">Sort</button>
-                <button className="btn btn-xs join-item">Filter</button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {products.map((p) => (
                 <ProductCard key={p.id} variant={4} product={p} />
               ))}
@@ -84,9 +118,6 @@ export default function FashionUI1Layout() {
 
       {/* FAQ */}
       {/* Rendered at the page level to match design; FAQ variant imported there if needed */}
-
-      {/* Footer */}
-      <FashionFooter />
     </div>
   );
 }
