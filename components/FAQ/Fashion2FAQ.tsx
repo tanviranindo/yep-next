@@ -12,12 +12,12 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   return (
     <section className="w-full bg-gray-50 py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="w-full px-4 md:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-gray-900">
           Frequently asked questions
         </h2>
@@ -26,15 +26,14 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
           {/* Left Side - FAQ List */}
           <div className="space-y-4">
             {items.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-gray-200"
-              >
+              <div key={idx} className="bg-white border border-gray-200">
                 <button
                   onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
                   className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-medium text-gray-900 pr-4">{item.q}</span>
+                  <span className="font-medium text-gray-900 pr-4">
+                    {item.q}
+                  </span>
                   <svg
                     className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${
                       openIndex === idx ? "rotate-180" : ""
@@ -43,7 +42,12 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
                 {openIndex === idx && (
@@ -63,7 +67,9 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
                   type="text"
                   placeholder="Your Name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="w-full px-4 py-3 border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 />
               </div>
@@ -73,7 +79,9 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
                   type="email"
                   placeholder="Email Address"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full px-4 py-3 border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 />
               </div>
@@ -82,7 +90,9 @@ export default function Fashion2FAQ({ items }: { items: Fashion2FAQItem[] }) {
                 <textarea
                   placeholder="Type Message"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   rows={5}
                   className="w-full px-4 py-3 border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 resize-none"
                 />

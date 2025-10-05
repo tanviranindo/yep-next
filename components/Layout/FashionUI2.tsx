@@ -1,12 +1,13 @@
 "use client";
 
-import Fashion2Filter from "@/components/Filters/Sidebar/Fashion2Filter";
+import Fashion2ExactFilter from "@/components/Filters/Sidebar/Fashion2ExactFilter";
 import InsoleHero from "@/components/Hero/InsoleHero";
 import InsoleNavbar from "@/components/Navbar/InsoleNavbar";
 import Fashion2ProductCard from "@/components/ProductCard/Fashion2Card";
+import type { Product } from "@/components/ProductCard/types";
 import { useEffect, useState } from "react";
 
-const products = Array.from({ length: 12 }).map((_, i) => ({
+const products: Product[] = Array.from({ length: 12 }).map((_, i) => ({
   id: `insole-${i + 1}`,
   name: ["Diamond Ring", "Gold Ring", "Silver Ring", "Platinum Ring"][i % 4],
   description: "Elegant and timeless jewelry piece",
@@ -64,11 +65,21 @@ export default function FashionUI2Layout() {
                   onClick={() => setIsFilterOpen(false)}
                   className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
-                <Fashion2Filter />
+                <Fashion2ExactFilter />
               </div>
             </div>
           )}
@@ -76,14 +87,16 @@ export default function FashionUI2Layout() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Left Sidebar - Filter */}
             <div className="hidden lg:block w-full lg:w-72 flex-shrink-0">
-              <Fashion2Filter />
+              <Fashion2ExactFilter />
             </div>
 
             {/* Center - Products Grid */}
             <div className="flex-1 min-w-0">
               {/* Products Header */}
               <div className="mb-6 md:mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Jewelry Collection</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  Jewelry Collection
+                </h2>
                 <p className="text-sm text-gray-600">
                   Showing {products.length} of 156 products
                 </p>
