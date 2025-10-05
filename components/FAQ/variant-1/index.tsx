@@ -15,10 +15,12 @@ export default function FAQVariant1({
     items.slice(i * perCol, (i + 1) * perCol)
   );
   return (
-    <section className="w-full px-4 py-10 bg-white">
-      <h2 className="text-2xl font-bold mb-4 text-gray-900">FAQ</h2>
+    <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-10 md:py-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-gray-900 uppercase tracking-wide">
+        FAQ
+      </h2>
       <div
-        className={`grid gap-3 ${
+        className={`grid gap-4 ${
           columns === 2 ? "md:grid-cols-2" : "grid-cols-1"
         }`}
       >
@@ -29,18 +31,18 @@ export default function FAQVariant1({
                 key={idx}
                 className="group border border-gray-200 bg-white"
               >
-                <summary className="list-none cursor-pointer text-sm md:text-base font-medium flex items-center gap-2 pr-3 py-3 px-3 text-gray-900 hover:text-gray-700">
-                  <span>{`${String(i * perCol + idx + 1).padStart(2, "0")}. ${
+                <summary className="list-none cursor-pointer text-sm md:text-base font-semibold flex items-center gap-2 pr-4 py-4 px-4 text-gray-900 hover:bg-gray-50 transition-colors">
+                  <span className="flex-1">{`${String(i * perCol + idx + 1).padStart(2, "0")}. ${
                     it.q
                   }`}</span>
-                  <span className="ml-auto text-gray-600 font-normal text-2xl group-open:hidden">
+                  <span className="text-gray-600 font-normal text-xl group-open:hidden flex-shrink-0">
                     +
                   </span>
-                  <span className="ml-auto text-gray-600 font-normal text-2xl hidden group-open:inline">
+                  <span className="text-gray-600 font-normal text-xl hidden group-open:inline flex-shrink-0">
                     −
                   </span>
                 </summary>
-                <div className="px-3 pb-4 text-sm text-gray-700">{it.a}</div>
+                <div className="px-4 pb-4 text-sm md:text-base text-gray-600 leading-relaxed">{it.a}</div>
               </details>
             ))}
           </div>

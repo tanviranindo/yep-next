@@ -1,6 +1,6 @@
 import FAQVariant1 from "@/components/FAQ/variant-1";
 import { FashionFooter } from "@/components/Footer";
-import FashionUI1 from "@/components/Layout/FashionUI1";
+import FashionUI2 from "@/components/Layout/FashionUI2";
 
 export const dynamic = "force-static";
 
@@ -20,7 +20,7 @@ export default function Fashion2Page() {
   ];
   return (
     <div className="bg-white">
-      <FashionUI1 />
+      <FashionUI2 />
       <FAQVariant1 items={faqItems} columns={2} />
       <FashionFooter />
     </div>

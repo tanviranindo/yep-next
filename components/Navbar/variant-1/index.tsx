@@ -23,8 +23,6 @@ export default function FashionNavbar() {
   const [isMobileTopsOpen, setIsMobileTopsOpen] = useState(false);
   const [isMobileShirtsOpen, setIsMobileShirtsOpen] = useState(false);
   const [isMobileBagsOpen, setIsMobileBagsOpen] = useState(false);
-  const [isMobileShoesOpen, setIsMobileShoesOpen] = useState(false);
-  const [isMobileJewelryOpen, setIsMobileJewelryOpen] = useState(false);
 
   const categoriesRef = useRef<HTMLDivElement>(null);
 
