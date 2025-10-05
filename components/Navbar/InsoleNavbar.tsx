@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiMenu, FiSearch, FiShoppingBag, FiHeart, FiUser } from "react-icons/fi";
+import MenuBar from "@/components/Navbar/MenuBar";
+import { fashionCategories } from "@/lib/navbarCategories";
 
 export default function InsoleNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,14 +37,7 @@ export default function InsoleNavbar() {
             >
               SHOP
             </Link>
-            <div className="relative group">
-              <button className="text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors uppercase flex items-center gap-1">
-                CATEGORIES
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-            </div>
+            <MenuBar label="CATEGORIES" items={fashionCategories} />
           </div>
         </div>
 

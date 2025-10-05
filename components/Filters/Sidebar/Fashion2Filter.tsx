@@ -31,9 +31,12 @@ export default function Fashion2Filter() {
         <h3 className="text-lg font-bold mb-4 text-gray-900">Categories</h3>
         <div className="space-y-3">
           {["Men", "Women", "Kids", "Accessories"].map((cat) => (
-            <label key={cat} className="flex items-center space-x-3 cursor-pointer">
-              <input type="checkbox" className="w-4 h-4 border-gray-300" />
-              <span className="text-gray-700">{cat}</span>
+            <label key={cat} className="flex items-center space-x-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
+              />
+              <span className="text-sm text-gray-700 group-hover:text-gray-900">{cat}</span>
             </label>
           ))}
         </div>
@@ -44,9 +47,12 @@ export default function Fashion2Filter() {
         <h3 className="text-lg font-bold mb-4 text-gray-900">Collection</h3>
         <div className="space-y-3">
           {["Shirts", "Jeans", "Tops", "Footwear", "Rings", "Necklace", "Bracelet", "T-shirt"].map((item) => (
-            <label key={item} className="flex items-center space-x-3 cursor-pointer">
-              <input type="checkbox" className="w-4 h-4 border-gray-300" />
-              <span className="text-gray-700">{item}</span>
+            <label key={item} className="flex items-center space-x-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
+              />
+              <span className="text-sm text-gray-700 group-hover:text-gray-900">{item}</span>
             </label>
           ))}
         </div>
@@ -56,13 +62,19 @@ export default function Fashion2Filter() {
       <div>
         <h3 className="text-lg font-bold mb-4 text-gray-900">Availability</h3>
         <div className="space-y-3">
-          <label className="flex items-center space-x-3 cursor-pointer">
-            <input type="checkbox" className="w-4 h-4 border-gray-300" />
-            <span className="text-gray-700">In stock (164)</span>
+          <label className="flex items-center space-x-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              className="w-4 h-4 border-2 border-gray-300 rounded-sm checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer"
+            />
+            <span className="text-sm text-gray-700 group-hover:text-gray-900">In stock (164)</span>
           </label>
-          <label className="flex items-center space-x-3 cursor-pointer">
-            <input type="checkbox" className="w-4 h-4 border-gray-300" />
-            <span className="text-gray-700">Out of stock (28)</span>
+          <label className="flex items-center space-x-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              className="w-4 h-4 border-2 border-gray-300 rounded-sm checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer"
+            />
+            <span className="text-sm text-gray-700 group-hover:text-gray-900">Out of stock (28)</span>
           </label>
         </div>
       </div>

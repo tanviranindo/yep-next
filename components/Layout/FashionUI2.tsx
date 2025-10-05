@@ -1,21 +1,21 @@
 "use client";
 
-import FilterSidebarVariant2 from "@/components/Filters/Sidebar/variant-2";
-import FashionHeroVariant1 from "@/components/Hero/variant-1";
-import { FashionNavbar } from "@/components/Navbar";
-import ProductCard, { Product } from "@/components/ProductCard";
+import Fashion2Filter from "@/components/Filters/Sidebar/Fashion2Filter";
+import InsoleHero from "@/components/Hero/InsoleHero";
+import InsoleNavbar from "@/components/Navbar/InsoleNavbar";
+import Fashion2ProductCard from "@/components/ProductCard/Fashion2Card";
 import { useEffect, useState } from "react";
 
-const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
-  id: `fashion2-${i + 1}`,
-  name: ["Outfit", "Denim Jacket", "City Sneaker", "Chino Pants"][i % 4],
-  description: "Premium materials with timeless style",
-  image: "/items/product1.jpg",
-  url: `/products/fashion2-${i + 1}`,
-  price: [3500, 4500, 2500, 3200][i % 4],
+const products = Array.from({ length: 12 }).map((_, i) => ({
+  id: `insole-${i + 1}`,
+  name: ["Diamond Ring", "Gold Ring", "Silver Ring", "Platinum Ring"][i % 4],
+  description: "Elegant and timeless jewelry piece",
+  image: "/items/product2.jpg",
+  url: `/products/insole-${i + 1}`,
+  price: [5500, 6500, 4500, 7200][i % 4],
   currency: "BDT",
   availability: "InStock",
-  brand: "FASHION 2",
+  brand: "Insole",
 }));
 
 export default function FashionUI2Layout() {
@@ -30,46 +30,21 @@ export default function FashionUI2Layout() {
   }, [isFilterOpen]);
 
   return (
-    <div data-theme="fashion" className="bg-white min-h-screen">
-      {/* Fashion Navbar */}
-      <FashionNavbar />
-      
-      {/* Hero Section - with right image extending upward */}
-      <FashionHeroVariant1
-        title="DISCOVER YOUR UNIQUE Fashion Style"
-        sublabel="Fall 2025"
-        eyebrow="LATEST COLLECTIONS OF"
-        heroImage="/hero/main.png"
-        thumbnails={["/hero/1.png", "/hero/2.png", "/hero/3.png"]}
-        cta={{ label: "Explore →", href: "#" }}
-        ticker={[
-          "Style with Purpose",
-          "Express Your Individuality",
-          "Fashion Forward",
-          "Bold, Unique & Confident",
-        ]}
-        socialIcons={[
-          { icon: "f", href: "#" },
-          { icon: "✈", href: "#" },
-          { icon: "📷", href: "#" },
-          { icon: "●", href: "#" },
-        ]}
-        productCarousel={{
-          title: "PREMIUM STREETWEAR COLLECTION",
-          description:
-            "Discover fashion that defines your personality. From casual streetwear to elegant formal wear.",
-          cta: { label: "VIEW COLLECTION", href: "#" },
-          images: ["/hero/1.png", "/hero/2.png", "/hero/3.png"],
-        }}
-      />
+    <div className="bg-white min-h-screen">
+      {/* Insole Navbar */}
+      <InsoleNavbar />
+
+      {/* Hero Section */}
+      <InsoleHero />
 
       {/* Main content with filter sidebar */}
-      <section className="w-full px-4 py-10 bg-gray-50">
+      <section className="w-full bg-gray-50">
+        <div className="w-full px-4 md:px-6 lg:px-8 py-8 md:py-12">
           {/* Mobile Filter Button */}
-          <div className="md:hidden mb-4">
+          <div className="md:hidden mb-6">
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="btn bg-gray-600 text-white w-full"
+              className="w-full bg-gray-900 text-white py-3 px-4 font-semibold uppercase tracking-wide hover:bg-gray-800 transition-colors"
             >
               Filter & Sort
             </button>
@@ -87,39 +62,42 @@ export default function FashionUI2Layout() {
               >
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="btn btn-ghost btn-circle absolute top-2 right-2"
+                  className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
                 >
-                  ✕
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
-                <FilterSidebarVariant2 />
+                <Fashion2Filter />
               </div>
             </div>
           )}
 
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Left Sidebar - Filter */}
-            <div className="hidden lg:block w-full lg:w-80 flex-shrink-0">
-              <FilterSidebarVariant2 />
+            <div className="hidden lg:block w-full lg:w-72 flex-shrink-0">
+              <Fashion2Filter />
             </div>
 
             {/* Center - Products Grid */}
             <div className="flex-1 min-w-0">
-              {/* Simple Products Header */}
-              <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-800">Fashion 2 Collection</h2>
+              {/* Products Header */}
+              <div className="mb-6 md:mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Jewelry Collection</h2>
                 <p className="text-sm text-gray-600">
                   Showing {products.length} of 156 products
                 </p>
               </div>
 
               {/* Products Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                 {products.map((p) => (
-                  <ProductCard key={p.id} variant={4} product={p} />
+                  <Fashion2ProductCard key={p.id} product={p} />
                 ))}
               </div>
             </div>
           </div>
+        </div>
       </section>
     </div>
   );
