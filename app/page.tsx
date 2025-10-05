@@ -21,6 +21,16 @@ export default function HomePage() {
       features: ["NEW", "WOMEN", "MEN", "ACCESSORIES", "SALE"],
     },
     {
+      name: "Fashion 2",
+      slug: "/fashion2",
+      emoji: "👔",
+      description:
+        "Alternative fashion collection with unique styles and contemporary designs for modern lifestyle.",
+      color: "from-gray-800 to-gray-600",
+      theme: "fashion",
+      features: ["TRENDY", "CASUAL", "FORMAL", "STREETWEAR", "SALE"],
+    },
+    {
       name: "Beauty",
       slug: "/beauty",
       emoji: "💄",
