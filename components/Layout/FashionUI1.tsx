@@ -31,89 +31,95 @@ export default function FashionUI1Layout() {
 
   return (
     <div data-theme="fashion" className="bg-white min-h-screen">
-      {/* Navbar */}
+      {/* Fashion Navbar */}
       <FashionNavbar />
+      
+      {/* Hero Section - with right image extending upward */}
+      <FashionHeroVariant1
+        title="LET'S CREATE YOUR OWN Fashion Statement"
+        sublabel="Summer 2025"
+        eyebrow="LATEST COLLECTIONS OF"
+        heroImage="/hero/main.png"
+        thumbnails={["/hero/1.png", "/hero/2.png", "/hero/3.png"]}
+        cta={{ label: "Explore →", href: "#" }}
+        ticker={[
+          "Fashion with a Flair",
+          "Strut with Confidence",
+          "Own Your Runway",
+          "Chic, Classy & Confident",
+        ]}
+        socialIcons={[
+          { icon: "f", href: "#" },
+          { icon: "✈", href: "#" },
+          { icon: "📷", href: "#" },
+          { icon: "●", href: "#" },
+        ]}
+        productCarousel={{
+          title: "OFANCE HALF SLEEVE SHIRT",
+          description:
+            "Discover fashion that fits your lifestyle. From casual looks to statement pieces.",
+          cta: { label: "VIEW COLLECTION", href: "#" },
+          images: ["/hero/1.png", "/hero/2.png", "/hero/3.png"],
+        }}
+      />
 
-      {/* Hero Section */}
-      <div className="relative">
-        {/* Hero Content */}
-        <div className="relative z-10">
-          <FashionHeroVariant1
-            title="LET'S CREATE YOUR OWN Fashion Statement"
-            sublabel="Summer 2025"
-            eyebrow="LATEST COLLECTIONS OF"
-            heroImage="/hero/main.png"
-            thumbnails={["/hero/1.png", "/hero/2.png", "/hero/3.png"]}
-            cta={{ label: "Explore →", href: "#" }}
-            ticker={[
-              "Fashion with a Flair",
-              "Strut with Confidence",
-              "Own Your Runway",
-              "Chic, Classy & Confident",
-            ]}
-            socialIcons={[
-              { icon: "f", href: "#" },
-              { icon: "✈", href: "#" },
-              { icon: "📷", href: "#" },
-              { icon: "●", href: "#" },
-            ]}
-            productCarousel={{
-              title: "OFANCE HALF SLEEVE SHIRT",
-              description:
-                "Discover fashion that fits your lifestyle. From casual looks to statement pieces.",
-              cta: { label: "VIEW COLLECTION", href: "#" },
-              images: ["/hero/1.png", "/hero/2.png", "/hero/3.png"],
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Main content with filter + grid */}
+      {/* Main content with filter sidebar */}
       <section className="w-full px-4 py-10 bg-gray-50">
-        <div className="md:hidden mb-4">
-          <button
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="btn bg-black text-white w-full"
-          >
-            Filter
-          </button>
-        </div>
-
-        {isFilterOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-            onClick={() => setIsFilterOpen(false)}
-          >
-            <div
-              className="fixed inset-y-0 left-0 w-3/4 bg-white p-4 z-50 overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
+          {/* Mobile Filter Button */}
+          <div className="md:hidden mb-4">
+            <button
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className="btn bg-black text-white w-full"
             >
-              <button
-                onClick={() => setIsFilterOpen(false)}
-                className="btn btn-ghost btn-circle absolute top-2 right-2"
+              Filter & Sort
+            </button>
+          </div>
+
+          {/* Mobile Filter Modal */}
+          {isFilterOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+              onClick={() => setIsFilterOpen(false)}
+            >
+              <div
+                className="fixed inset-y-0 left-0 w-3/4 bg-white p-4 z-50 overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
               >
-                ✕
-              </button>
+                <button
+                  onClick={() => setIsFilterOpen(false)}
+                  className="btn btn-ghost btn-circle absolute top-2 right-2"
+                >
+                  ✕
+                </button>
+                <FilterSidebarVariant1 />
+              </div>
+            </div>
+          )}
+
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Left Sidebar - Filter */}
+            <div className="hidden lg:block w-full lg:w-80 flex-shrink-0">
               <FilterSidebarVariant1 />
             </div>
-          </div>
-        )}
 
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Filter Sidebar */}
-          <div className="hidden md:block w-full md:w-1/4 lg:w-1/5 xl:w-1/6 flex-shrink-0">
-            <FilterSidebarVariant1 />
-          </div>
+            {/* Center - Products Grid */}
+            <div className="flex-1 min-w-0">
+              {/* Simple Products Header */}
+              <div className="mb-6">
+                <h2 className="text-xl font-bold text-gray-800">Fashion Collection</h2>
+                <p className="text-sm text-gray-600">
+                  Showing {products.length} of 156 products
+                </p>
+              </div>
 
-          {/* Products Grid */}
-          <div className="flex-1 min-w-0">
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {products.map((p) => (
-                <ProductCard key={p.id} variant={4} product={p} />
-              ))}
+              {/* Products Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+                {products.map((p) => (
+                  <ProductCard key={p.id} variant={4} product={p} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* FAQ */}

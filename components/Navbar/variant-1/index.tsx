@@ -6,11 +6,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   FiChevronRight,
-  FiHeart,
   FiMenu,
   FiSearch,
-  FiShoppingBag,
-  FiUser,
 } from "react-icons/fi";
 import MenuBar from "../MenuBar";
 
@@ -52,53 +49,59 @@ export default function FashionNavbar() {
   }, []);
 
   return (
-    <div className="bg-white sticky top-0 z-50 shadow-sm">
+    <div className="sticky top-0 z-50 bg-white w-full border-b border-gray-100">
       {/* Mobile Layout */}
       <div className="block md:hidden">
-        <div className="flex items-center justify-between px-4 py-4 h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between px-4 py-4 h-16 w-full">
+          {/* Left Section - Hamburger Menu */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md"
+          >
+            <FiMenu className="w-6 h-6" />
+          </button>
+
+          {/* Center - Logo */}
           <div className="border border-gray-800 p-2 w-fit">
             <div className="text-lg font-bold text-gray-800">FASHION</div>
             <div className="text-xs text-center text-gray-800">STUDIO</div>
           </div>
 
-          {/* Right Section - Icons and Menu */}
-          <div className="flex items-center space-x-2">
-            {/* Search Icon */}
-            <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md">
-              <FiSearch className="w-5 h-5" />
-            </button>
-
-            {/* Wishlist Icon */}
+          {/* Right Section - Shopping, Wishlist, User Icons */}
+          <div className="flex items-center space-x-1">
+            {/* Shopping Bag Icon with Badge */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md relative">
-              <FiHeart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center text-[10px]">
                 2
               </span>
             </button>
 
-            {/* Shopping Cart Icon */}
+            {/* Heart/Wishlist Icon with Badge */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md relative">
-              <FiShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                3
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center text-[10px]">
+                2
               </span>
             </button>
 
-            {/* Hamburger Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md"
-            >
-              <FiMenu className="w-6 h-6" />
+            {/* User Icon */}
+            <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
             </button>
           </div>
         </div>
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-4 py-2 space-y-1">
+          <div className="bg-white border-t border-gray-200 shadow-lg">
+            <div className="px-4 py-4 space-y-2">
               <Link
                 href="#"
                 className="block px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset rounded-md"
@@ -465,14 +468,15 @@ export default function FashionNavbar() {
       {/* Desktop Layout */}
       <div className="hidden md:block">
         <div className="flex items-center justify-between px-6 py-4 h-16 w-full">
-          {/* Logo */}
-          <div className="border border-gray-800 p-2 w-fit">
-            <div className="text-lg font-bold text-gray-800">FASHION</div>
-            <div className="text-xs text-center text-gray-800">STUDIO</div>
-          </div>
-
-          {/* Navigation Links */}
+          {/* Left Section - Logo, Navigation, Search */}
           <div className="flex items-center space-x-8">
+            {/* Logo */}
+            <div className="border border-gray-800 p-2 w-fit">
+              <div className="text-lg font-bold text-gray-800">FASHION</div>
+              <div className="text-xs text-center text-gray-800">STUDIO</div>
+            </div>
+
+            {/* Navigation Links */}
             <Link
               href="#"
               className="text-sm font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 px-3 py-2 rounded-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
@@ -492,34 +496,40 @@ export default function FashionNavbar() {
               items={fashionCategories}
               buttonClassName="text-sm font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 px-3 py-2 rounded-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 flex items-center space-x-1"
             />
-          </div>
 
-          {/* Right Section - Icons */}
-          <div className="flex items-center space-x-4">
             {/* Search Icon */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md">
               <FiSearch className="w-5 h-5" />
             </button>
+          </div>
 
-            {/* Wishlist Icon */}
+          {/* Right Section - Cart, Wishlist, User Icons */}
+          <div className="flex items-center space-x-1">
+            {/* Shopping Bag Icon with Badge */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md relative">
-              <FiHeart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 2
               </span>
             </button>
 
-            {/* Shopping Cart Icon */}
+            {/* Heart/Wishlist Icon with Badge */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md relative">
-              <FiShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                3
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                2
               </span>
             </button>
 
-            {/* User Account Icon */}
+            {/* User Icon */}
             <button className="p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 rounded-md">
-              <FiUser className="w-5 h-5" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
             </button>
           </div>
         </div>

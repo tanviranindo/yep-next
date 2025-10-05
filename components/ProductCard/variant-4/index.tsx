@@ -1,10 +1,11 @@
+import React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCardProps, buildProductJsonLd } from "../types";
 
 export interface CardAction {
-  icon: string | JSX.Element;
+  icon: string | React.ReactElement;
   href?: string;
   label?: string;
 }

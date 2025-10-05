@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FooterVariant1,
   FooterVariant2,
@@ -33,7 +34,7 @@ interface ThemeShowcaseLayoutProps {
   searchParams: Record<string, string | string[] | undefined>;
 }
 
-const NavbarImpl: Record<NavbarV, () => JSX.Element> = {
+const NavbarImpl: Record<NavbarV, () => React.ReactElement> = {
   1: () => <NavbarVariant1 />,
   2: () => <NavbarVariant2 />,
   3: () => <NavbarVariant3 />,
@@ -41,7 +42,7 @@ const NavbarImpl: Record<NavbarV, () => JSX.Element> = {
   5: () => <NavbarVariant5 />,
 };
 
-const FooterImpl: Record<FooterV, () => JSX.Element> = {
+const FooterImpl: Record<FooterV, () => React.ReactElement> = {
   1: () => <FooterVariant1 />,
   2: () => <FooterVariant2 />,
   3: () => <FooterVariant3 />,

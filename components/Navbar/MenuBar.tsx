@@ -57,16 +57,35 @@ export default function MenuBar({
     if (isOpen && panelRef.current) {
       const rect = panelRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
 
-      if (rect.bottom > windowHeight) {
+      // Reset positioning classes
+      panelRef.current.style.bottom = 'auto';
+      panelRef.current.style.top = 'auto';
+      panelRef.current.style.left = 'auto';
+      panelRef.current.style.right = 'auto';
+      panelRef.current.style.transform = 'none';
+
+      // Check if dropdown goes off-screen vertically
+      if (rect.bottom > windowHeight - 20) {
+        panelRef.current.style.top = 'auto';
         panelRef.current.style.bottom = `100%`;
-        panelRef.current.style.top = `auto`;
+        panelRef.current.style.marginBottom = `4px`;
+        panelRef.current.style.marginTop = '0';
+      }
+
+      // Check if dropdown goes off-screen horizontally
+      if (rect.right > windowWidth - 20) {
+        panelRef.current.style.left = 'auto';
+        panelRef.current.style.right = `0`;
       }
     }
-  }, [isOpen]);
+  }, [isOpen, openMenus]);
 
   const handleMenuHover = (path: string[], event: React.MouseEvent) => {
-    const top = (event.target as HTMLElement).offsetTop;
+    const target = event.target as HTMLElement;
+    const menuItem = target.closest('[data-menu-item]') as HTMLElement;
+    const top = menuItem ? menuItem.offsetTop : 0;
     setOpenMenus(path);
     setMenuTops((prev) => {
       const newTops = [...prev];
@@ -95,35 +114,39 @@ export default function MenuBar({
     return (
       <div
         key={path.join("-")}
-        className="bg-white border border-gray-200 rounded-md shadow-lg"
+        className="bg-white border border-gray-200 rounded-lg shadow-xl z-50"
         style={{
           position: "absolute",
-          top: top,
-          left: `${path.length * 192}px`,
-          width: "192px",
+          top: path.length === 0 ? 0 : top,
+          left: path.length === 0 ? 0 : "100%",
+          width: "200px",
+          minHeight: "120px",
+          marginLeft: path.length === 0 ? 0 : "4px",
         }}
       >
-        <div className="py-2">
+        <div className="py-3">
           {parent && (
-            <div className="px-4 py-2">
-              <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <div className="px-4 py-2 border-b border-gray-100">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 {parent.label}
               </h4>
             </div>
           )}
-          <div className="space-y-1">
+          <div className="py-2">
             {Object.entries(currentItems).map(([key, item]) => {
               const isSelected = openMenus.includes(key);
+              const currentPath = [...path, key];
               return (
                 <div
                   key={key}
-                  onMouseEnter={(e) => handleMenuHover([...path, key], e)}
-                  className={isSelected ? "bg-gray-100" : ""}
+                  data-menu-item
+                  onMouseEnter={(e) => handleMenuHover(currentPath, e)}
+                  className={`mx-2 rounded-md relative ${isSelected ? "bg-gray-50" : ""}`}
                 >
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded"
+                      className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors rounded-md"
                       onClick={() => {
                         setIsOpen(false);
                         setOpenMenus([]);
@@ -132,9 +155,16 @@ export default function MenuBar({
                       {item.label}
                     </Link>
                   ) : (
-                    <div className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded flex items-center justify-between">
+                    <div className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors rounded-md flex items-center justify-between cursor-pointer">
                       <span>{item.label}</span>
-                      <FiChevronRight className="w-3 h-3" />
+                      <FiChevronRight className="w-3 h-3 text-gray-400" />
+                    </div>
+                  )}
+                  
+                  {/* Render submenu directly relative to this item */}
+                  {isSelected && item.children && (
+                    <div className="absolute top-0 left-full ml-1">
+                      {renderMenu(menuItems, currentPath, 0)}
                     </div>
                   )}
                 </div>
@@ -147,10 +177,10 @@ export default function MenuBar({
   };
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block ${className}`} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`text-sm font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-100 active:bg-gray-200 px-3 py-2 rounded-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 flex items-center space-x-1 ${buttonClassName}`}
+        className={`flex items-center space-x-1 ${buttonClassName}`}
       >
         <span>{label}</span>
         <FiChevronDown
@@ -163,16 +193,11 @@ export default function MenuBar({
       {isOpen && (
         <div
           ref={panelRef}
-          className="absolute top-full left-0 mt-1"
+          className="absolute top-full left-0 mt-2 z-50 min-w-max"
           onMouseLeave={() => setOpenMenus([])}
         >
           <div className="relative">
             {renderMenu(items)}
-            {openMenus.map((_, index) => {
-              const path = openMenus.slice(0, index + 1);
-              const top = menuTops[index] || 0;
-              return renderMenu(items, path, top);
-            })}
           </div>
         </div>
       )}

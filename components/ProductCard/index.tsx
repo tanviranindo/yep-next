@@ -1,3 +1,4 @@
+import React from 'react'
 import { ProductCardProps } from './types'
 import ProductCardVariant1 from './variant-1'
 import ProductCardVariant2 from './variant-2'
@@ -10,7 +11,7 @@ export interface ProductCardFactoryProps extends ProductCardProps {
   variant?: ProductCardVariant
 }
 
-const VARIANTS: Record<ProductCardVariant, (p: ProductCardProps) => JSX.Element> = {
+const VARIANTS: Record<ProductCardVariant, (p: ProductCardProps) => React.ReactElement> = {
   1: (p) => <ProductCardVariant1 {...p} />,
   2: (p) => <ProductCardVariant2 {...p} />,
   3: (p) => <ProductCardVariant3 {...p} />,
