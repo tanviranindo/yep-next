@@ -12,7 +12,7 @@ export default function HomePage() {
   const categories = [
     {
       name: "Fashion",
-      slug: "/fashion",
+      slug: "/fashion1",
       emoji: "👗",
       description:
         "Discover the latest trends in fashion. Premium quality, sustainable materials, and timeless designs.",

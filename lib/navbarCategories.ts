@@ -12,19 +12,19 @@ export const fashionCategories: Record<string, MenuItem> = {
             children: {
               "cocktail-dresses": {
                 label: "Cocktail Dresses",
-                href: "/fashion/women/dresses/cocktail",
+                href: "/fashion1/women/dresses/cocktail",
               },
               "formal-gowns": {
                 label: "Formal Gowns",
-                href: "/fashion/women/dresses/formal",
+                href: "/fashion1/women/dresses/formal",
               },
               "black-tie": {
                 label: "Black Tie",
-                href: "/fashion/women/dresses/black-tie",
+                href: "/fashion1/women/dresses/black-tie",
               },
               "red-carpet": {
                 label: "Red Carpet",
-                href: "/fashion/women/dresses/red-carpet",
+                href: "/fashion1/women/dresses/red-carpet",
               },
             },
           },
@@ -33,29 +33,29 @@ export const fashionCategories: Record<string, MenuItem> = {
             children: {
               "day-dresses": {
                 label: "Day Dresses",
-                href: "/fashion/women/dresses/day",
+                href: "/fashion1/women/dresses/day",
               },
               "summer-dresses": {
                 label: "Summer Dresses",
-                href: "/fashion/women/dresses/summer",
+                href: "/fashion1/women/dresses/summer",
               },
               "work-dresses": {
                 label: "Work Dresses",
-                href: "/fashion/women/dresses/work",
+                href: "/fashion1/women/dresses/work",
               },
               "weekend-dresses": {
                 label: "Weekend Dresses",
-                href: "/fashion/women/dresses/weekend",
+                href: "/fashion1/women/dresses/weekend",
               },
             },
           },
           "party-dresses": {
             label: "Party Dresses",
-            href: "/fashion/women/dresses/party",
+            href: "/fashion1/women/dresses/party",
           },
           "maxi-dresses": {
             label: "Maxi Dresses",
-            href: "/fashion/women/dresses/maxi",
+            href: "/fashion1/women/dresses/maxi",
           },
         },
       },
@@ -64,18 +64,18 @@ export const fashionCategories: Record<string, MenuItem> = {
         children: {
           "t-shirts": {
             label: "T-Shirts",
-            href: "/fashion/women/tops/t-shirts",
+            href: "/fashion1/women/tops/t-shirts",
           },
-          blouses: { label: "Blouses", href: "/fashion/women/tops/blouses" },
+          blouses: { label: "Blouses", href: "/fashion1/women/tops/blouses" },
           "tank-tops": {
             label: "Tank Tops",
-            href: "/fashion/women/tops/tank-tops",
+            href: "/fashion1/women/tops/tank-tops",
           },
-          sweaters: { label: "Sweaters", href: "/fashion/women/tops/sweaters" },
+          sweaters: { label: "Sweaters", href: "/fashion1/women/tops/sweaters" },
         },
       },
-      "pants-jeans": { label: "Pants & Jeans", href: "/fashion/women/pants" },
-      skirts: { label: "Skirts", href: "/fashion/women/skirts" },
+      "pants-jeans": { label: "Pants & Jeans", href: "/fashion1/women/pants" },
+      skirts: { label: "Skirts", href: "/fashion1/women/skirts" },
     },
   },
   men: {
@@ -86,25 +86,25 @@ export const fashionCategories: Record<string, MenuItem> = {
         children: {
           "dress-shirts": {
             label: "Dress Shirts",
-            href: "/fashion/men/shirts/dress",
+            href: "/fashion1/men/shirts/dress",
           },
           "casual-shirts": {
             label: "Casual Shirts",
-            href: "/fashion/men/shirts/casual",
+            href: "/fashion1/men/shirts/casual",
           },
           "polo-shirts": {
             label: "Polo Shirts",
-            href: "/fashion/men/shirts/polo",
+            href: "/fashion1/men/shirts/polo",
           },
           "button-downs": {
             label: "Button Downs",
-            href: "/fashion/men/shirts/button-downs",
+            href: "/fashion1/men/shirts/button-downs",
           },
         },
       },
-      "t-shirts": { label: "T-Shirts", href: "/fashion/men/t-shirts" },
-      "pants-jeans": { label: "Pants & Jeans", href: "/fashion/men/pants" },
-      jackets: { label: "Jackets", href: "/fashion/men/jackets" },
+      "t-shirts": { label: "T-Shirts", href: "/fashion1/men/t-shirts" },
+      "pants-jeans": { label: "Pants & Jeans", href: "/fashion1/men/pants" },
+      jackets: { label: "Jackets", href: "/fashion1/men/jackets" },
     },
   },
   accessories: {
@@ -118,33 +118,33 @@ export const fashionCategories: Record<string, MenuItem> = {
             children: {
               "designer-bags": {
                 label: "Designer Bags",
-                href: "/fashion/accessories/bags/designer",
+                href: "/fashion1/accessories/bags/designer",
               },
               "leather-bags": {
                 label: "Leather Bags",
-                href: "/fashion/accessories/bags/leather",
+                href: "/fashion1/accessories/bags/leather",
               },
               "clutch-bags": {
                 label: "Clutch Bags",
-                href: "/fashion/accessories/bags/clutch",
+                href: "/fashion1/accessories/bags/clutch",
               },
               "shoulder-bags": {
                 label: "Shoulder Bags",
-                href: "/fashion/accessories/bags/shoulder",
+                href: "/fashion1/accessories/bags/shoulder",
               },
             },
           },
           "tote-bags": {
             label: "Tote Bags",
-            href: "/fashion/accessories/bags/tote",
+            href: "/fashion1/accessories/bags/tote",
           },
           "crossbody-bags": {
             label: "Crossbody Bags",
-            href: "/fashion/accessories/bags/crossbody",
+            href: "/fashion1/accessories/bags/crossbody",
           },
           backpacks: {
             label: "Backpacks",
-            href: "/fashion/accessories/bags/backpacks",
+            href: "/fashion1/accessories/bags/backpacks",
           },
         },
       },
@@ -156,28 +156,28 @@ export const fashionCategories: Record<string, MenuItem> = {
             children: {
               "running-shoes": {
                 label: "Running Shoes",
-                href: "/fashion/accessories/shoes/sneakers/running",
+                href: "/fashion1/accessories/shoes/sneakers/running",
               },
               "basketball-shoes": {
                 label: "Basketball Shoes",
-                href: "/fashion/accessories/shoes/sneakers/basketball",
+                href: "/fashion1/accessories/shoes/sneakers/basketball",
               },
               "lifestyle-sneakers": {
                 label: "Lifestyle Sneakers",
-                href: "/fashion/accessories/shoes/sneakers/lifestyle",
+                href: "/fashion1/accessories/shoes/sneakers/lifestyle",
               },
               "high-top-sneakers": {
                 label: "High-Top Sneakers",
-                href: "/fashion/accessories/shoes/sneakers/high-top",
+                href: "/fashion1/accessories/shoes/sneakers/high-top",
               },
             },
           },
-          heels: { label: "Heels", href: "/fashion/accessories/shoes/heels" },
-          boots: { label: "Boots", href: "/fashion/accessories/shoes/boots" },
-          flats: { label: "Flats", href: "/fashion/accessories/shoes/flats" },
+          heels: { label: "Heels", href: "/fashion1/accessories/shoes/heels" },
+          boots: { label: "Boots", href: "/fashion1/accessories/shoes/boots" },
+          flats: { label: "Flats", href: "/fashion1/accessories/shoes/flats" },
         },
       },
-      jewelry: { label: "Jewelry", href: "/fashion/accessories/jewelry" },
+      jewelry: { label: "Jewelry", href: "/fashion1/accessories/jewelry" },
     },
   },
 };
