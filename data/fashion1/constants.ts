@@ -6,7 +6,7 @@ export const FASHION1_ROUTES = {
   HOME: FASHION1_BASE_ROUTE,
   SHOP: `${FASHION1_BASE_ROUTE}/shop`,
   PRODUCTS: `${FASHION1_BASE_ROUTE}/products`,
-  PRODUCT_DETAIL: (id: string) => `${FASHION1_BASE_ROUTE}/product/${id}`,
+  PRODUCT_BASE: `${FASHION1_BASE_ROUTE}/product`,
   CART: `${FASHION1_BASE_ROUTE}/cart`,
   WISHLIST: `${FASHION1_BASE_ROUTE}/wishlist`,
   CHECKOUT: `${FASHION1_BASE_ROUTE}/checkout`,
@@ -16,6 +16,9 @@ export const FASHION1_ROUTES = {
   PROMOTIONS: `${FASHION1_BASE_ROUTE}/promotions`,
   FAQ: `${FASHION1_BASE_ROUTE}#faq`,
 } as const;
+
+// Helper function for dynamic routes
+export const getFashion1ProductUrl = (id: string) => `${FASHION1_BASE_ROUTE}/product/${id}`;
 
 // Coupon codes
 export const VALID_COUPONS: Record<string, number> = {
