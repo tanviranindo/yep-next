@@ -8,10 +8,13 @@ export interface CardAction {
   icon: string | React.ReactElement;
   href?: string;
   label?: string;
+  onClick?: () => void;
 }
 export interface ProductCardV4Props extends ProductCardProps {
   actions?: CardAction[];
-  cta?: { label: string; href?: string };
+  cta?: { label: string; href?: string; onClick?: () => void };
+  onAddToCart?: () => void;
+  onAddToWishlist?: () => void;
 }
 
 // Fashion UI 1: Tall image, vertical action icons, add-to-cart bar
@@ -133,12 +136,16 @@ export default function ProductCardVariant4({
           {cta?.href ? (
             <Link
               href={cta.href}
+              onClick={cta.onClick}
               className="block w-full px-6 py-3 bg-white text-neutral-900 tracking-[0.2em] uppercase rounded-none shadow-lg border border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100 active:scale-98 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 text-center font-medium"
             >
               {cta.label.toUpperCase()}
             </Link>
           ) : (
-            <button className="w-full px-6 py-3 bg-white text-neutral-900 tracking-[0.2em] uppercase rounded-none shadow-lg border border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100 active:scale-98 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 font-medium">
+            <button
+              onClick={cta?.onClick}
+              className="w-full px-6 py-3 bg-white text-neutral-900 tracking-[0.2em] uppercase rounded-none shadow-lg border border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100 active:scale-98 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 font-medium"
+            >
               {cta.label.toUpperCase()}
             </button>
           )}
@@ -149,6 +156,7 @@ export default function ProductCardVariant4({
               <Link
                 key={i}
                 href={action.href}
+                onClick={action.onClick}
                 className="group grid place-items-center w-9 h-9 rounded-full bg-white/95 border border-neutral-200 shadow hover:bg-white hover:shadow-lg hover:scale-110 transition-all duration-300 ease-out"
               >
                 <div className="group-hover:scale-110 transition-transform duration-300 ease-out">
@@ -158,6 +166,7 @@ export default function ProductCardVariant4({
             ) : (
               <button
                 key={i}
+                onClick={action.onClick}
                 className="group grid place-items-center w-9 h-9 rounded-full bg-white/95 border border-neutral-200 shadow hover:bg-white hover:shadow-lg hover:scale-110 transition-all duration-300 ease-out"
                 aria-label={action.label}
               >

@@ -3,23 +3,26 @@
 import FilterSidebarVariant1 from "@/components/Filters/Sidebar/variant-1";
 import FashionHeroVariant1 from "@/components/Hero/variant-1";
 import { FashionNavbar } from "@/components/Navbar";
-import ProductCard, { Product } from "@/components/ProductCard";
+import FashionProductCard from "@/components/ProductCard/FashionProductCard";
 import { useEffect, useState } from "react";
-
-const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
-  id: `fashion-${i + 1}`,
-  name: ["Outfit", "Denim Jacket", "City Sneaker", "Chino Pants"][i % 4],
-  description: "Premium materials with timeless style",
-  image: "/items/product1.jpg",
-  url: `/products/fashion-${i + 1}`,
-  price: [3500, 4500, 2500, 3200][i % 4],
-  currency: "BDT",
-  availability: "InStock",
-  brand: "FASHION.",
-}));
+import { fashionProducts, sortProducts, filterProducts, sortOptions } from "@/data/fashion1/products";
 
 export default function FashionUI1Layout() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedCategory] = useState<string>("All"); // TODO: Wire up filter controls
+  const [selectedSubcategory] = useState<string>("All"); // TODO: Wire up filter controls
+  const [sortBy, setSortBy] = useState<string>("popularity");
+  const [priceRange] = useState<[number, number]>([0, 10000]); // TODO: Wire up filter controls
+
+  // Filter and sort products
+  const filteredProducts = filterProducts(
+    fashionProducts,
+    selectedCategory,
+    selectedSubcategory,
+    priceRange[0],
+    priceRange[1]
+  );
+  const displayProducts = sortProducts(filteredProducts, sortBy);
 
   useEffect(() => {
     if (isFilterOpen) {
@@ -104,20 +107,39 @@ export default function FashionUI1Layout() {
 
             {/* Center - Products Grid */}
             <div className="flex-1 min-w-0">
-              {/* Simple Products Header */}
-              <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-800">Fashion Collection</h2>
-                <p className="text-sm text-gray-600">
-                  Showing {products.length} of 156 products
-                </p>
+              {/* Products Header with Sort */}
+              <div className="mb-6 flex justify-between items-center">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-800">Fashion Collection</h2>
+                  <p className="text-sm text-gray-600">
+                    Showing {displayProducts.length} of {fashionProducts.length} products
+                  </p>
+                </div>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  {sortOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Products Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-                {products.map((p) => (
-                  <ProductCard key={p.id} variant={4} product={p} />
+                {displayProducts.map((p) => (
+                  <FashionProductCard key={p.id} product={p} />
                 ))}
               </div>
+
+              {displayProducts.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-gray-500 text-lg">No products found matching your filters</p>
+                </div>
+              )}
             </div>
           </div>
       </section>

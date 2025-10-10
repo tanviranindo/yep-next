@@ -7,11 +7,15 @@ export interface Product {
   image: string;
   url: string;
   price: number;
+  originalPrice?: number;
   currency: CurrencyCode;
   availability?: "InStock" | "OutOfStock" | "PreOrder";
   brand?: string;
   rating?: number; // 0-5
+  reviews?: number; // For review count
   reviewCount?: number;
+  category?: string;
+  subcategory?: string;
 }
 
 export interface ProductCardProps {
