@@ -1,6 +1,6 @@
 "use client";
 
-import Fashion2ExactFilter from "@/components/Filters/Sidebar/Fashion2ExactFilter";
+import Fashion2Filter from "@/components/Filters/Sidebar/Fashion2Filter";
 import InsoleHero from "@/components/Hero/InsoleHero";
 import InsoleNavbar from "@/components/Navbar/InsoleNavbar";
 import Fashion2ProductCard from "@/components/ProductCard/Fashion2Card";
@@ -79,7 +79,7 @@ export default function FashionUI2Layout() {
                     />
                   </svg>
                 </button>
-                <Fashion2ExactFilter />
+                <Fashion2Filter />
               </div>
             </div>
           )}
@@ -87,7 +87,7 @@ export default function FashionUI2Layout() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Left Sidebar - Filter */}
             <div className="hidden lg:block w-full lg:w-72 flex-shrink-0">
-              <Fashion2ExactFilter />
+              <Fashion2Filter />
             </div>
 
             {/* Center - Products Grid */}

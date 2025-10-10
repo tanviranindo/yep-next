@@ -199,7 +199,9 @@ export default function HomePage() {
                 <h3 className="card-title justify-center">All Products</h3>
                 <p>Browse our complete product catalog</p>
                 <div className="card-actions justify-center">
-                  <button className="btn btn-outline">View All</button>
+                  <button className="btn btn-outline hover:bg-primary hover:border-primary hover:text-primary-content">
+                    View All
+                  </button>
                 </div>
               </div>
             </Link>
