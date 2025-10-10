@@ -7,52 +7,77 @@ import { useState } from "react";
 const mockOrders = [
   {
     id: "ORD-2023-001",
-    product: "NIOR Red Carpet Flawless Matte Foundation",
-    image: "/items/product1.jpg",
-    price: 4500.00,
+    product: "Ravendale Super High Waist Legging",
+    image:
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&h=400&fit=crop",
+    price: 3500.0,
     quantity: 1,
     status: "To Pay",
   },
   {
     id: "ORD-2023-002",
-    product: "NIOR Red Carpet Flawless Matte Foundation",
-    image: "/items/product1.jpg",
-    price: 2500.00,
+    product: "Luxury Leather Handbag",
+    image:
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop",
+    price: 2500.0,
     quantity: 1,
     status: "To Pay",
   },
   {
     id: "ORD-2023-003",
-    product: "NIOR Red Carpet Flawless Matte Foundation",
-    image: "/items/product1.jpg",
-    price: 4500.00,
-    quantity: 1,
+    product: "Classic Bomber Jacket",
+    image:
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop",
+    price: 2500.0,
+    quantity: 2,
     status: "To Review",
   },
   {
     id: "ORD-2023-004",
-    product: "NIOR Red Carpet Flawless Matte Foundation",
-    image: "/items/product1.jpg",
-    price: 2500.00,
+    product: "Little Black Dress",
+    image:
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop",
+    price: 2500.0,
     quantity: 1,
     status: "Completed",
   },
   {
     id: "ORD-2023-005",
-    product: "NIOR Red Carpet Flawless Matte Foundation",
-    image: "/items/product1.jpg",
-    price: 1500.00,
+    product: "Cashmere Scarf",
+    image:
+      "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400&h=400&fit=crop",
+    price: 2200.0,
     quantity: 1,
     status: "Completed",
   },
 ];
 
 const newCollections = [
-  { title: "Woolen Clothes", image: "/items/product1.jpg" },
-  { title: "Over Coat", image: "/items/product1.jpg" },
-  { title: "Women Tops", image: "/items/product1.jpg" },
-  { title: "Men Shoe", image: "/items/product1.jpg" },
-  { title: "Women Bags", image: "/items/product1.jpg" },
+  {
+    title: "Woolen Clothes",
+    image:
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Over Coat",
+    image:
+      "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Women Tops",
+    image:
+      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Activewear",
+    image:
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Women Bags",
+    image:
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=500&fit=crop",
+  },
 ];
 
 export default function TrackOrderPage() {
@@ -70,13 +95,29 @@ export default function TrackOrderPage() {
   const getStatusButton = (status: string) => {
     switch (status) {
       case "To Pay":
-        return <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">To Pay</button>;
+        return (
+          <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
+            To Pay
+          </button>
+        );
       case "To Review":
-        return <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">To Review</button>;
+        return (
+          <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
+            To Review
+          </button>
+        );
       case "Completed":
-        return <button className="px-6 py-2 bg-gray-200 text-gray-700 cursor-not-allowed">Completed</button>;
+        return (
+          <button className="px-6 py-2 bg-gray-200 text-gray-700 cursor-not-allowed">
+            Completed
+          </button>
+        );
       default:
-        return <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">{status}</button>;
+        return (
+          <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
+            {status}
+          </button>
+        );
     }
   };
 
@@ -154,8 +195,12 @@ export default function TrackOrderPage() {
                 className="w-24 h-24 object-cover"
               />
               <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 mb-1">{order.product}</h3>
-                <p className="text-gray-600 text-sm mb-2">BDT {order.price.toFixed(2)}</p>
+                <h3 className="font-semibold text-gray-900 mb-1">
+                  {order.product}
+                </h3>
+                <p className="text-gray-600 text-sm mb-2">
+                  BDT {order.price.toFixed(2)}
+                </p>
               </div>
               <div className="text-center md:text-right">
                 <p className="text-gray-600 mb-3">Qty: {order.quantity}</p>
@@ -176,7 +221,9 @@ export default function TrackOrderPage() {
           <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-gray-900">
             3
           </button>
-          <span className="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+          <span className="w-10 h-10 flex items-center justify-center text-gray-400">
+            ...
+          </span>
           <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-gray-900">
             10
           </button>
@@ -191,7 +238,9 @@ export default function TrackOrderPage() {
 
       {/* New Collections */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">New Collections</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          New Collections
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
           {newCollections.map((collection, idx) => (
             <div key={idx} className="group cursor-pointer">

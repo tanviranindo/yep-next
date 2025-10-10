@@ -74,6 +74,11 @@ export interface FilterSidebarV1Props {
   };
   groups?: FilterGroup[];
   applyLabel?: string;
+  onFilterChange?: (
+    filters: Record<string, string[]>,
+    priceRange: [number, number]
+  ) => void;
+  totalResults?: number;
 }
 
 export default function FilterSidebarVariant1({
@@ -133,6 +138,8 @@ export default function FilterSidebarVariant1({
     },
   ],
   applyLabel = "FILTER",
+  onFilterChange,
+  totalResults,
 }: FilterSidebarV1Props) {
   const absoluteMin = price.min;
   const absoluteMax = price.max;
@@ -175,6 +182,19 @@ export default function FilterSidebarVariant1({
     });
   };
 
+  const handlePriceChange = (newMin: number, newMax: number) => {
+    setMinValue(newMin);
+    setMaxValue(newMax);
+  };
+
+  // Notify parent of filter changes via useEffect
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange(selectedFilters, [minValue, maxValue]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFilters, minValue, maxValue]);
+
   const clearAllFilters = () => {
     const cleared: Record<string, string[]> = {};
     groups.forEach((group) => {
@@ -183,6 +203,7 @@ export default function FilterSidebarVariant1({
     setSelectedFilters(cleared);
     setMinValue(absoluteMin);
     setMaxValue(absoluteMax);
+    // Parent will be notified via useEffect
   };
 
   const minPercent = useMemo(
@@ -198,7 +219,11 @@ export default function FilterSidebarVariant1({
     <aside className="w-64 bg-white border border-gray-200 p-4 text-sm text-gray-900">
       {/* Results Header */}
       <div className="flex items-center justify-between mb-4">
-        <span className="font-semibold text-gray-900">51 Results</span>
+        <span className="font-semibold text-gray-900">
+          {totalResults !== undefined
+            ? `${totalResults} Results`
+            : "51 Results"}
+        </span>
         <button
           type="button"
           onClick={clearAllFilters}
@@ -232,7 +257,7 @@ export default function FilterSidebarVariant1({
               value={minValue}
               onChange={(e) => {
                 const val = Math.min(Number(e.target.value), maxValue - 1);
-                setMinValue(val);
+                handlePriceChange(val, maxValue);
               }}
               step={1}
               className="absolute inset-0 z-10 w-full bg-transparent appearance-none pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:bg-neutral-900 [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:bg-neutral-900 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full"
@@ -244,7 +269,7 @@ export default function FilterSidebarVariant1({
               value={maxValue}
               onChange={(e) => {
                 const val = Math.max(Number(e.target.value), minValue + 1);
-                setMaxValue(val);
+                handlePriceChange(minValue, val);
               }}
               step={1}
               className="absolute inset-0 z-20 w-full bg-transparent appearance-none pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:bg-neutral-900 [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:bg-neutral-900 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full"
@@ -321,9 +346,7 @@ export default function FilterSidebarVariant1({
                     <SquareCheckbox
                       name={g.name}
                       value={o}
-                      checked={
-                        selectedFilters[g.name]?.includes(o) || false
-                      }
+                      checked={selectedFilters[g.name]?.includes(o) || false}
                       label={o}
                       onChange={(checked) =>
                         handleFilterChange(g.name, o, checked)
