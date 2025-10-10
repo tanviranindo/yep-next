@@ -31,14 +31,24 @@ export default function HomePage() {
       features: ["TRENDY", "CASUAL", "FORMAL", "STREETWEAR", "SALE"],
     },
     {
-      name: "Beauty",
-      slug: "/beauty",
+      name: "Beauty 1",
+      slug: "/beauty1",
       emoji: "💄",
       description:
-        "Your trusted beauty destination for premium skincare, makeup, and fragrance from the world's best brands.",
+        "Premium skincare, makeup and fragrance picks inspired by Beauty UI 1.",
       color: "from-pink-300 to-purple-600",
       theme: "beauty",
       features: ["Skincare", "Makeup", "Fragrance", "Hair Care", "Sale"],
+    },
+    {
+      name: "Beauty 2",
+      slug: "/beauty2",
+      emoji: "💋",
+      description:
+        "Alternate beauty layout with refined styling from Beauty UI 2.",
+      color: "from-rose-300 to-fuchsia-600",
+      theme: "beauty",
+      features: ["Skincare", "Cosmetics", "Fragrance", "Hair Care", "Sale"],
     },
     {
       name: "Gadgets",
