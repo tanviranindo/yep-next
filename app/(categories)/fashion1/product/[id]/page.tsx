@@ -1,6 +1,7 @@
 "use client";
 
 import { FashionFooter } from "@/components/Footer";
+import Link from "next/link";
 import { FashionNavbar } from "@/components/Navbar";
 import FashionProductCard from "@/components/ProductCard/FashionProductCard";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
@@ -62,7 +63,7 @@ export default function ProductDetailPage() {
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="text-sm text-gray-600">
-          <a href={FASHION1_ROUTES.HOME} className="hover:text-gray-900">Home</a> /
+          <Link href={FASHION1_ROUTES.HOME} className="hover:text-gray-900">Home</Link> /
           {product.category && <span> {product.category} / </span>}
           <span className="text-gray-900">{product.name}</span>
         </div>

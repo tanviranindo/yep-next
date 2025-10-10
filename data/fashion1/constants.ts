@@ -4,6 +4,7 @@ export const FASHION1_BASE_ROUTE = "/fashion1";
 // Navigation routes
 export const FASHION1_ROUTES = {
   HOME: FASHION1_BASE_ROUTE,
+  SHOP: `${FASHION1_BASE_ROUTE}/shop`,
   PRODUCTS: `${FASHION1_BASE_ROUTE}/products`,
   PRODUCT_DETAIL: (id: string) => `${FASHION1_BASE_ROUTE}/product/${id}`,
   CART: `${FASHION1_BASE_ROUTE}/cart`,

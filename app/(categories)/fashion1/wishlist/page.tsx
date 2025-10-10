@@ -3,6 +3,8 @@
 import { FashionFooter } from "@/components/Footer";
 import { FashionNavbar } from "@/components/Navbar";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
+import Link from "next/link";
+import { FASHION1_ROUTES } from "@/data/fashion1/constants";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, addToCart } = useFashionStore();
@@ -26,89 +28,89 @@ export default function WishlistPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen flex flex-col">
       <FashionNavbar />
-
-      {/* Page Header */}
-      <div className="w-full py-12 text-center border-b">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Wishlist</h1>
-        <div className="flex items-center justify-center gap-2 text-sm">
-          <a href="/" className="text-gray-600 hover:text-gray-900">
-            Home
-          </a>
-          <span className="text-gray-400">→</span>
-          <span className="text-red-500">Wishlist</span>
+      <main className="flex-grow">
+        {/* Page Header */}
+        <div className="w-full py-12 text-center border-b">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Wishlist</h1>
+          <div className="flex items-center justify-center gap-2 text-sm">
+            <Link href={FASHION1_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
+              Home
+            </Link>
+            <span className="text-gray-400">→</span>
+            <span className="text-red-500">Wishlist</span>
+          </div>
         </div>
-      </div>
 
-      {/* Wishlist Table */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {wishlist.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">Your wishlist is empty</p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">
-                    Product
-                  </th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">
-                    Price
-                  </th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">
-                    Stock Status
-                  </th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">
-                    Remove
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {wishlist.map((item) => (
-                  <tr key={item.id} className="border-b hover:bg-gray-50">
-                    <td className="py-6 px-4">
-                      <div className="flex items-center gap-4">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-20 h-20 object-cover"
-                        />
-                        <span className="text-gray-900">{item.name}</span>
-                      </div>
-                    </td>
-                    <td className="py-6 px-4 text-gray-900">
-                      BDT {item.price.toFixed(2)}
-                    </td>
-                    <td className="py-6 px-4">
-                      <span className="text-gray-900">{item.stockStatus}</span>
-                    </td>
-                    <td className="py-6 px-4">
-                      <div className="flex items-center gap-4">
-                        <button
-                          onClick={() => handleRemoveItem(item.id)}
-                          className="text-gray-400 hover:text-red-500 text-xl"
-                        >
-                          ×
-                        </button>
-                        <button
-                          onClick={() => handleAddToCart(item.id)}
-                          className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
-                        >
-                          Add To Cart
-                        </button>
-                      </div>
-                    </td>
+        {/* Wishlist Table */}
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          {wishlist.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg">Your wishlist is empty</p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left py-4 px-4 font-semibold text-gray-900">
+                      Product
+                    </th>
+                    <th className="text-left py-4 px-4 font-semibold text-gray-900">
+                      Price
+                    </th>
+                    <th className="text-left py-4 px-4 font-semibold text-gray-900">
+                      Stock Status
+                    </th>
+                    <th className="text-left py-4 px-4 font-semibold text-gray-900">
+                      Remove
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
+                </thead>
+                <tbody>
+                  {wishlist.map((item) => (
+                    <tr key={item.id} className="border-b hover:bg-gray-50">
+                      <td className="py-6 px-4">
+                        <div className="flex items-center gap-4">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-20 h-20 object-cover"
+                          />
+                          <span className="text-gray-900">{item.name}</span>
+                        </div>
+                      </td>
+                      <td className="py-6 px-4 text-gray-900">
+                        BDT {item.price.toFixed(2)}
+                      </td>
+                      <td className="py-6 px-4">
+                        <span className="text-gray-900">{item.stockStatus}</span>
+                      </td>
+                      <td className="py-6 px-4">
+                        <div className="flex items-center gap-4">
+                          <button
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="text-gray-400 hover:text-red-500 text-xl"
+                          >
+                            ×
+                          </button>
+                          <button
+                            onClick={() => handleAddToCart(item.id)}
+                            className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                          >
+                            Add To Cart
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </main>
       <FashionFooter />
     </div>
   );
