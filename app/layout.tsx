@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Outfit, Playfair_Display } from "next/font/google";
+import { DM_Sans, Outfit, Playfair_Display, Afacad } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -22,6 +22,12 @@ const dmSans = DM_Sans({
   variable: "--font-dmsans",
 });
 
+const afacad = Afacad({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-afacad",
+});
+
 export const metadata: Metadata = {
   title: "Yep Next",
   description: "A Next.js app with DaisyUI",
@@ -34,8 +40,9 @@ export default function RootLayout({
 }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
-      className={`${outfit.variable} ${playfair.variable} ${dmSans.variable}`}
+      className={`${outfit.variable} ${playfair.variable} ${dmSans.variable} ${afacad.variable}`}
     >
       <body className={outfit.className}>{children}</body>
     </html>

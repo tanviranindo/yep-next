@@ -12,62 +12,107 @@ export interface BeautyHeroProps {
 }
 
 export default function BeautyHero({
-  title = "Live in Glamour",
-  description = "From luxury skincare to iconic makeup looks, we bring you the best brands, and timeless essentials. Because it has measures in the extraordinary.",
+  title = "Live in",
+  description = "From luxury skincare to iconic makeup must-haves, we bring you top-tier brands and timeless essentials. Because beauty deserves to feel extraordinary.",
   cta = { label: "SHOP NOW", href: "#products" },
   heroImage,
-  brand = "GLAMOUR",
+  brand = "Glamour",
 }: BeautyHeroProps) {
   return (
     <section className="relative bg-gray-100">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto px-4 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Side - Hero Image */}
           <div className="relative aspect-[3/4] md:aspect-[4/5] w-full max-w-md mx-auto">
             <Image
               src={heroImage}
               alt="Beauty Hero"
               fill
-              className="object-cover rounded-lg"
+              className="object-cover"
               priority
             />
           </div>
 
           {/* Right Side - Content */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-8">
+          <div className="flex flex-col justify-center space-y-8">
             {/* Title */}
-            <div>
-              <h1
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-purple-700 mb-4"
-                style={{
-                  fontFamily: "var(--font-outfit)",
-                  fontWeight: 700,
-                  lineHeight: "1.1",
-                }}
-              >
-                {title}
+            <div className="relative">
+              <h1 className="mb-0">
+                <span
+                  className="block text-black leading-tight"
+                  style={{
+                    fontFamily: "var(--font-afacad)",
+                    fontWeight: 400,
+                    fontSize: "clamp(48px, 8vw, 96px)",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  {title} {brand}
+                </span>
               </h1>
-              <p
-                className="text-gray-700 text-base md:text-lg max-w-lg"
-                style={{
-                  fontFamily: "var(--font-outfit)",
-                  fontWeight: 400,
-                  lineHeight: "1.6",
-                }}
-              >
-                {description}
-              </p>
+
+              {/* Overlapping GLAMOUR - Black and Purple */}
+              <div className="relative mt-2">
+                {/* Black GLAMOUR */}
+                <span
+                  className="block text-black uppercase absolute top-0 left-0"
+                  style={{
+                    fontFamily: "var(--font-afacad)",
+                    fontWeight: 400,
+                    fontSize: "clamp(48px, 8vw, 96px)",
+                    lineHeight: "1",
+                    letterSpacing: "0.02em",
+                    zIndex: 2,
+                  }}
+                >
+                  {brand.toUpperCase()}
+                </span>
+
+                {/* Purple GLAMOUR - Larger, overlapping */}
+                <span
+                  className="block text-purple-600 uppercase"
+                  style={{
+                    fontFamily: "var(--font-playfair)",
+                    fontWeight: 400,
+                    fontSize: "clamp(80px, 13vw, 180px)",
+                    lineHeight: "1",
+                    letterSpacing: "0.08em",
+                    marginTop: "-10px",
+                    marginLeft: "-5px",
+                  }}
+                >
+                  {brand.toUpperCase()}
+                </span>
+              </div>
             </div>
 
+            <p
+              className="text-gray-600 max-w-xl mt-20 relative z-10"
+              style={{
+                fontFamily: "var(--font-dmsans)",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: "1.8",
+                letterSpacing: "0%",
+              }}
+            >
+              {description}
+            </p>
+
             {/* CTA Button */}
-            <div>
+            <div className="relative z-10">
               <Link
                 href={cta.href}
-                className="inline-block px-8 py-3 bg-black text-white text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors duration-200 rounded"
+                className="inline-flex items-center justify-center bg-white text-black hover:bg-gray-50 transition-colors duration-200"
                 style={{
-                  fontFamily: "var(--font-outfit)",
+                  fontFamily: "var(--font-dmsans)",
+                  width: "249px",
+                  height: "56px",
+                  borderRadius: "2px",
+                  border: "1px solid #842898",
+                  fontSize: "16px",
                   fontWeight: 500,
-                  letterSpacing: "0.1em",
+                  lineHeight: "24px",
                 }}
               >
                 {cta.label}

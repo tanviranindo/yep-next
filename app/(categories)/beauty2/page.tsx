@@ -1,41 +1,31 @@
-import Fashion2FAQ from "@/components/FAQ/Fashion2FAQ";
-import InsoleFooter from "@/components/Footer/InsoleFooter";
-import FashionUI2 from "@/components/Layout/FashionUI2";
+import FAQVariant1 from "@/components/FAQ/variant-1";
+import BeautyFooter from "@/components/Footer/BeautyFooter";
+import BeautyUI1 from "@/components/Layout/BeautyUI1";
 
 export const dynamic = "force-static";
 
 export default function Beauty2Page() {
   const faqItems = [
+    { q: "The Order", a: "Information about placing and modifying orders." },
+    { q: "Shipping", a: "Standard and express shipping options explained." },
     {
-      q: "What is your return policy?",
-      a: "We offer a 30-day return policy for all unworn items with original tags. Simply contact our customer service team to initiate a return.",
+      q: "Returns, Exchanges And Complaints",
+      a: "How to return, exchange, or submit a complaint.",
     },
-    {
-      q: "How long does shipping take?",
-      a: "Standard shipping takes 5-7 business days. Express shipping is available for 2-3 business day delivery.",
-    },
-    {
-      q: "Do you ship internationally?",
-      a: "Yes, we ship to over 50 countries worldwide. International shipping times vary by location.",
-    },
-    {
-      q: "How can I track my order?",
-      a: "Once your order ships, you'll receive a tracking number via email that you can use to monitor your delivery.",
-    },
-    {
-      q: "What payment methods do you accept?",
-      a: "We accept all major credit cards, PayPal, and various digital payment methods.",
-    },
-    {
-      q: "Are your products authentic?",
-      a: "Yes, all our jewelry is 100% authentic and comes with a certificate of authenticity.",
-    },
+    { q: "Refund Policy", a: "Refund timeframes and eligibility." },
+    { q: "Order Cancellation", a: "How to cancel before fulfillment." },
+    { q: "Delivery Time", a: "Typical delivery windows by region." },
+    { q: "Delivery Charge", a: "Cost breakdown and free shipping thresholds." },
+    { q: "Track Order", a: "How to track parcels using your order ID." },
   ];
   return (
     <div className="bg-white">
-      <FashionUI2 />
-      <Fashion2FAQ items={faqItems} />
-      <InsoleFooter />
+      <BeautyUI1
+        heroImage="/hero/beautyhero2.png"
+        productImage="/items/beautyproduct2.png"
+      />
+      <FAQVariant1 items={faqItems} columns={2} />
+      <BeautyFooter />
     </div>
   );
 }

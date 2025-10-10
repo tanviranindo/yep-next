@@ -1,29 +1,18 @@
 "use client";
 
-import BeautyFilter from "@/components/Filters/Sidebar/BeautyFilter";
+import Beauty1Filter from "@/components/Filters/Sidebar/Beauty1Filter";
 import BeautyHero from "@/components/Hero/BeautyHero";
 import { BeautyNavbar } from "@/components/Navbar";
 import ProductCard, { Product } from "@/components/ProductCard";
 import { useEffect, useMemo, useState } from "react";
 
-const beautyProducts: Product[] = Array.from({ length: 8 }).map((_, i) => ({
-  id: `beauty-${i + 1}`,
-  name: [
-    "Face Skin Color",
-    "Loose Face Powder",
-    "Gentle Cleanser",
-    "Hydra Serum",
-  ][i % 4],
-  description: "Dermatologist-approved formulas for radiant skin",
-  image: "/items/beautyproduct1.png",
-  url: `/products/beauty-${i + 1}`,
-  price: [1299, 1799, 1499, 1999][i % 4],
-  currency: "BDT",
-  availability: "InStock",
-  brand: "GLAMOUR",
-}));
-
-export default function BeautyUI1Layout() {
+export default function BeautyUI1Layout({
+  heroImage = "/hero/beautyhero1.png",
+  productImage = "/items/beautyproduct1.png",
+}: {
+  heroImage?: string;
+  productImage?: string;
+}) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -37,45 +26,70 @@ export default function BeautyUI1Layout() {
   const beautyFilterGroups = useMemo(
     () => [
       {
+        title: "Categories",
+        name: "categories",
+        options: [
+          { label: "Haircare", value: "haircare" },
+          { label: "All", value: "all" },
+          { label: "Bracelet", value: "bracelet" },
+          { label: "Rings", value: "rings" },
+          { label: "Brooch", value: "brooch" },
+          { label: "Watches", value: "watches" },
+          { label: "Skincare", value: "skincare" },
+          { label: "Grooming", value: "grooming" },
+        ],
+        type: "radio" as const,
+        selected: ["all"],
+      },
+      {
         title: "Skin Type",
         name: "skinType",
         options: [
-          { label: "All", value: "all" },
-          { label: "Dry", value: "dry" },
-          { label: "Oily", value: "oily" },
-          { label: "Combination", value: "combination" },
-          { label: "Normal", value: "normal" },
-          { label: "Sensitive", value: "sensitive" },
+          { label: "Oily (150)", value: "oily" },
+          { label: "Dry (320)", value: "dry" },
+          { label: "Sensitive (300)", value: "sensitive" },
+          { label: "All Type of Skin (50)", value: "all" },
         ],
         type: "checkbox" as const,
-      },
-      {
-        title: "Shade",
-        name: "shade",
-        options: [
-          { label: "Fair", value: "fair", color: "#F5D6C6" },
-          { label: "Light", value: "light", color: "#E8B895" },
-          { label: "Medium", value: "medium", color: "#D4956C" },
-          { label: "Tan", value: "tan", color: "#B4764E" },
-          { label: "Deep", value: "deep", color: "#8B5A3C" },
-        ],
-        type: "radio" as const,
+        selected: ["oily"],
       },
       {
         title: "Brands",
         name: "brand",
         options: [
-          { label: "All", value: "all" },
-          { label: "GLAMOUR", value: "glamour" },
-          { label: "NIKA", value: "nika" },
-          { label: "SkinLab", value: "skinlab" },
-          { label: "Glow Co.", value: "glowco" },
-          { label: "Ever Dew", value: "everdew" },
+          { label: "Rolliage. (254)", value: "rolliage" },
+          { label: "HELEN & JAMES (168)", value: "helen-james" },
+          { label: "QKE (120)", value: "qke" },
+          { label: "Roman Paul (105)", value: "roman-paul" },
+          { label: "KS Silverworks (96)", value: "ks-silverworks" },
+          { label: "Love, Executive (72)", value: "love-executive" },
         ],
         type: "checkbox" as const,
+        selected: ["qke"],
       },
     ],
     []
+  );
+
+  const beautyProducts: Product[] = useMemo(
+    () =>
+      Array.from({ length: 8 }).map((_, i) => ({
+        id: `beauty-${i + 1}`,
+        name: [
+          "Face Skin Color",
+          "Loose Face Powder",
+          "Gentle Cleanser",
+          "Hydra Serum",
+        ][i % 4],
+        description: "Dermatologist-approved formulas for radiant skin",
+        image: productImage,
+        url: `/products/beauty-${i + 1}`,
+        price: [1299, 1799, 1499, 1999][i % 4],
+        currency: "BDT",
+        availability: "InStock",
+        brand: "GLAMOUR",
+      })),
+    [productImage]
   );
 
   return (
@@ -85,7 +99,7 @@ export default function BeautyUI1Layout() {
       <BeautyHero
         title="Live in Glamour"
         description="From luxury skincare to iconic makeup looks, we bring you the best brands, and timeless essentials. Because it has measures in the extraordinary."
-        heroImage="/hero/beautyhero1.png"
+        heroImage={heroImage}
         cta={{ label: "SHOP NOW", href: "#products" }}
         brand="GLAMOUR"
       />
@@ -116,11 +130,11 @@ export default function BeautyUI1Layout() {
                 >
                   ✕
                 </button>
-                <BeautyFilter
+                <Beauty1Filter
                   price={{
-                    min: 500,
+                    min: 250,
                     max: 5000,
-                    value: 1800,
+                    value: 5000,
                     name: "price",
                     label: "Price",
                   }}
@@ -142,18 +156,18 @@ export default function BeautyUI1Layout() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {beautyProducts.map((p) => (
-                  <ProductCard key={p.id} variant={2} product={p} />
+                  <ProductCard key={p.id} variant={5} product={p} />
                 ))}
               </div>
             </div>
 
             <div className="hidden lg:block w-full lg:w-80 flex-shrink-0">
               <div className="sticky top-20">
-                <BeautyFilter
+                <Beauty1Filter
                   price={{
-                    min: 500,
+                    min: 250,
                     max: 5000,
-                    value: 1800,
+                    value: 5000,
                     name: "price",
                     label: "Price",
                   }}

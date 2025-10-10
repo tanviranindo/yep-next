@@ -1,4 +1,4 @@
-import FAQVariant1 from "@/components/FAQ/variant-1";
+import { BeautyFAQ1 } from "@/components/FAQ";
 import BeautyFooter from "@/components/Footer/BeautyFooter";
 import BeautyUI1 from "@/components/Layout/BeautyUI1";
 
@@ -21,7 +21,7 @@ export default function Beauty1Page() {
   return (
     <div className="bg-white">
       <BeautyUI1 />
-      <FAQVariant1 items={faqItems} columns={2} />
+      <BeautyFAQ1 items={faqItems} />
       <BeautyFooter />
     </div>
   );
