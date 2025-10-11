@@ -1,28 +1,51 @@
-import { BeautyFAQ1 } from "@/components/FAQ";
-import BeautyFooter from "@/components/Footer/BeautyFooter";
-import BeautyUI1 from "@/components/Layout/BeautyUI1";
+import BeautyFAQ from "@/components/Beauty/BeautyFAQ";
+import BeautyFooter from "@/components/Beauty/BeautyFooter";
+import BeautyLayout from "@/components/Beauty/BeautyLayout";
+import { FAQ_ITEMS, BEAUTY1_ROUTES } from "@/data/beauty1/constants";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export default function Beauty1Page() {
-  const faqItems = [
-    { q: "The Order", a: "Information about placing and modifying orders." },
-    { q: "Shipping", a: "Standard and express shipping options explained." },
-    {
-      q: "Returns, Exchanges And Complaints",
-      a: "How to return, exchange, or submit a complaint.",
+  const heroProps = {
+    variant: 1 as const,
+    eyebrow: "LATEST COLLECTIONS OF",
+    sublabel: "Spring 2025",
+    title: "DISCOVER YOUR GLAMOUR",
+    heroImage: "/hero/main.png",
+    thumbnails: ["/hero/1.png", "/hero/2.png", "/hero/3.png"],
+    cta: { label: "Explore →", href: "#" },
+    ticker: [
+      "Glow with Glamour",
+      "Radiance Redefined",
+      "Beauty Unleashed",
+      "Confidence in Every Product",
+    ],
+    socialIcons: [
+      { icon: "f", href: "#" },
+      { icon: "✈", href: "#" },
+      { icon: "📷", href: "#" },
+      { icon: "●", href: "#" },
+    ],
+    productCarousel: {
+      title: "RADIANT GLOW SERUM",
+      description:
+        "Discover beauty products that enhance your natural glow. From skincare essentials to makeup must-haves.",
+      cta: { label: "VIEW COLLECTION", href: "#" },
+      images: ["/hero/1.png", "/hero/2.png", "/hero/3.png"],
     },
-    { q: "Refund Policy", a: "Refund timeframes and eligibility." },
-    { q: "Order Cancellation", a: "How to cancel before fulfillment." },
-    { q: "Delivery Time", a: "Typical delivery windows by region." },
-    { q: "Delivery Charge", a: "Cost breakdown and free shipping thresholds." },
-    { q: "Track Order", a: "How to track parcels using your order ID." },
-  ];
+  };
+
   return (
-    <div className="bg-white">
-      <BeautyUI1 />
-      <BeautyFAQ1 items={faqItems} />
-      <BeautyFooter />
+    <div className="bg-white flex flex-col min-h-screen" id="faq">
+      <main className="flex-grow">
+        <BeautyLayout
+          variant={1}
+          routes={BEAUTY1_ROUTES}
+          heroProps={heroProps}
+        />
+        <BeautyFAQ variant={1} items={FAQ_ITEMS} columns={2} />
+      </main>
+      <BeautyFooter variant={1} />
     </div>
   );
 }
