@@ -2,8 +2,8 @@
 
 import { FashionFooter, FashionNavbar, FashionProductCard } from "@/components/Fashion";
 import { useEffect, useState } from "react";
-import { saleProducts, hotDeals } from "@/data/fashion1/products";
-import { FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { saleProducts, hotDeals } from "@/data/fashion2/products";
+import { FASHION2_ROUTES } from "@/data/fashion2/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +41,7 @@ export default function PromotionsPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
 
       {/* Hero Banner - Special EID Discount */}
       <div className="relative h-[400px] md:h-[500px] bg-gradient-to-r from-gray-100 to-gray-200 overflow-hidden">
@@ -59,7 +59,7 @@ export default function PromotionsPage() {
             </p>
             <a
               href="#products"
-              className="inline-block px-8 py-3 bg-red-500 text-white hover:bg-red-600 transition-colors"
+              className="inline-block px-8 py-3 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
             >
               Discover →
             </a>
@@ -99,7 +99,7 @@ export default function PromotionsPage() {
                 <span className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs px-3 py-1 font-semibold">
                   SALE
                 </span>
-                <FashionProductCard variant={1} product={product} />
+                <FashionProductCard variant={2} product={product} />
               </div>
             ))}
           </div>
@@ -107,7 +107,7 @@ export default function PromotionsPage() {
           <div className="text-center mt-12">
             <a
               href="#"
-              className="inline-block px-8 py-3 border-2 border-red-500 text-gray-900 hover:bg-red-500 hover:text-white transition-colors"
+              className="inline-block px-8 py-3 border-2 border-[#D4B896] text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
             >
               See All Products
             </a>
@@ -178,7 +178,7 @@ export default function PromotionsPage() {
           {/* Hot Deals Carousel */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {hotDeals.map((product) => (
-              <FashionProductCard key={product.id} variant={1} product={product} />
+              <FashionProductCard key={product.id} variant={2} product={product} />
             ))}
           </div>
 
@@ -190,7 +190,7 @@ export default function PromotionsPage() {
         </div>
       </section>
 
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { FashionFooter, FashionNavbar } from "@/components/Fashion";
-import { FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { FASHION2_ROUTES } from "@/data/fashion2/constants";
 import { useState } from "react";
 
 const mockOrders = [
@@ -96,13 +96,13 @@ export default function TrackOrderPage() {
     switch (status) {
       case "To Pay":
         return (
-          <button className="px-6 py-2 border border-red-500 text-gray-900 hover:bg-red-500 hover:text-white transition-colors">
+          <button className="px-6 py-2 border border-[#D4B896] text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
             To Pay
           </button>
         );
       case "To Review":
         return (
-          <button className="px-6 py-2 border border-red-500 text-gray-900 hover:bg-red-500 hover:text-white transition-colors">
+          <button className="px-6 py-2 border border-[#D4B896] text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
             To Review
           </button>
         );
@@ -114,7 +114,7 @@ export default function TrackOrderPage() {
         );
       default:
         return (
-          <button className="px-6 py-2 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
+          <button className="px-6 py-2 border border-[#D4B896] text-gray-900 hover:bg-gray-900 hover:text-white transition-colors">
             {status}
           </button>
         );
@@ -123,7 +123,7 @@ export default function TrackOrderPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
 
       {/* Page Header */}
       <div className="w-full py-12 text-center border-b">
@@ -139,7 +139,7 @@ export default function TrackOrderPage() {
               value={searchId}
               onChange={(e) => setSearchId(e.target.value)}
               placeholder="Order ID"
-              className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900"
+              className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
             />
             <svg
               className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -155,7 +155,7 @@ export default function TrackOrderPage() {
               />
             </svg>
           </div>
-          <button className="px-12 py-3 bg-red-500 text-white hover:bg-red-600 transition-colors">
+          <button className="px-12 py-3 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors">
             Search
           </button>
         </div>
@@ -173,7 +173,7 @@ export default function TrackOrderPage() {
               onClick={() => setActiveFilter(filter)}
               className={`px-6 py-3 font-medium whitespace-nowrap ${
                 activeFilter === filter
-                  ? "border-b-2 border-red-500 text-black"
+                  ? "border-b-2 border-black text-black"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
@@ -212,25 +212,25 @@ export default function TrackOrderPage() {
 
         {/* Pagination */}
         <div className="flex justify-center gap-2 mt-12">
-          <button className="w-10 h-10 flex items-center justify-center bg-red-500 text-white">
+          <button className="w-10 h-10 flex items-center justify-center bg-black text-white">
             1
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-red-500">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
             2
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-red-500">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
             3
           </button>
           <span className="w-10 h-10 flex items-center justify-center text-gray-400">
             ...
           </span>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-red-500">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
             10
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-red-500">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
             →
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-red-500">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
             »
           </button>
         </div>
@@ -259,7 +259,7 @@ export default function TrackOrderPage() {
         </div>
       </div>
 
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

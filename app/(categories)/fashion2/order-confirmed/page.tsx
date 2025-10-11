@@ -5,7 +5,7 @@ import { useFashionStore } from "@/contexts/FashionStoreContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
-import { FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { FASHION2_ROUTES } from "@/data/fashion2/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ export default function OrderConfirmedPage() {
 
   useEffect(() => {
     if (!currentOrder) {
-      router.push(FASHION1_ROUTES.HOME);
+      router.push(FASHION2_ROUTES.HOME);
     }
   }, [currentOrder, router]);
 
@@ -32,17 +32,17 @@ export default function OrderConfirmedPage() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
       <main className="flex-grow">
         {/* Page Header */}
         <div className="w-full py-12 text-center border-b">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Order Confirmed</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <Link href={FASHION1_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
+            <Link href={FASHION2_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
               Home
             </Link>
             <span className="text-gray-400">→</span>
-            <span className="text-red-500">Checkout</span>
+            <span className="text-[#D4B896]">Checkout</span>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export default function OrderConfirmedPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a
               href="#"
-              className="px-8 py-3 bg-white border-2 border-red-500 text-gray-900 hover:bg-gray-50 transition-colors text-center"
+              className="px-8 py-3 bg-white border-2 border-[#D4B896] text-gray-900 hover:bg-gray-50 transition-colors text-center"
             >
               View Order details
             </a>
@@ -94,14 +94,14 @@ export default function OrderConfirmedPage() {
           <div>
             <a
               href="#"
-              className="block w-full text-center px-6 py-4 bg-red-500 text-white hover:bg-red-600 transition-colors"
+              className="block w-full text-center px-6 py-4 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
             >
               Track Order
             </a>
           </div>
         </div>
       </main>
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

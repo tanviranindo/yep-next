@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import FashionNavbar from "./FashionNavbar";
-import FashionHero from "./FashionHero";
-import FashionFilter from "./FashionFilter";
-import FashionProductCard from "./FashionProductCard";
 import { Product } from "@/components/ProductCard";
-import { fashionProducts, sortProducts, filterProducts, sortOptions } from "@/data/fashion1/products";
+import {
+  fashionProducts,
+  filterProducts,
+  sortOptions,
+  sortProducts,
+} from "@/data/fashion1/products";
+import {
+  fashion2Products,
+  filterProducts as filterProducts2,
+  sortOptions as sortOptions2,
+  sortProducts as sortProducts2,
+} from "@/data/fashion2/products";
+import { useEffect, useState } from "react";
+import FashionFilter from "./FashionFilter";
+import FashionHero from "./FashionHero";
+import FashionNavbar from "./FashionNavbar";
+import FashionProductCard from "./FashionProductCard";
 
 export type FashionLayoutVariant = 1 | 2;
 
@@ -26,7 +37,7 @@ export default function FashionLayout({
   variant,
   routes,
   heroProps,
-  products = fashionProducts,
+  products,
 }: FashionLayoutProps) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedCategory] = useState<string>("All");
@@ -34,15 +45,25 @@ export default function FashionLayout({
   const [sortBy, setSortBy] = useState<string>("popularity");
   const [priceRange] = useState<[number, number]>([0, 10000]);
 
+  // Use default products if none provided
+  const defaultProducts = variant === 1 ? fashionProducts : fashion2Products;
+  const currentProducts = products || defaultProducts;
+
+  // Use correct filtering and sorting functions based on variant
+  const currentFilterProducts =
+    variant === 1 ? filterProducts : filterProducts2;
+  const currentSortProducts = variant === 1 ? sortProducts : sortProducts2;
+  const currentSortOptions = variant === 1 ? sortOptions : sortOptions2;
+
   // Filter and sort products
-  const filteredProducts = filterProducts(
-    products,
+  const filteredProducts = currentFilterProducts(
+    currentProducts,
     selectedCategory,
     selectedSubcategory,
     priceRange[0],
     priceRange[1]
   );
-  const displayProducts = sortProducts(filteredProducts, sortBy);
+  const displayProducts = currentSortProducts(filteredProducts, sortBy);
 
   useEffect(() => {
     if (isFilterOpen) {
@@ -53,7 +74,11 @@ export default function FashionLayout({
   }, [isFilterOpen]);
 
   return (
-    <div className={variant === 1 ? "bg-white min-h-screen" : "bg-white min-h-screen"}>
+    <div
+      className={
+        variant === 1 ? "bg-white min-h-screen" : "bg-white min-h-screen"
+      }
+    >
       {/* Navbar */}
       <FashionNavbar variant={variant} routes={routes} />
 
@@ -61,8 +86,16 @@ export default function FashionLayout({
       {heroProps && <FashionHero variant={variant} {...heroProps} />}
 
       {/* Main content with filter sidebar */}
-      <section className={variant === 1 ? "w-full px-4 py-10 bg-gray-50" : "w-full bg-gray-50"}>
-        <div className={variant === 2 ? "w-full px-4 md:px-6 lg:px-8 py-8 md:py-12" : ""}>
+      <section
+        className={
+          variant === 1 ? "w-full px-4 py-10 bg-gray-50" : "w-full bg-gray-50"
+        }
+      >
+        <div
+          className={
+            variant === 2 ? "w-full px-4 md:px-6 lg:px-8 py-8 md:py-12" : ""
+          }
+        >
           {/* Mobile Filter Button */}
           <div className="md:hidden mb-6">
             <button
@@ -98,7 +131,12 @@ export default function FashionLayout({
                   {variant === 1 ? (
                     "✕"
                   ) : (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -113,22 +151,49 @@ export default function FashionLayout({
             </div>
           )}
 
-          <div className={variant === 2 ? "flex flex-col lg:flex-row gap-6 lg:gap-8" : "flex flex-col lg:flex-row gap-4"}>
+          <div
+            className={
+              variant === 2
+                ? "flex flex-col lg:flex-row gap-6 lg:gap-8"
+                : "flex flex-col lg:flex-row gap-4"
+            }
+          >
             {/* Left Sidebar - Filter */}
-            <div className={variant === 2 ? "hidden lg:block w-full lg:w-72 flex-shrink-0" : "hidden lg:block w-full lg:w-80 flex-shrink-0"}>
+            <div
+              className={
+                variant === 2
+                  ? "hidden lg:block w-full lg:w-72 flex-shrink-0"
+                  : "hidden lg:block w-full lg:w-80 flex-shrink-0"
+              }
+            >
               <FashionFilter variant={variant} />
             </div>
 
             {/* Center - Products Grid */}
             <div className="flex-1 min-w-0">
               {/* Products Header with Sort */}
-              <div className={variant === 2 ? "mb-6 md:mb-8" : "mb-6 flex justify-between items-center"}>
+              <div
+                className={
+                  variant === 2
+                    ? "mb-6 md:mb-8"
+                    : "mb-6 flex justify-between items-center"
+                }
+              >
                 <div>
-                  <h2 className={variant === 2 ? "text-2xl md:text-3xl font-bold text-gray-900 mb-2" : "text-xl font-bold text-gray-800"}>
-                    {variant === 1 ? "Fashion Collection" : "Jewelry Collection"}
+                  <h2
+                    className={
+                      variant === 2
+                        ? "text-2xl md:text-3xl font-bold text-gray-900 mb-2"
+                        : "text-xl font-bold text-gray-800"
+                    }
+                  >
+                    {variant === 1
+                      ? "Fashion Collection"
+                      : "Jewelry Collection"}
                   </h2>
                   <p className="text-sm text-gray-600">
-                    Showing {displayProducts.length} of {products.length} products
+                    Showing {displayProducts.length} of {currentProducts.length}{" "}
+                    products
                   </p>
                 </div>
                 {variant === 1 && (
@@ -137,7 +202,7 @@ export default function FashionLayout({
                     onChange={(e) => setSortBy(e.target.value)}
                     className="select select-bordered w-full max-w-xs"
                   >
-                    {sortOptions.map((option) => (
+                    {currentSortOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -155,7 +220,11 @@ export default function FashionLayout({
                 }
               >
                 {displayProducts.map((p) => (
-                  <FashionProductCard key={p.id} variant={variant} product={p} />
+                  <FashionProductCard
+                    key={p.id}
+                    variant={variant}
+                    product={p}
+                  />
                 ))}
               </div>
 

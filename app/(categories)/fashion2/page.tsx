@@ -3,9 +3,9 @@ import FashionFooter from "@/components/Fashion/FashionFooter";
 import FashionLayout from "@/components/Fashion/FashionLayout";
 import { FAQ_ITEMS, FASHION2_ROUTES } from "@/data/fashion2/constants";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
-export default function Fashion2Page() {
+export default function FashionPage() {
   const heroProps = {
     variant: 2 as const,
     slides: [
@@ -31,13 +31,15 @@ export default function Fashion2Page() {
   };
 
   return (
-    <div className="bg-white">
-      <FashionLayout
-        variant={2}
-        routes={FASHION2_ROUTES}
-        heroProps={heroProps}
-      />
-      <FashionFAQ variant={2} items={FAQ_ITEMS} />
+    <div className="bg-white flex flex-col min-h-screen" id="faq">
+      <main className="flex-grow">
+        <FashionLayout
+          variant={2}
+          routes={FASHION2_ROUTES}
+          heroProps={heroProps}
+        />
+        <FashionFAQ variant={2} items={FAQ_ITEMS} columns={2} />
+      </main>
       <FashionFooter variant={2} />
     </div>
   );

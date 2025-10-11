@@ -4,7 +4,7 @@ import { FashionFooter, FashionNavbar } from "@/components/Fashion";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
 import { useState } from "react";
 import Link from "next/link";
-import { FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { FASHION2_ROUTES } from "@/data/fashion2/constants";
 
 export default function ShoppingCartPage() {
   const { cart, updateQuantity, removeFromCart, cartTotal, applyCoupon } = useFashionStore();
@@ -25,17 +25,17 @@ export default function ShoppingCartPage() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
       <main className="flex-grow">
         {/* Page Header */}
         <div className="w-full py-12 text-center border-b">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Shopping Cart</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <Link href={FASHION1_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
+            <Link href={FASHION2_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
               Home
             </Link>
             <span className="text-gray-400">→</span>
-            <span className="text-red-500">Cart</span>
+            <span className="text-[#D4B896]">Cart</span>
           </div>
         </div>
 
@@ -131,11 +131,11 @@ export default function ShoppingCartPage() {
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
                       placeholder="Coupon Code"
-                      className="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                      className="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                     />
                     <button
                       onClick={handleApplyCoupon}
-                      className="px-6 py-2 border border-red-500 bg-red-500 text-white hover:bg-red-600 transition-colors"
+                      className="px-6 py-2 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
                     >
                       Apply
                     </button>
@@ -161,8 +161,8 @@ export default function ShoppingCartPage() {
                     </div>
                   </div>
                   <Link
-                    href={FASHION1_ROUTES.CHECKOUT}
-                    className="block w-full text-center px-6 py-3 bg-red-500 text-white hover:bg-red-600 transition-colors"
+                    href={FASHION2_ROUTES.CHECKOUT}
+                    className="block w-full text-center px-6 py-3 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
                   >
                     Proceed To Checkout
                   </Link>
@@ -172,7 +172,7 @@ export default function ShoppingCartPage() {
           )}
         </div>
       </main>
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

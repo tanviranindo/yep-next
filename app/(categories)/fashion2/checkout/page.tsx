@@ -5,7 +5,7 @@ import { useFashionStore } from "@/contexts/FashionStoreContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { PAYMENT_METHODS, DELIVERY_CHARGES, FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { PAYMENT_METHODS, DELIVERY_CHARGES, FASHION2_ROUTES } from "@/data/fashion2/constants";
 
 export default function CheckoutPage() {
   const { cart, cartTotal, setCurrentOrder } = useFashionStore();
@@ -70,23 +70,23 @@ export default function CheckoutPage() {
     };
 
     setCurrentOrder(order);
-    router.push(FASHION1_ROUTES.REVIEW_ORDER);
+    router.push(FASHION2_ROUTES.REVIEW_ORDER);
   };
 
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
       <main className="flex-grow">
         {/* Page Header */}
         <div className="w-full py-12 text-center border-b">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Checkout</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <Link href={FASHION1_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
+            <Link href={FASHION2_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
               Home
             </Link>
             <span className="text-gray-400">→</span>
-            <span className="text-red-500">Checkout</span>
+            <span className="text-[#D4B896]">Checkout</span>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ export default function CheckoutPage() {
           <div className="mb-6">
             <p className="text-sm text-gray-600">
               Have a coupon?{" "}
-              <a href="#" className="text-red-500 hover:underline">
+              <a href="#" className="text-[#D4B896] hover:underline">
                 Click here to enter your code
               </a>
             </p>
@@ -115,7 +115,7 @@ export default function CheckoutPage() {
                   value={formData.firstName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                 />
               </div>
               <div>
@@ -128,7 +128,7 @@ export default function CheckoutPage() {
                   value={formData.lastName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                 />
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function CheckoutPage() {
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -155,7 +155,7 @@ export default function CheckoutPage() {
                 value={formData.country}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               >
                 <option>Bangladesh</option>
               </select>
@@ -172,7 +172,7 @@ export default function CheckoutPage() {
                 onChange={handleInputChange}
                 placeholder="Bashundhara"
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900 mb-2"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896] mb-2"
               />
               <input
                 type="text"
@@ -180,7 +180,7 @@ export default function CheckoutPage() {
                 value={formData.apartment}
                 onChange={handleInputChange}
                 placeholder="Apartment, suite, unit etc. (optional)"
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -194,7 +194,7 @@ export default function CheckoutPage() {
                 value={formData.city}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
                 value={formData.state}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               >
                 <option>Dhaka</option>
               </select>
@@ -223,7 +223,7 @@ export default function CheckoutPage() {
                 value={formData.zipCode}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -251,7 +251,7 @@ export default function CheckoutPage() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
 
@@ -283,7 +283,7 @@ export default function CheckoutPage() {
                 value={formData.orderNotes}
                 onChange={handleInputChange}
                 placeholder="Notes about your order, e.g. special notes for delivery"
-                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
               />
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function CheckoutPage() {
                       value={formData.billingAddress}
                       onChange={handleInputChange}
                       placeholder="P.o.Box 1223"
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                     />
                   </div>
                   <div>
@@ -333,7 +333,7 @@ export default function CheckoutPage() {
                       value={formData.billingCity}
                       onChange={handleInputChange}
                       placeholder="Dhaka"
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                     />
                   </div>
                   <div>
@@ -346,7 +346,7 @@ export default function CheckoutPage() {
                       value={formData.billingState}
                       onChange={handleInputChange}
                       placeholder="Sonora"
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                     />
                   </div>
                   <div>
@@ -359,7 +359,7 @@ export default function CheckoutPage() {
                       value={formData.billingPostalCode}
                       onChange={handleInputChange}
                       placeholder="9090"
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
                     />
                   </div>
                 </div>
@@ -418,7 +418,7 @@ export default function CheckoutPage() {
                   }}
                   className={`px-6 py-3 border-2 transition-colors ${
                     selectedPayment === method.id
-                      ? "border-red-500 bg-red-50"
+                      ? "border-[#D4B896] bg-[#D4B896]/10"
                       : "border-gray-300 hover:border-gray-400"
                   }`}
                 >
@@ -445,7 +445,7 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       placeholder="Seen on your card"
                       required={showCardDetails}
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900 bg-white"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896] bg-white"
                     />
                   </div>
                   <div>
@@ -459,7 +459,7 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       placeholder="Seen on your card"
                       required={showCardDetails}
-                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900 bg-white"
+                      className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896] bg-white"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -474,7 +474,7 @@ export default function CheckoutPage() {
                         onChange={handleInputChange}
                         placeholder="20/29"
                         required={showCardDetails}
-                        className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900 bg-white"
+                        className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896] bg-white"
                       />
                     </div>
                     <div>
@@ -488,7 +488,7 @@ export default function CheckoutPage() {
                         onChange={handleInputChange}
                         placeholder="000"
                         required={showCardDetails}
-                        className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gray-900 bg-white"
+                        className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-[#D4B896] bg-white"
                       />
                     </div>
                   </div>
@@ -501,14 +501,14 @@ export default function CheckoutPage() {
           <div>
             <button
               type="submit"
-              className="w-full px-6 py-4 bg-red-500 text-white hover:bg-red-600 transition-colors"
+              className="w-full px-6 py-4 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
             >
               Proceed To Checkout
             </button>
           </div>
         </form>
       </main>
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

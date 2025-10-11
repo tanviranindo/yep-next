@@ -3,7 +3,7 @@
 import { FashionFooter, FashionNavbar } from "@/components/Fashion";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
 import Link from "next/link";
-import { FASHION1_ROUTES } from "@/data/fashion1/constants";
+import { FASHION2_ROUTES } from "@/data/fashion2/constants";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, addToCart } = useFashionStore();
@@ -28,17 +28,17 @@ export default function WishlistPage() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
+      <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
       <main className="flex-grow">
         {/* Page Header */}
         <div className="w-full py-12 text-center border-b">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Wishlist</h1>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <Link href={FASHION1_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
+            <Link href={FASHION2_ROUTES.HOME} className="text-gray-600 hover:text-gray-900">
               Home
             </Link>
             <span className="text-gray-400">→</span>
-            <span className="text-red-500">Wishlist</span>
+            <span className="text-[#D4B896]">Wishlist</span>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ export default function WishlistPage() {
                           </button>
                           <button
                             onClick={() => handleAddToCart(item.id)}
-                            className="px-6 py-2 border border-red-500 bg-red-500 text-white hover:bg-red-600 transition-colors"
+                            className="px-6 py-2 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors"
                           >
                             Add To Cart
                           </button>
@@ -110,7 +110,7 @@ export default function WishlistPage() {
           )}
         </div>
       </main>
-      <FashionFooter variant={1} />
+      <FashionFooter variant={2} />
     </div>
   );
 }

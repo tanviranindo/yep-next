@@ -82,3 +82,20 @@ export const PAYMENT_METHODS = [
     requiresCardDetails: false,
   },
 ] as const;
+
+// Product sizes
+export const PRODUCT_SIZES = ["XS", "S", "M", "L", "XL", "XXL"] as const;
+
+// Product colors (can be expanded)
+export const PRODUCT_COLORS = [
+  "Black",
+  "White",
+  "Navy",
+  "Gray",
+  "Red",
+  "Blue",
+  "Green",
+  "Gold",
+  "Silver",
+  "Rose Gold",
+] as const;
