@@ -21,3 +21,16 @@ export type { FashionFooterVariant } from "./FashionFooter";
 
 export { default as FashionLayout } from "./FashionLayout";
 export type { FashionLayoutVariant } from "./FashionLayout";
+
+// Variant registry and utilities
+export {
+  FASHION_VARIANTS,
+  hasVariant,
+  getVariantMetadata,
+  getComponentVariants,
+} from "./registry";
+export type {
+  VariantNumber,
+  VariantMetadata,
+  ComponentVariants,
+} from "./registry";

@@ -1,7 +1,5 @@
-"use client";
-
-import FilterSidebarVariant1, { FilterSidebarV1Props } from "@/components/Filters/Sidebar/variant-1";
-import Fashion2Filter from "@/components/Filters/Sidebar/Fashion2Filter";
+import FilterVariant1, { FilterSidebarV1Props } from "./variants/filter/variant-1";
+import FilterVariant2 from "./variants/filter/variant-2";
 
 export type FashionFilterVariant = 1 | 2;
 
@@ -10,10 +8,16 @@ interface FashionFilterProps {
   filterProps?: FilterSidebarV1Props;
 }
 
+/**
+ * FashionFilter - Server component router for Fashion filter variants
+ *
+ * Routes to the appropriate filter variant based on the variant prop.
+ * Both variants are client components due to interactive filtering state.
+ */
 export default function FashionFilter({ variant, filterProps }: FashionFilterProps) {
   if (variant === 2) {
-    return <Fashion2Filter />;
+    return <FilterVariant2 />;
   }
 
-  return <FilterSidebarVariant1 {...(filterProps || {})} />;
+  return <FilterVariant1 {...(filterProps || {})} />;
 }

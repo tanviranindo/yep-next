@@ -1,7 +1,7 @@
 "use client";
 
-import { FashionFooter } from "@/components/Footer";
-import { FashionNavbar } from "@/components/Navbar";
+import { FashionFooter, FashionNavbar } from "@/components/Fashion";
+import { FASHION1_ROUTES } from "@/data/fashion1/constants";
 import { useState } from "react";
 
 const mockOrders = [
@@ -123,7 +123,7 @@ export default function TrackOrderPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <FashionNavbar />
+      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
 
       {/* Page Header */}
       <div className="w-full py-12 text-center border-b">
@@ -259,7 +259,7 @@ export default function TrackOrderPage() {
         </div>
       </div>
 
-      <FashionFooter />
+      <FashionFooter variant={1} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import { FashionFooter } from "@/components/Footer";
-import { FashionNavbar } from "@/components/Navbar";
+import { FashionFooter, FashionNavbar } from "@/components/Fashion";
+import { FASHION1_ROUTES } from "@/data/fashion1/constants";
 
 export default function Error404Page() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar />
+      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
 
       {/* 404 Content */}
       <div className="flex-1 flex items-center justify-center px-4 py-20">
@@ -29,7 +29,7 @@ export default function Error404Page() {
         </div>
       </div>
 
-      <FashionFooter />
+      <FashionFooter variant={1} />
     </div>
   );
 }

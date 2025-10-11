@@ -1,7 +1,6 @@
 import FashionFAQ from "@/components/Fashion/FashionFAQ";
 import FashionFooter from "@/components/Fashion/FashionFooter";
 import FashionLayout from "@/components/Fashion/FashionLayout";
-import { FashionStoreProvider } from "@/contexts/FashionStoreContext";
 import { FAQ_ITEMS, FASHION1_ROUTES } from "@/data/fashion1/constants";
 
 export const dynamic = "force-dynamic";
@@ -37,18 +36,16 @@ export default function FashionPage() {
   };
 
   return (
-    <FashionStoreProvider>
-      <div className="bg-white flex flex-col min-h-screen" id="faq">
-        <main className="flex-grow">
-          <FashionLayout
-            variant={1}
-            routes={FASHION1_ROUTES}
-            heroProps={heroProps}
-          />
-          <FashionFAQ variant={1} items={FAQ_ITEMS} columns={2} />
-        </main>
-        <FashionFooter variant={1} />
-      </div>
-    </FashionStoreProvider>
+    <div className="bg-white flex flex-col min-h-screen" id="faq">
+      <main className="flex-grow">
+        <FashionLayout
+          variant={1}
+          routes={FASHION1_ROUTES}
+          heroProps={heroProps}
+        />
+        <FashionFAQ variant={1} items={FAQ_ITEMS} columns={2} />
+      </main>
+      <FashionFooter variant={1} />
+    </div>
   );
 }

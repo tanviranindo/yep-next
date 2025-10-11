@@ -2,9 +2,15 @@
 
 import React from "react";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
-import ProductCardVariant4, { ProductCardV4Props } from "./variant-4";
+import ProductCardVariant4 from "@/components/ProductCard/variant-4";
+import { Product } from "@/components/ProductCard";
 
-export default function FashionProductCard({ product, ...rest }: ProductCardV4Props) {
+export interface ProductCardV1Props {
+  product: Product;
+  className?: string;
+}
+
+export default function ProductCardVariant1({ product, className }: ProductCardV1Props) {
   const { addToCart, addToWishlist, isInWishlist } = useFashionStore();
 
   const handleAddToCart = (e?: React.MouseEvent) => {
@@ -127,7 +133,7 @@ export default function FashionProductCard({ product, ...rest }: ProductCardV4Pr
         label: "Add To Cart",
         onClick: handleAddToCart,
       }}
-      {...rest}
+      className={className}
     />
   );
 }

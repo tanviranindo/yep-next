@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ProductCardProps, buildProductJsonLd } from "./types";
+import { ProductCardProps, buildProductJsonLd } from "@/components/ProductCard/types";
 
 // Fashion 2 / Insole Product Card
 export default function Fashion2ProductCard({ product, className }: ProductCardProps) {

@@ -1,8 +1,6 @@
 "use client";
 
-import { FashionFooter } from "@/components/Footer";
-import { FashionNavbar } from "@/components/Navbar";
-import FashionProductCard from "@/components/ProductCard/FashionProductCard";
+import { FashionFooter, FashionNavbar, FashionProductCard } from "@/components/Fashion";
 import { useEffect, useState } from "react";
 import { saleProducts, hotDeals } from "@/data/fashion1/products";
 import { FASHION1_ROUTES } from "@/data/fashion1/constants";
@@ -43,7 +41,7 @@ export default function PromotionsPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <FashionNavbar />
+      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
 
       {/* Hero Banner - Special EID Discount */}
       <div className="relative h-[400px] md:h-[500px] bg-gradient-to-r from-gray-100 to-gray-200 overflow-hidden">
@@ -101,7 +99,7 @@ export default function PromotionsPage() {
                 <span className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs px-3 py-1 font-semibold">
                   SALE
                 </span>
-                <FashionProductCard product={product} />
+                <FashionProductCard variant={1} product={product} />
               </div>
             ))}
           </div>
@@ -180,7 +178,7 @@ export default function PromotionsPage() {
           {/* Hot Deals Carousel */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {hotDeals.map((product) => (
-              <FashionProductCard key={product.id} product={product} />
+              <FashionProductCard key={product.id} variant={1} product={product} />
             ))}
           </div>
 
@@ -192,7 +190,7 @@ export default function PromotionsPage() {
         </div>
       </section>
 
-      <FashionFooter />
+      <FashionFooter variant={1} />
     </div>
   );
 }

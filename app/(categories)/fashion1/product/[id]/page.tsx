@@ -1,9 +1,7 @@
 "use client";
 
-import { FashionFooter } from "@/components/Footer";
+import { FashionFooter, FashionNavbar, FashionProductCard } from "@/components/Fashion";
 import Link from "next/link";
-import { FashionNavbar } from "@/components/Navbar";
-import FashionProductCard from "@/components/ProductCard/FashionProductCard";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -58,7 +56,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <FashionNavbar />
+      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
 
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 py-4">
@@ -298,7 +296,7 @@ export default function ProductDetailPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Recently Viewed Products</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
-                <FashionProductCard key={p.id} product={p} />
+                <FashionProductCard key={p.id} variant={1} product={p} />
               ))}
             </div>
           </div>
@@ -307,14 +305,14 @@ export default function ProductDetailPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">People Also Bought</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
-                <FashionProductCard key={p.id} product={p} />
+                <FashionProductCard key={p.id} variant={1} product={p} />
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      <FashionFooter />
+      <FashionFooter variant={1} />
     </div>
   );
 }

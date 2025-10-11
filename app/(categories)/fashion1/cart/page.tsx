@@ -1,7 +1,6 @@
 "use client";
 
-import { FashionFooter } from "@/components/Footer";
-import { FashionNavbar } from "@/components/Navbar";
+import { FashionFooter, FashionNavbar } from "@/components/Fashion";
 import { useFashionStore } from "@/contexts/FashionStoreContext";
 import { useState } from "react";
 import Link from "next/link";
@@ -26,7 +25,7 @@ export default function ShoppingCartPage() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <FashionNavbar />
+      <FashionNavbar variant={1} routes={FASHION1_ROUTES} />
       <main className="flex-grow">
         {/* Page Header */}
         <div className="w-full py-12 text-center border-b">
@@ -173,7 +172,7 @@ export default function ShoppingCartPage() {
           )}
         </div>
       </main>
-      <FashionFooter />
+      <FashionFooter variant={1} />
     </div>
   );
 }
