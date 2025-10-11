@@ -49,7 +49,7 @@ export default function HeroVariant2({
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
       </div>
 
       {/* Content - Left Aligned */}
@@ -57,10 +57,10 @@ export default function HeroVariant2({
         <div className="max-w-2xl">
           {/* Decorative Line */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-1 h-24 bg-white" />
+            <div className="w-1 h-24 bg-[#D4B896]" />
             <div>
               <p
-                className="text-white mb-4 uppercase"
+                className="text-white mb-4 uppercase tracking-widest"
                 style={{
                   fontFamily: "var(--font-playfair)",
                   fontWeight: 400,
@@ -93,7 +93,7 @@ export default function HeroVariant2({
 
           <Link
             href={slides[currentSlide].cta.href}
-            className="inline-flex items-center justify-center transition-all ml-5 mt-6 border border-white text-white bg-black/30 hover:bg-white hover:text-gray-900"
+            className="inline-flex items-center justify-center transition-all ml-5 mt-6 border-2 border-[#D4B896] text-[#D4B896] bg-transparent hover:bg-[#D4B896] hover:text-white"
             style={{
               width: "196px",
               height: "58px",
@@ -135,7 +135,7 @@ export default function HeroVariant2({
             <div
               className={`${
                 currentSlide === idx
-                  ? "h-10 bg-white"
+                  ? "h-10 bg-[#D4B896]"
                   : "h-6 bg-white/50 group-hover:bg-white/80"
               } w-[3px] transition-all duration-200`}
             />

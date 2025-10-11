@@ -9,12 +9,7 @@ export type FashionNavbarVariant = 1 | 2;
 
 interface FashionNavbarProps {
   variant: FashionNavbarVariant;
-  routes?: {
-    HOME: string;
-    SHOP: string;
-    CART: string;
-    WISHLIST: string;
-  };
+  routes?: Record<string, string>;
 }
 
 /**

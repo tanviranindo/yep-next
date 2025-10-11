@@ -1,179 +1,311 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
-const colors = [
-  "#5B7FD7",
-  "#8B73D6",
-  "#D9865F",
-  "#9FC1C1",
-  "#A3D98F",
-  "#9E9E9E",
-  "#6FB5C1",
-  "#E8A5A5",
-  "#D8A5A5",
-  "#7A9E8E",
-  "#C8D97F",
-  "#000000",
-  "#B8879E",
-  "#D4C1E8",
-  "#9EC18F",
-  "#A5C8D9",
-  "#7FD9C1",
-  "#E8C19E",
-  "#D97F7F",
-];
+function SquareCheckbox({
+  name,
+  value,
+  checked,
+  label,
+  onChange,
+}: {
+  name: string;
+  value: string;
+  checked?: boolean;
+  label: string;
+  onChange?: (checked: boolean) => void;
+}) {
+  const id = useId();
+  return (
+    <div className="flex items-center gap-3 py-3 cursor-pointer group hover:bg-white/50 rounded-md px-2 -mx-2 transition-colors">
+      <input
+        id={id}
+        type="checkbox"
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={(e) => onChange?.(e.target.checked)}
+        className="peer sr-only"
+      />
+      <div className="relative">
+        <span
+          className={`w-6 h-6 border-2 rounded-md transition-all duration-200 flex items-center justify-center ${
+            checked
+              ? "bg-[#D4B896] border-[#D4B896] shadow-sm"
+              : "border-gray-300 group-hover:border-[#D4B896] bg-white"
+          }`}
+        >
+          {checked && (
+            <svg
+              className="w-4 h-4 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
+        </span>
+      </div>
+      <label
+        htmlFor={id}
+        className={`text-sm cursor-pointer transition-colors duration-200 flex-1 ${
+          checked
+            ? "text-gray-900 font-semibold"
+            : "text-gray-700 group-hover:text-gray-900"
+        }`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+}
 
-const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
+export interface FilterGroup {
+  title: string;
+  name: string;
+  options: string[];
+  type?: "checkbox" | "buttons";
+  selected?: string[];
+}
 
-export default function Fashion2Filter() {
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [priceRange, setPriceRange] = useState<[number, number]>([2500, 12000]);
+export interface FilterSidebarV2Props {
+  action?: string;
+  price?: {
+    name?: string;
+    min: number;
+    max: number;
+    value?: number;
+    label?: string;
+  };
+  groups?: FilterGroup[];
+  applyLabel?: string;
+  onFilterChange?: (
+    filters: Record<string, string[]>,
+    priceRange: [number, number]
+  ) => void;
+  totalResults?: number;
+}
 
-  const toggleColor = (color: string) => {
-    setSelectedColors((prev) =>
-      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
-    );
+export default function FilterSidebarVariant2({
+  action,
+  price = {
+    min: 0,
+    max: 10000,
+    value: 10000,
+    name: "price",
+    label: "Filter by Price",
+  },
+  groups = [],
+  applyLabel = "FILTER",
+  onFilterChange,
+  totalResults,
+}: FilterSidebarV2Props) {
+  const absoluteMin = price.min;
+  const absoluteMax = price.max;
+  const [minValue, setMinValue] = useState<number>(price.min);
+  const [maxValue, setMaxValue] = useState<number>(price.value ?? price.max);
+
+  // State for selected filters
+  const [selectedFilters, setSelectedFilters] = useState<
+    Record<string, string[]>
+  >(() => {
+    const initial: Record<string, string[]> = {};
+    groups.forEach((group) => {
+      if (group.selected) {
+        initial[group.name] = group.selected;
+      } else {
+        initial[group.name] = [];
+      }
+    });
+    return initial;
+  });
+
+  const handleFilterChange = (
+    groupName: string,
+    value: string,
+    checked: boolean
+  ) => {
+    setSelectedFilters((prev) => {
+      const current = prev[groupName] || [];
+      if (checked) {
+        return {
+          ...prev,
+          [groupName]: [...current, value],
+        };
+      } else {
+        return {
+          ...prev,
+          [groupName]: current.filter((item) => item !== value),
+        };
+      }
+    });
   };
 
+  const handlePriceChange = (newMin: number, newMax: number) => {
+    setMinValue(newMin);
+    setMaxValue(newMax);
+  };
+
+  // Notify parent of filter changes via useEffect
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange(selectedFilters, [minValue, maxValue]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFilters, minValue, maxValue]);
+
+  const clearAllFilters = () => {
+    const cleared: Record<string, string[]> = {};
+    groups.forEach((group) => {
+      cleared[group.name] = [];
+    });
+    setSelectedFilters(cleared);
+    setMinValue(absoluteMin);
+    setMaxValue(absoluteMax);
+    // Parent will be notified via useEffect
+  };
+
+  const minPercent = useMemo(
+    () => ((minValue - absoluteMin) / (absoluteMax - absoluteMin)) * 100,
+    [minValue, absoluteMin, absoluteMax]
+  );
+  const maxPercent = useMemo(
+    () => ((maxValue - absoluteMin) / (absoluteMax - absoluteMin)) * 100,
+    [maxValue, absoluteMin, absoluteMax]
+  );
+
   return (
-    <aside className="w-full bg-white p-6 space-y-8">
-      {/* Categories */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Categories</h3>
-        <div className="space-y-3">
-          {["Men", "Women", "Kids", "Accessories"].map((cat) => (
-            <label
-              key={cat}
-              className="flex items-center space-x-3 cursor-pointer group"
-            >
-              <input
-                type="checkbox"
-                className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
-              />
-              <span className="text-sm text-gray-700 group-hover:text-gray-900">
-                {cat}
+    <aside className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+      {/* Results Header */}
+      <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gray-50">
+        <div>
+          <h2 className="text-xl font-bold text-gray-900">Filters</h2>
+          <p className="text-sm text-gray-600 mt-1">
+            {totalResults !== undefined
+              ? `${totalResults} products found`
+              : "51 products found"}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={clearAllFilters}
+          className="text-sm text-[#D4B896] hover:text-[#C4A886] font-semibold transition-colors px-3 py-1 rounded-md hover:bg-[#D4B896]/10"
+        >
+          Clear All
+        </button>
+      </div>
+
+      <div className="p-6 space-y-8">
+        <form method="get" action={action} className="space-y-8">
+          {/* Price Range Filter */}
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {price.label ?? "Price Range"}
+              </h3>
+              <span className="text-sm font-medium text-[#D4B896] bg-white px-3 py-1 rounded-md">
+                BDT {minValue.toLocaleString()} - BDT{" "}
+                {maxValue.toLocaleString()}
               </span>
-            </label>
-          ))}
-        </div>
-      </div>
+            </div>
 
-      {/* Collection */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Collection</h3>
-        <div className="space-y-3">
-          {[
-            "Shirts",
-            "Jeans",
-            "Tops",
-            "Footwear",
-            "Rings",
-            "Necklace",
-            "Bracelet",
-            "T-shirt",
-          ].map((item) => (
-            <label
-              key={item}
-              className="flex items-center space-x-3 cursor-pointer group"
-            >
+            <div className="relative mb-4">
+              <div className="h-3 bg-gray-200 rounded-full">
+                <div
+                  className="absolute h-3 bg-[#D4B896] rounded-full"
+                  style={{
+                    left: `${minPercent}%`,
+                    right: `${100 - maxPercent}%`,
+                  }}
+                />
+              </div>
+
               <input
-                type="checkbox"
-                className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
+                type="range"
+                min={absoluteMin}
+                max={absoluteMax}
+                value={minValue}
+                onChange={(e) => {
+                  const val = Math.min(Number(e.target.value), maxValue - 1);
+                  handlePriceChange(val, maxValue);
+                }}
+                step={1}
+                className="absolute inset-0 w-full h-3 bg-transparent appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:bg-[#D4B896] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:bg-[#D4B896] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-lg"
               />
-              <span className="text-sm text-gray-700 group-hover:text-gray-900">
-                {item}
-              </span>
-            </label>
-          ))}
-        </div>
-      </div>
+              <input
+                type="range"
+                min={absoluteMin}
+                max={absoluteMax}
+                value={maxValue}
+                onChange={(e) => {
+                  const val = Math.max(Number(e.target.value), minValue + 1);
+                  handlePriceChange(minValue, val);
+                }}
+                step={1}
+                className="absolute inset-0 w-full h-3 bg-transparent appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:bg-[#D4B896] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:bg-[#D4B896] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-lg"
+              />
+            </div>
 
-      {/* Availability */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Availability</h3>
-        <div className="space-y-3">
-          <label className="flex items-center space-x-3 cursor-pointer group">
-            <input
-              type="checkbox"
-              className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
-            />
-            <span className="text-sm text-gray-700 group-hover:text-gray-900">
-              In stock (164)
-            </span>
-          </label>
-          <label className="flex items-center space-x-3 cursor-pointer group">
-            <input
-              type="checkbox"
-              className="w-4 h-4 border-2 border-gray-300 checked:bg-gray-900 checked:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 cursor-pointer appearance-none checked:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDNMNC41IDguNUwyIDYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')] bg-center bg-no-repeat"
-            />
-            <span className="text-sm text-gray-700 group-hover:text-gray-900">
-              Out of stock (28)
-            </span>
-          </label>
-        </div>
-      </div>
-
-      {/* Price */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Price</h3>
-        <div className="space-y-4">
-          <input
-            type="range"
-            min="0"
-            max="15000"
-            value={priceRange[1]}
-            onChange={(e) =>
-              setPriceRange([priceRange[0], parseInt(e.target.value)])
-            }
-            className="w-full accent-gray-900"
-          />
-          <div className="flex items-center justify-between text-sm text-gray-600">
-            <span>BDT {priceRange[0].toFixed(2)}</span>
-            <span>BDT {priceRange[1].toFixed(2)}</span>
+            <div className="flex justify-between text-sm text-gray-600 font-medium">
+              <span>BDT {absoluteMin.toLocaleString()}</span>
+              <span>BDT {absoluteMax.toLocaleString()}</span>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Color */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Color</h3>
-        <div className="grid grid-cols-8 gap-2">
-          {colors.map((color, idx) => (
-            <button
-              key={idx}
-              onClick={() => toggleColor(color)}
-              className={`w-6 h-6 rounded-full border transition-all ${
-                selectedColors.includes(color)
-                  ? "border-gray-900 ring-1 ring-gray-900"
-                  : "border-gray-300 hover:border-gray-400"
-              }`}
-              style={{ backgroundColor: color }}
-              aria-label={`Color ${color}`}
-            />
+          {/* Filter Groups */}
+          {groups.map((g) => (
+            <div key={g.title} className="bg-gray-50 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                {g.title}
+              </h3>
+              <div className="space-y-3">
+                {g.options.map((o) => (
+                  <SquareCheckbox
+                    key={o}
+                    name={g.name}
+                    value={o}
+                    checked={selectedFilters[g.name]?.includes(o) || false}
+                    label={o}
+                    onChange={(checked) =>
+                      handleFilterChange(g.name, o, checked)
+                    }
+                  />
+                ))}
+              </div>
+            </div>
           ))}
-        </div>
-      </div>
 
-      {/* Size */}
-      <div>
-        <h3 className="text-lg font-bold mb-4 text-gray-900">Size</h3>
-        <div className="grid grid-cols-3 gap-2">
-          {sizes.map((size) => (
+          {/* Apply Button */}
+          <div className="pt-6">
             <button
-              key={size}
-              onClick={() => setSelectedSize(size)}
-              className={`py-1.5 px-3 font-medium text-xs border transition-colors ${
-                selectedSize === size
-                  ? "bg-[#D4B896] text-white border-[#D4B896]"
-                  : "bg-[#D4B896]/30 text-gray-800 border-[#D4B896]/30 hover:bg-[#D4B896]/50"
-              }`}
+              className="w-full bg-[#D4B896] text-white py-4 px-6 font-bold text-base uppercase tracking-wider hover:bg-[#C4A886] transition-colors rounded-lg shadow-md hover:shadow-lg"
+              type="button"
+              onClick={() => {
+                console.log("Applying filters:");
+                console.log("Selected Filters:", selectedFilters);
+                console.log("Price Range:", { minValue, maxValue });
+              }}
             >
-              {size}
+              {applyLabel}
             </button>
-          ))}
-        </div>
+          </div>
+
+          {/* Hidden inputs for form submission */}
+          <input
+            type="hidden"
+            name={(price.name ?? "price") + "_min"}
+            value={minValue}
+          />
+          <input
+            type="hidden"
+            name={(price.name ?? "price") + "_max"}
+            value={maxValue}
+          />
+        </form>
       </div>
     </aside>
   );

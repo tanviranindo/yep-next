@@ -126,55 +126,73 @@ export default function TrackOrderPage() {
       <FashionNavbar variant={2} routes={FASHION2_ROUTES} />
 
       {/* Page Header */}
-      <div className="w-full py-12 text-center border-b">
-        <h1 className="text-4xl font-bold text-gray-900">Track Order</h1>
+      <div className="w-full py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Track Your Order
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Enter your order ID to track the status of your order and get
+            real-time updates
+          </p>
+        </div>
       </div>
 
       {/* Search Section */}
       <div className="max-w-2xl mx-auto px-4 py-12">
-        <div className="flex gap-4">
-          <div className="flex-1 relative">
-            <input
-              type="text"
-              value={searchId}
-              onChange={(e) => setSearchId(e.target.value)}
-              placeholder="Order ID"
-              className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-[#D4B896]"
-            />
-            <svg
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6 text-center">
+            Order Tracking
+          </h2>
+          <div className="flex gap-4">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                placeholder="Enter your order ID (e.g., ORD-2023-001)"
+                className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4B896] focus:border-transparent"
               />
-            </svg>
+              <svg
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <button className="px-8 py-4 bg-[#D4B896] text-white font-semibold rounded-md hover:bg-[#C4A886] transition-colors">
+              Track Order
+            </button>
           </div>
-          <button className="px-12 py-3 bg-[#D4B896] text-white hover:bg-[#C4A886] transition-colors">
-            Search
-          </button>
         </div>
       </div>
 
       {/* Orders List */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">Orders List</h2>
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold text-gray-900">Your Orders</h2>
+          <p className="text-gray-600">
+            Showing {filteredOrders.length} orders
+          </p>
+        </div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-4 mb-8 border-b overflow-x-auto">
+        <div className="flex gap-2 mb-8 border-b border-gray-200 overflow-x-auto">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-3 font-medium whitespace-nowrap ${
+              className={`px-6 py-3 font-medium whitespace-nowrap transition-colors ${
                 activeFilter === filter
-                  ? "border-b-2 border-black text-black"
-                  : "text-gray-600 hover:text-gray-900"
+                  ? "border-b-2 border-[#D4B896] text-[#D4B896]"
+                  : "text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300"
               }`}
             >
               {filter}
@@ -183,28 +201,40 @@ export default function TrackOrderPage() {
         </div>
 
         {/* Orders */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {filteredOrders.map((order) => (
             <div
               key={order.id}
-              className="flex flex-col md:flex-row md:items-center gap-6 p-6 border border-gray-200"
+              className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
             >
-              <img
-                src={order.image}
-                alt={order.product}
-                className="w-24 h-24 object-cover"
-              />
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 mb-1">
-                  {order.product}
-                </h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  BDT {order.price.toFixed(2)}
-                </p>
-              </div>
-              <div className="text-center md:text-right">
-                <p className="text-gray-600 mb-3">Qty: {order.quantity}</p>
-                {getStatusButton(order.status)}
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                  <img
+                    src={order.image}
+                    alt={order.product}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">
+                    {order.product}
+                  </h3>
+                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <span>Order ID: {order.id}</span>
+                    <span>•</span>
+                    <span>Qty: {order.quantity}</span>
+                    <span>•</span>
+                    <span className="font-semibold text-[#D4B896]">
+                      BDT {order.price.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row items-end gap-3">
+                  <div className="text-right">
+                    <p className="text-sm text-gray-600 mb-2">Status</p>
+                    {getStatusButton(order.status)}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -212,50 +242,58 @@ export default function TrackOrderPage() {
 
         {/* Pagination */}
         <div className="flex justify-center gap-2 mt-12">
-          <button className="w-10 h-10 flex items-center justify-center bg-black text-white">
+          <button className="w-10 h-10 flex items-center justify-center bg-[#D4B896] text-white rounded-md">
             1
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896] hover:text-[#D4B896] rounded-md transition-colors">
             2
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896] hover:text-[#D4B896] rounded-md transition-colors">
             3
           </button>
           <span className="w-10 h-10 flex items-center justify-center text-gray-400">
             ...
           </span>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896] hover:text-[#D4B896] rounded-md transition-colors">
             10
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896] hover:text-[#D4B896] rounded-md transition-colors">
             →
           </button>
-          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896]">
+          <button className="w-10 h-10 flex items-center justify-center border border-gray-300 text-gray-700 hover:border-[#D4B896] hover:text-[#D4B896] rounded-md transition-colors">
             »
           </button>
         </div>
       </div>
 
       {/* New Collections */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          New Collections
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-          {newCollections.map((collection, idx) => (
-            <div key={idx} className="group cursor-pointer">
-              <div className="aspect-[3/4] bg-gray-100 mb-3 overflow-hidden">
-                <img
-                  src={collection.image}
-                  alt={collection.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Discover New Collections
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our latest jewelry collections and find your perfect
+              pieces
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {newCollections.map((collection, idx) => (
+              <div key={idx} className="group cursor-pointer">
+                <div className="aspect-[3/4] bg-gray-100 rounded-lg mb-4 overflow-hidden">
+                  <img
+                    src={collection.image}
+                    alt={collection.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-semibold text-gray-900 text-center group-hover:text-[#D4B896] transition-colors">
+                  {collection.title}
+                </h3>
               </div>
-              <h3 className="font-semibold text-gray-900 text-center">
-                {collection.title}
-              </h3>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

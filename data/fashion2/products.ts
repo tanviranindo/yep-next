@@ -1,4 +1,4 @@
-import { getUnsplashImageUrl } from "./imageUtils";
+import { getRandomFashionImage } from "./imageUtils";
 import { Product } from "@/components/ProductCard";
 
 export interface Fashion2Product extends Product {
@@ -16,7 +16,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Elegant diamond solitaire ring in 18k white gold",
     price: 12500,
     originalPrice: 15000,
-    image: getUnsplashImageUrl("ring", 1),
+    image: getRandomFashionImage("Rings", "jwl-001"),
     url: "/fashion2/product/jwl-001",
     currency: "BDT",
     availability: "InStock",
@@ -32,7 +32,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Classic gold chain necklace, 22k gold",
     price: 8500,
     originalPrice: 10000,
-    image: getUnsplashImageUrl("necklace", 2),
+    image: getRandomFashionImage("Necklaces", "jwl-002"),
     url: "/fashion2/product/jwl-002",
     currency: "BDT",
     availability: "InStock",
@@ -47,7 +47,7 @@ export const fashion2Products: Fashion2Product[] = [
     name: "Pearl Stud Earrings",
     description: "Freshwater pearl earrings with silver studs",
     price: 5500,
-    image: getUnsplashImageUrl("earrings", 3),
+    image: getRandomFashionImage("Earrings", "jwl-003"),
     url: "/fashion2/product/jwl-003",
     currency: "BDT",
     availability: "InStock",
@@ -63,7 +63,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Diamond tennis bracelet in platinum",
     price: 9800,
     originalPrice: 12000,
-    image: getUnsplashImageUrl("bracelet", 4),
+    image: getRandomFashionImage("Bracelets", "jwl-004"),
     url: "/fashion2/product/jwl-004",
     currency: "BDT",
     availability: "InStock",
@@ -78,7 +78,7 @@ export const fashion2Products: Fashion2Product[] = [
     name: "Sapphire Ring",
     description: "Blue sapphire ring with diamond accents",
     price: 14500,
-    image: getUnsplashImageUrl("ring", 5),
+    image: getRandomFashionImage("Rings", "jwl-005"),
     url: "/fashion2/product/jwl-005",
     currency: "BDT",
     availability: "InStock",
@@ -94,7 +94,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Classic gold hoop earrings, 18k gold",
     price: 6500,
     originalPrice: 7500,
-    image: getUnsplashImageUrl("earrings", 6),
+    image: getRandomFashionImage("Earrings", "jwl-006"),
     url: "/fashion2/product/jwl-006",
     currency: "BDT",
     availability: "InStock",
@@ -109,7 +109,7 @@ export const fashion2Products: Fashion2Product[] = [
     name: "Emerald Pendant",
     description: "Emerald pendant with gold chain",
     price: 11200,
-    image: getUnsplashImageUrl("necklace", 7),
+    image: getRandomFashionImage("Necklaces", "jwl-007"),
     url: "/fashion2/product/jwl-007",
     currency: "BDT",
     availability: "InStock",
@@ -125,7 +125,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Set of 3 sterling silver bangles",
     price: 4500,
     originalPrice: 5500,
-    image: getUnsplashImageUrl("bracelet", 8),
+    image: getRandomFashionImage("Bracelets", "jwl-008"),
     url: "/fashion2/product/jwl-008",
     currency: "BDT",
     availability: "InStock",
@@ -140,7 +140,7 @@ export const fashion2Products: Fashion2Product[] = [
     name: "Ruby Cocktail Ring",
     description: "Statement ruby ring in yellow gold",
     price: 16800,
-    image: getUnsplashImageUrl("ring", 9),
+    image: getRandomFashionImage("Rings", "jwl-009"),
     url: "/fashion2/product/jwl-009",
     currency: "BDT",
     availability: "InStock",
@@ -156,7 +156,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Classic diamond stud earrings, 1 carat total",
     price: 13500,
     originalPrice: 16000,
-    image: getUnsplashImageUrl("earrings", 10),
+    image: getRandomFashionImage("Earrings", "jwl-010"),
     url: "/fashion2/product/jwl-010",
     currency: "BDT",
     availability: "InStock",
@@ -171,7 +171,7 @@ export const fashion2Products: Fashion2Product[] = [
     name: "Gold Chain Bracelet",
     description: "Delicate gold chain bracelet, 18k",
     price: 7200,
-    image: getUnsplashImageUrl("bracelet", 11),
+    image: getRandomFashionImage("Bracelets", "jwl-011"),
     url: "/fashion2/product/jwl-011",
     currency: "BDT",
     availability: "InStock",
@@ -187,7 +187,7 @@ export const fashion2Products: Fashion2Product[] = [
     description: "Purple amethyst pendant with silver chain",
     price: 5800,
     originalPrice: 7000,
-    image: getUnsplashImageUrl("necklace", 12),
+    image: getRandomFashionImage("Necklaces", "jwl-012"),
     url: "/fashion2/product/jwl-012",
     currency: "BDT",
     availability: "InStock",
@@ -266,3 +266,14 @@ export const saleProducts = fashion2Products.filter(
 
 // Hot deals (for promotions page)
 export const hotDeals = fashion2Products.slice(0, 4);
+
+// Product categories for filtering
+export const categories = ["All", "Jewelry"] as const;
+
+export const subcategories = [
+  "All",
+  "Rings",
+  "Necklaces",
+  "Earrings",
+  "Bracelets",
+] as const;

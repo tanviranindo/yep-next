@@ -1,11 +1,11 @@
 import FilterVariant1, { FilterSidebarV1Props } from "./variants/filter/variant-1";
-import FilterVariant2 from "./variants/filter/variant-2";
+import FilterVariant2, { FilterSidebarV2Props } from "./variants/filter/variant-2";
 
 export type FashionFilterVariant = 1 | 2;
 
 interface FashionFilterProps {
   variant: FashionFilterVariant;
-  filterProps?: FilterSidebarV1Props;
+  filterProps?: FilterSidebarV1Props | FilterSidebarV2Props;
 }
 
 /**
@@ -16,7 +16,7 @@ interface FashionFilterProps {
  */
 export default function FashionFilter({ variant, filterProps }: FashionFilterProps) {
   if (variant === 2) {
-    return <FilterVariant2 />;
+    return <FilterVariant2 {...(filterProps || {})} />;
   }
 
   return <FilterVariant1 {...(filterProps || {})} />;

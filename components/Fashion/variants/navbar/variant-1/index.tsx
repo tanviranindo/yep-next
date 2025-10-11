@@ -10,12 +10,7 @@ import { fashionCategories } from "@/lib/navbarCategories";
 export interface NavbarV1Props {
   cartCount: number;
   wishlistCount: number;
-  routes: {
-    HOME: string;
-    SHOP: string;
-    CART: string;
-    WISHLIST: string;
-  };
+  routes: Record<string, string>;
 }
 
 export default function NavbarVariant1({ cartCount, wishlistCount, routes }: NavbarV1Props) {

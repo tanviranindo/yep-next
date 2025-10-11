@@ -6,12 +6,16 @@ import {
   filterProducts,
   sortOptions,
   sortProducts,
+  categories as categories1,
+  subcategories as subcategories1,
 } from "@/data/fashion1/products";
 import {
   fashion2Products,
   filterProducts as filterProducts2,
   sortOptions as sortOptions2,
   sortProducts as sortProducts2,
+  categories as categories2,
+  subcategories as subcategories2,
 } from "@/data/fashion2/products";
 import { useEffect, useState } from "react";
 import FashionFilter from "./FashionFilter";
@@ -23,12 +27,7 @@ export type FashionLayoutVariant = 1 | 2;
 
 interface FashionLayoutProps {
   variant: FashionLayoutVariant;
-  routes?: {
-    HOME: string;
-    SHOP: string;
-    CART: string;
-    WISHLIST: string;
-  };
+  routes?: Record<string, string>;
   heroProps?: any;
   products?: Product[];
 }
@@ -40,29 +39,31 @@ export default function FashionLayout({
   products,
 }: FashionLayoutProps) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectedCategory] = useState<string>("All");
-  const [selectedSubcategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string>("All");
   const [sortBy, setSortBy] = useState<string>("popularity");
-  const [priceRange] = useState<[number, number]>([0, 10000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
 
   // Use default products if none provided
   const defaultProducts = variant === 1 ? fashionProducts : fashion2Products;
   const currentProducts = products || defaultProducts;
 
-  // Use correct filtering and sorting functions based on variant
+  // Use correct data based on variant
+  const currentCategories = variant === 1 ? categories1 : categories2;
+  const currentSubcategories = variant === 1 ? subcategories1 : subcategories2;
   const currentFilterProducts =
     variant === 1 ? filterProducts : filterProducts2;
   const currentSortProducts = variant === 1 ? sortProducts : sortProducts2;
   const currentSortOptions = variant === 1 ? sortOptions : sortOptions2;
 
-  // Filter and sort products
-  const filteredProducts = currentFilterProducts(
-    currentProducts,
-    selectedCategory,
-    selectedSubcategory,
-    priceRange[0],
-    priceRange[1]
-  );
+  // Filter products based on selected filters
+  const filteredProducts = currentProducts.filter((product) => {
+    const categoryMatch = selectedCategory === "All" || product.category === selectedCategory;
+    const subcategoryMatch = selectedSubcategory === "All" || product.subcategory === selectedSubcategory;
+    const priceMatch = product.price >= priceRange[0] && product.price <= priceRange[1];
+    
+    return categoryMatch && subcategoryMatch && priceMatch;
+  });
   const displayProducts = currentSortProducts(filteredProducts, sortBy);
 
   useEffect(() => {
@@ -72,6 +73,51 @@ export default function FashionLayout({
       document.body.classList.remove("no-scroll");
     }
   }, [isFilterOpen]);
+
+  const handleFilterChange = (
+    filters: Record<string, string[]>,
+    newPriceRange: [number, number]
+  ) => {
+    // Update category filter
+    if (filters.category && filters.category.length > 0) {
+      setSelectedCategory(filters.category[0]);
+    } else {
+      setSelectedCategory("All");
+    }
+
+    // Update subcategory filter (collection)
+    if (filters.collection && filters.collection.length > 0) {
+      setSelectedSubcategory(filters.collection[0]);
+    } else {
+      setSelectedSubcategory("All");
+    }
+
+    // Update price range
+    setPriceRange(newPriceRange);
+  };
+
+  const filterProps = {
+    groups: [
+      {
+        title: "Categories",
+        name: "category",
+        options: [...currentCategories],
+      },
+      {
+        title: "Collections",
+        name: "collection",
+        options: [...currentSubcategories],
+      },
+    ],
+    onFilterChange: handleFilterChange,
+    price: {
+      min: 0,
+      max: 10000,
+      value: priceRange[1],
+      name: "price",
+      label: "Filter by Price",
+    },
+  };
 
   return (
     <div
@@ -146,7 +192,7 @@ export default function FashionLayout({
                     </svg>
                   )}
                 </button>
-                <FashionFilter variant={variant} />
+                <FashionFilter variant={variant} filterProps={filterProps} />
               </div>
             </div>
           )}
@@ -166,7 +212,7 @@ export default function FashionLayout({
                   : "hidden lg:block w-full lg:w-80 flex-shrink-0"
               }
             >
-              <FashionFilter variant={variant} />
+              <FashionFilter variant={variant} filterProps={filterProps} />
             </div>
 
             {/* Center - Products Grid */}
@@ -175,7 +221,7 @@ export default function FashionLayout({
               <div
                 className={
                   variant === 2
-                    ? "mb-6 md:mb-8"
+                    ? "mb-6 md:mb-8 flex justify-between items-center"
                     : "mb-6 flex justify-between items-center"
                 }
               >
@@ -196,19 +242,21 @@ export default function FashionLayout({
                     products
                   </p>
                 </div>
-                {variant === 1 && (
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="select select-bordered w-full max-w-xs"
-                  >
-                    {currentSortOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                )}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className={
+                    variant === 1
+                      ? "select select-bordered w-full max-w-xs"
+                      : "bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  }
+                >
+                  {currentSortOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Products Grid */}
