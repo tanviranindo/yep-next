@@ -1,3 +1,5 @@
+"use client";
+
 import type { Product } from "@/components/ProductCard";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
