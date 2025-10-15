@@ -256,7 +256,7 @@ export default function GadgetFAQ({
     );
   }
 
-  // Variant 1: Gadget Store FAQ with collapsible list
+  // Variant 1: e-Gagdgets FAQ (Pixel Perfect)
   const {
     items = [
       {
@@ -264,82 +264,94 @@ export default function GadgetFAQ({
         a: "Browse our gadget collection, add items to your cart, and proceed to checkout. You can track your order status through our Track Order page after placing your order.",
       },
       {
-        q: "What are the shipping options?",
-        a: "We offer standard shipping within Dhaka (2-3 business days) and outside Dhaka (4-5 business days). Express delivery is available for urgent orders with additional charges.",
+        q: "How long does delivery take?",
+        a: "Standard delivery takes 2-5 business days depending on your location. Express delivery options are available at checkout.",
       },
       {
-        q: "What is your return policy?",
-        a: "We accept returns within 7 days of delivery for unopened gadgets. Items must be in original condition with all packaging and accessories intact. Contact customer service to initiate a return.",
+        q: "How can I track my order?",
+        a: "You can track your order using the tracking number sent to your email. Visit our Track Order page and enter your order ID.",
       },
       {
-        q: "Do you offer technical support?",
-        a: "Yes, we provide comprehensive technical support for all our products. Our expert team is available via phone, chat, and email to help with setup, troubleshooting, and maintenance.",
+        q: "Are your gadgets original?",
+        a: "Yes, all our products are 100% authentic and sourced directly from authorized distributors.",
+      },
+      {
+        q: "Can I get more product details?",
+        a: "Yes, each product page contains detailed specifications, features, and customer reviews.",
+      },
+      {
+        q: "What's your return policy?",
+        a: "We accept returns within 7 days of delivery for unopened items in original condition.",
+      },
+      {
+        q: "How do I start a return?",
+        a: "Contact our customer service team with your order number to initiate a return.",
+      },
+      {
+        q: "When will I get my refund?",
+        a: "Refunds are processed within 7-10 business days after we receive the returned item.",
       },
     ],
-    title = "Frequently Asked Questions",
-    subtitle = "Find answers to common questions about our gadgets and services",
+    title = "FAQs",
+    subtitle = "",
     className = "",
   } = (faqProps || {}) as GadgetFAQV1Props;
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(1);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section
-      className={`py-16 bg-gradient-to-b from-white to-blue-50 ${className}`}
-    >
-      <div className="container mx-auto px-4">
+    <section className={`py-16 bg-white ${className}`}>
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+            {title}
+          </h2>
           {subtitle && (
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-base max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
         </div>
 
         {/* FAQ List */}
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-3">
           {items.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
+              className={`overflow-hidden transition-all duration-300 ${
+                openIndex === index
+                  ? "bg-black text-white rounded-lg"
+                  : "bg-gray-100 text-black rounded-lg"
+              }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:opacity-90 transition-opacity"
               >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                  {item.q}
+                <h3 className="text-base font-normal pr-4">
+                  {index + 1}. {item.q}
                 </h3>
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600/10 flex items-center justify-center">
+                <div className="flex-shrink-0">
                   {openIndex === index ? (
-                    <ChevronUp size={20} className="text-blue-600" />
+                    <ChevronUp size={20} />
                   ) : (
-                    <ChevronDown size={20} className="text-blue-600" />
+                    <ChevronDown size={20} />
                   )}
                 </div>
               </button>
 
               {openIndex === index && (
-                <div className="px-6 pb-5 pt-2 border-t border-gray-100">
-                  <p className="text-gray-700 leading-relaxed">{item.a}</p>
+                <div className="px-6 pb-5 pt-2">
+                  <p className="text-sm leading-relaxed opacity-90">{item.a}</p>
                 </div>
               )}
             </div>
           ))}
-        </div>
-
-        {/* Contact CTA */}
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">Still have questions?</p>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
-            Contact Tech Support
-          </button>
         </div>
       </div>
     </section>

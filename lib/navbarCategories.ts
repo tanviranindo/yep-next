@@ -71,7 +71,10 @@ export const fashionCategories: Record<string, MenuItem> = {
             label: "Tank Tops",
             href: "/fashion1/women/tops/tank-tops",
           },
-          sweaters: { label: "Sweaters", href: "/fashion1/women/tops/sweaters" },
+          sweaters: {
+            label: "Sweaters",
+            href: "/fashion1/women/tops/sweaters",
+          },
         },
       },
       "pants-jeans": { label: "Pants & Jeans", href: "/fashion1/women/pants" },
@@ -317,7 +320,7 @@ export const beautyCategories: Record<string, MenuItem> = {
   },
 };
 
-export const gadgetsCategories: Record<string, MenuItem> = {
+export const gadgetCategories: Record<string, MenuItem> = {
   phones: {
     label: "Phones",
     children: {
@@ -619,7 +622,7 @@ export const getCategoriesByTheme = (
     case "beauty":
       return beautyCategories;
     case "gadgets":
-      return gadgetsCategories;
+      return gadgetCategories;
     case "furniture":
       return furnitureCategories;
     case "kids-mom":
