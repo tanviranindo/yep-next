@@ -1,28 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Phone, MessageCircle, Mail } from "lucide-react";
+import { ChevronDown, ChevronUp, Phone, MessageCircle, Mail, Headphones } from "lucide-react";
 
-export type BeautyFAQVariant = 1 | 2;
+export type GadgetFAQVariant = 1 | 2;
 
 export interface FAQItem {
   q: string;
   a: string;
 }
 
-export interface BeautyFAQV1Props {
+export interface GadgetFAQV1Props {
   items?: FAQItem[];
   title?: string;
   subtitle?: string;
   className?: string;
 }
 
-export interface BeautyFAQV2Props {
+export interface GadgetFAQV2Props {
   items?: FAQItem[];
   title?: string;
   subtitle?: string;
   contactMethods?: Array<{
-    icon: "phone" | "chat" | "email";
+    icon: "phone" | "chat" | "email" | "support";
     title: string;
     description: string;
     action: string;
@@ -30,9 +30,9 @@ export interface BeautyFAQV2Props {
   className?: string;
 }
 
-interface BeautyFAQProps {
-  variant: BeautyFAQVariant;
-  faqProps?: BeautyFAQV1Props | BeautyFAQV2Props;
+interface GadgetFAQProps {
+  variant: GadgetFAQVariant;
+  faqProps?: GadgetFAQV1Props | GadgetFAQV2Props;
   // Legacy props for backward compatibility
   items?: FAQItem[];
   columns?: 1 | 2;
@@ -42,12 +42,12 @@ interface BeautyFAQProps {
 }
 
 /**
- * BeautyFAQ - Unified component for Beauty FAQ variants
+ * GadgetFAQ - Unified component for Gadget FAQ variants
  *
- * Variant 1: Collapsible FAQ list with contact CTA (GLAMOUR)
- * Variant 2: FAQ with contact methods sidebar (NIKA)
+ * Variant 1: Collapsible FAQ list with tech support CTA (Gadget Store)
+ * Variant 2: FAQ with tech support methods sidebar (TechHub)
  */
-export default function BeautyFAQ({
+export default function GadgetFAQ({
   variant,
   faqProps,
   // Legacy props
@@ -56,7 +56,7 @@ export default function BeautyFAQ({
   title: legacyTitle,
   subtitle: legacySubtitle,
   className: legacyClassName,
-}: BeautyFAQProps) {
+}: GadgetFAQProps) {
   // Merge legacy props with faqProps for backward compatibility
   const mergedProps = {
     ...faqProps,
@@ -65,51 +65,58 @@ export default function BeautyFAQ({
     ...(legacySubtitle ? { subtitle: legacySubtitle } : {}),
     ...(legacyClassName ? { className: legacyClassName } : {}),
   };
+
   if (variant === 2) {
-    // Variant 2: NIKA FAQ with contact methods
+    // Variant 2: TechHub FAQ with tech support methods
     const {
       items = [
         {
-          q: "Are your products natural?",
-          a: "Yes, all our products are made with natural, science-backed ingredients that are gentle on your skin yet deliver powerful results.",
+          q: "What is your warranty policy?",
+          a: "All our gadgets come with a 1-year manufacturer warranty. Extended warranty options are available for premium devices. We also offer 30-day return policy for unopened items.",
         },
         {
           q: "How long does shipping take?",
-          a: "Standard shipping takes 3-5 business days within Dhaka and 5-7 days outside Dhaka. Express delivery is available for urgent orders.",
+          a: "Standard shipping takes 2-3 business days within Dhaka and 4-5 days outside Dhaka. Express delivery is available for urgent orders with same-day dispatch.",
         },
         {
-          q: "What is your return policy?",
-          a: "We accept returns within 7 days of delivery for unopened products. Items must be in original condition with seals intact.",
+          q: "Do you offer technical support?",
+          a: "Yes, we provide comprehensive technical support for all our products. Our expert team is available via phone, chat, and email to help with setup, troubleshooting, and maintenance.",
         },
         {
-          q: "Are products suitable for sensitive skin?",
-          a: "Our products are dermatologically tested and suitable for all skin types, including sensitive skin. Check individual product descriptions for specific information.",
+          q: "Are your products authentic?",
+          a: "All our products are 100% authentic and sourced directly from authorized distributors. We provide authenticity certificates and offer money-back guarantee if any product is found to be counterfeit.",
         },
       ],
-      title = "Have Questions? We Have Answers!",
-      subtitle = "Learn more about our natural beauty products",
+      title = "Need Tech Support? We're Here to Help!",
+      subtitle = "Get expert assistance for all your gadget needs",
       contactMethods = [
         {
           icon: "phone",
-          title: "Call Us",
-          description: "Mon-Fri 9AM-6PM",
+          title: "Call Support",
+          description: "Mon-Fri 9AM-8PM",
           action: "+880 15673 42557",
         },
         {
           icon: "chat",
           title: "Live Chat",
-          description: "Chat with our team",
+          description: "Instant tech support",
           action: "Start Chat",
         },
         {
           icon: "email",
-          title: "Email Us",
-          description: "Reply within 24 hours",
-          action: "hello@nika.beauty",
+          title: "Email Support",
+          description: "Detailed technical help",
+          action: "support@techhub.com",
+        },
+        {
+          icon: "support",
+          title: "Tech Center",
+          description: "Visit our service center",
+          action: "Find Location",
         },
       ],
       className = "",
-    } = (faqProps || {}) as BeautyFAQV2Props;
+    } = (faqProps || {}) as GadgetFAQV2Props;
 
     const getContactIcon = (icon: string) => {
       switch (icon) {
@@ -119,13 +126,15 @@ export default function BeautyFAQ({
           return <MessageCircle size={32} />;
         case "email":
           return <Mail size={32} />;
+        case "support":
+          return <Headphones size={32} />;
         default:
           return <Phone size={32} />;
       }
     };
 
     return (
-      <section className={`py-16 bg-gradient-to-b from-amber-50 to-white ${className}`}>
+      <section className={`py-16 bg-gradient-to-b from-blue-50 to-white ${className}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Side - Contact Methods */}
@@ -139,10 +148,10 @@ export default function BeautyFAQ({
                 {contactMethods.map((method, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#D4A574]"
+                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-blue-500"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4A574] to-[#C89563] flex items-center justify-center text-white flex-shrink-0">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white flex-shrink-0">
                         {getContactIcon(method.icon)}
                       </div>
                       <div className="flex-1">
@@ -160,7 +169,7 @@ export default function BeautyFAQ({
                               ? `mailto:${method.action}`
                               : "#"
                           }
-                          className="inline-flex items-center text-[#D4A574] font-semibold hover:text-[#C89563] transition-colors"
+                          className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors"
                         >
                           {method.action}
                           <svg
@@ -187,8 +196,8 @@ export default function BeautyFAQ({
             {/* Right Side - FAQ Cards */}
             <div className="space-y-6">
               <div className="mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Questions</h3>
-                <p className="text-gray-600">Most frequently asked questions</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Tech Questions</h3>
+                <p className="text-gray-600">Frequently asked technical questions</p>
               </div>
 
               <div className="space-y-4">
@@ -198,7 +207,7 @@ export default function BeautyFAQ({
                     className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
                   >
                     <h4 className="text-lg font-bold text-gray-900 mb-3 flex items-start gap-3">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#D4A574] to-[#C89563] text-white flex items-center justify-center text-sm font-bold">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center text-sm font-bold">
                         Q
                       </span>
                       <span>{item.q}</span>
@@ -213,13 +222,13 @@ export default function BeautyFAQ({
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-12 text-center bg-gradient-to-r from-[#D4A574] to-[#C89563] rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-2">Still Need Help?</h3>
+          <div className="mt-12 text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-2">Still Need Technical Help?</h3>
             <p className="mb-6 text-white/90">
-              Our customer support team is always here to assist you
+              Our expert technical support team is ready to assist you with any gadget-related questions
             </p>
-            <button className="bg-white text-[#D4A574] px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-md hover:shadow-lg">
-              Contact Support Team
+            <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-md hover:shadow-lg">
+              Contact Tech Support
             </button>
           </div>
         </div>
@@ -227,30 +236,30 @@ export default function BeautyFAQ({
     );
   }
 
-  // Variant 1: GLAMOUR FAQ with collapsible list
+  // Variant 1: Gadget Store FAQ with collapsible list
   const {
     items = [
       {
         q: "How do I place an order?",
-        a: "Browse our beauty collection, add items to your cart, and proceed to checkout. You can track your order status through our Track Order page after placing your order.",
+        a: "Browse our gadget collection, add items to your cart, and proceed to checkout. You can track your order status through our Track Order page after placing your order.",
       },
       {
         q: "What are the shipping options?",
-        a: "We offer standard shipping within Dhaka (3-5 business days) and outside Dhaka (5-7 business days). Express delivery is available for urgent orders with additional charges.",
+        a: "We offer standard shipping within Dhaka (2-3 business days) and outside Dhaka (4-5 business days). Express delivery is available for urgent orders with additional charges.",
       },
       {
         q: "What is your return policy?",
-        a: "We accept returns within 7 days of delivery for unopened beauty products. Items must be in original condition with seals intact. Contact customer service to initiate a return.",
+        a: "We accept returns within 7 days of delivery for unopened gadgets. Items must be in original condition with all packaging and accessories intact. Contact customer service to initiate a return.",
       },
       {
-        q: "How do refunds work?",
-        a: "Refunds are processed within 7-14 business days after we receive and inspect the returned item. The amount will be credited to your original payment method.",
+        q: "Do you offer technical support?",
+        a: "Yes, we provide comprehensive technical support for all our products. Our expert team is available via phone, chat, and email to help with setup, troubleshooting, and maintenance.",
       },
     ],
     title = "Frequently Asked Questions",
-    subtitle = "Find answers to common questions about our products and services",
+    subtitle = "Find answers to common questions about our gadgets and services",
     className = "",
-  } = (faqProps || {}) as BeautyFAQV1Props;
+  } = (faqProps || {}) as GadgetFAQV1Props;
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -259,7 +268,7 @@ export default function BeautyFAQ({
   };
 
   return (
-    <section className={`py-16 bg-gradient-to-b from-white to-purple-50 ${className}`}>
+    <section className={`py-16 bg-gradient-to-b from-white to-blue-50 ${className}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -281,11 +290,11 @@ export default function BeautyFAQ({
                 <h3 className="text-lg font-semibold text-gray-900 pr-4">
                   {item.q}
                 </h3>
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#842898]/10 flex items-center justify-center">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600/10 flex items-center justify-center">
                   {openIndex === index ? (
-                    <ChevronUp size={20} className="text-[#842898]" />
+                    <ChevronUp size={20} className="text-blue-600" />
                   ) : (
-                    <ChevronDown size={20} className="text-[#842898]" />
+                    <ChevronDown size={20} className="text-blue-600" />
                   )}
                 </div>
               </button>
@@ -302,8 +311,8 @@ export default function BeautyFAQ({
         {/* Contact CTA */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Still have questions?</p>
-          <button className="bg-[#842898] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#6d1f7a] transition-colors shadow-md hover:shadow-lg">
-            Contact Support
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+            Contact Tech Support
           </button>
         </div>
       </div>
