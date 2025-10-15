@@ -1,4 +1,4 @@
-import { BeautyLayout, BeautyFooter } from "@/components/Beauty";
+import { BeautyFooter, BeautyLayout } from "@/components/Beauty";
 import { BEAUTY1_ROUTES } from "@/data/beauty1/constants";
 
 export const dynamic = "force-dynamic";
