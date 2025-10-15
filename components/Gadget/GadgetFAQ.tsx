@@ -1,7 +1,14 @@
 "use client";
 
+import {
+  ChevronDown,
+  ChevronUp,
+  Headphones,
+  Mail,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Phone, MessageCircle, Mail, Headphones } from "lucide-react";
 
 export type GadgetFAQVariant = 1 | 2;
 
@@ -134,14 +141,20 @@ export default function GadgetFAQ({
     };
 
     return (
-      <section className={`py-16 bg-gradient-to-b from-blue-50 to-white ${className}`}>
+      <section
+        className={`py-16 bg-gradient-to-b from-blue-50 to-white ${className}`}
+      >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Side - Contact Methods */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-3">{title}</h2>
-                {subtitle && <p className="text-gray-600 text-lg">{subtitle}</p>}
+                <h2 className="text-4xl font-bold text-gray-900 mb-3">
+                  {title}
+                </h2>
+                {subtitle && (
+                  <p className="text-gray-600 text-lg">{subtitle}</p>
+                )}
               </div>
 
               <div className="space-y-6">
@@ -196,8 +209,12 @@ export default function GadgetFAQ({
             {/* Right Side - FAQ Cards */}
             <div className="space-y-6">
               <div className="mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Tech Questions</h3>
-                <p className="text-gray-600">Frequently asked technical questions</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                  Tech Questions
+                </h3>
+                <p className="text-gray-600">
+                  Frequently asked technical questions
+                </p>
               </div>
 
               <div className="space-y-4">
@@ -223,9 +240,12 @@ export default function GadgetFAQ({
 
           {/* Bottom CTA */}
           <div className="mt-12 text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-2">Still Need Technical Help?</h3>
+            <h3 className="text-2xl font-bold mb-2">
+              Still Need Technical Help?
+            </h3>
             <p className="mb-6 text-white/90">
-              Our expert technical support team is ready to assist you with any gadget-related questions
+              Our expert technical support team is ready to assist you with any
+              gadget-related questions
             </p>
             <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-md hover:shadow-lg">
               Contact Tech Support
@@ -268,12 +288,18 @@ export default function GadgetFAQ({
   };
 
   return (
-    <section className={`py-16 bg-gradient-to-b from-white to-blue-50 ${className}`}>
+    <section
+      className={`py-16 bg-gradient-to-b from-white to-blue-50 ${className}`}
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">{title}</h2>
-          {subtitle && <p className="text-gray-600 text-lg max-w-2xl mx-auto">{subtitle}</p>}
+          {subtitle && (
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
         </div>
 
         {/* FAQ List */}

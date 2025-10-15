@@ -8,7 +8,7 @@ const gadgetRegistry: ComponentRegistry = {
       description: "Gadget Store hero with product carousel and social icons",
     },
     variant2: {
-      component: "GadgetHero", 
+      component: "GadgetHero",
       props: { variant: 2 },
       description: "TechHub hero with image slider and modern design",
     },
@@ -41,7 +41,8 @@ const gadgetRegistry: ComponentRegistry = {
     variant1: {
       component: "GadgetFAQ",
       props: { variant: 1 },
-      description: "Gadget Store FAQ with collapsible list and tech support CTA",
+      description:
+        "Gadget Store FAQ with collapsible list and tech support CTA",
     },
     variant2: {
       component: "GadgetFAQ",

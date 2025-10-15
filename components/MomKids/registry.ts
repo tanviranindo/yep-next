@@ -5,10 +5,11 @@ const momKidsRegistry: ComponentRegistry = {
     variant1: {
       component: "MomKidsHero",
       props: { variant: 1 },
-      description: "Mom & Kids Store hero with product carousel and family theme",
+      description:
+        "Mom & Kids Store hero with product carousel and family theme",
     },
     variant2: {
-      component: "MomKidsHero", 
+      component: "MomKidsHero",
       props: { variant: 2 },
       description: "Kids Care hero with image slider and playful design",
     },
@@ -17,12 +18,14 @@ const momKidsRegistry: ComponentRegistry = {
     variant1: {
       component: "MomKidsFilter",
       props: { variant: 1 },
-      description: "Mom & Kids Store filter sidebar with family-friendly categories",
+      description:
+        "Mom & Kids Store filter sidebar with family-friendly categories",
     },
     variant2: {
       component: "MomKidsFilter",
       props: { variant: 2 },
-      description: "Kids Care filter with playful design and age-based categories",
+      description:
+        "Kids Care filter with playful design and age-based categories",
     },
   },
   footer: {
@@ -34,7 +37,8 @@ const momKidsRegistry: ComponentRegistry = {
     variant2: {
       component: "MomKidsFooter",
       props: { variant: 2 },
-      description: "Kids Care footer with playful design and parenting resources",
+      description:
+        "Kids Care footer with playful design and parenting resources",
     },
   },
   faq: {
