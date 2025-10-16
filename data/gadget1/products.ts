@@ -19,6 +19,7 @@ export const gadgetProducts: Product[] = [
     subcategory: "Headphones",
     rating: 4.8,
     reviews: 342,
+    badge: "NEW",
   },
   {
     id: "gadget-2",
@@ -37,6 +38,7 @@ export const gadgetProducts: Product[] = [
     subcategory: "Smartwatches",
     rating: 4.6,
     reviews: 256,
+    badge: "NEW",
   },
   {
     id: "gadget-3",
@@ -48,6 +50,7 @@ export const gadgetProducts: Product[] = [
     url: "/gadget1/product/gadget-3",
     price: 4500,
     originalPrice: 6500,
+    badge: "NEW",
     currency: "BDT",
     availability: "InStock",
     brand: "SoundWave",
@@ -73,6 +76,7 @@ export const gadgetProducts: Product[] = [
     subcategory: "Accessories",
     rating: 4.7,
     reviews: 412,
+    badge: "NEW",
   },
   {
     id: "gadget-5",
@@ -91,6 +95,7 @@ export const gadgetProducts: Product[] = [
     subcategory: "Action Cameras",
     rating: 4.9,
     reviews: 298,
+    badge: "NEW",
   },
   {
     id: "gadget-6",

@@ -156,12 +156,16 @@ export default function GadgetProductCard({
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
 
-            {/* Sale Badge */}
-            {discountPercent > 0 && (
-              <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1.5 rounded">
+            {/* Sale Badge - Show NEW or Discount */}
+            {product.badge === "NEW" ? (
+              <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1.5 rounded">
+                NEW
+              </div>
+            ) : discountPercent > 0 ? (
+              <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1.5 rounded">
                 -{discountPercent}%
               </div>
-            )}
+            ) : null}
 
             {/* Wishlist Button */}
             <button

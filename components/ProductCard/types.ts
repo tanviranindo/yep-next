@@ -16,6 +16,7 @@ export interface Product {
   reviewCount?: number;
   category?: string;
   subcategory?: string;
+  badge?: "NEW" | "SALE" | "HOT" | string;
 }
 
 export interface ProductCardProps {
