@@ -5,6 +5,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        manrope: ["var(--font-manrope)", "sans-serif"],
+      },
+    },
+  },
   plugins: [require("daisyui")],
   daisyui: {
     themes: [

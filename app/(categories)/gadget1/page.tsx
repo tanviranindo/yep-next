@@ -3,7 +3,6 @@ import GadgetNavbar from "@/components/Gadget/GadgetNavbar";
 import GadgetProductCard from "@/components/Gadget/GadgetProductCard";
 import { GADGET1_ROUTES } from "@/data/gadget1/constants";
 import { gadgetProducts } from "@/data/gadget1/products";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,159 +21,228 @@ export default function Gadget1Page() {
 
       <main className="flex-grow">
         {/* Hero Section - iPhone 14 Pro */}
-        <section className="relative bg-black h-[360px] md:h-[450px]">
-          <div className="max-w-[1400px] mx-auto h-full relative">
+        <section
+          className="relative h-[400px] md:h-[500px] overflow-hidden w-full"
+          style={{
+            background: "linear-gradient(90.7deg, #211C24 0.64%, #211C24 101%)",
+          }}
+        >
+          <div className="w-full h-full relative">
             {/* Left Arrow */}
-            <button className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
-              <ChevronLeft size={24} />
-            </button>
+            <Link
+              href="#"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+            >
+              <svg
+                width="30"
+                height="55"
+                viewBox="0 0 30 55"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M27.3417 54.6291C26.7196 54.632 26.1226 54.3842 25.6854 53.9416L0.685437 28.9416C-0.228479 28.0265 -0.228479 26.5441 0.685437 25.629L25.6854 0.629039C26.6089 -0.231458 28.048 -0.206067 28.9405 0.686471C29.833 1.57901 29.8584 3.01807 28.9979 3.94154L5.65419 27.2853L28.9979 50.6291C29.9118 51.5441 29.9118 53.0265 28.9979 53.9416C28.5608 54.3842 27.9638 54.632 27.3417 54.6291Z"
+                  fill="white"
+                />
+              </svg>
+            </Link>
 
             {/* Content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 h-full w-full">
               {/* Left - Text */}
-              <div className="flex flex-col justify-center px-8 md:px-12 z-10">
-                <p className="text-white/60 text-xs uppercase tracking-[0.3em] mb-3">
-                  CREATIVE HARMONY
-                </p>
-                <h1 className="text-white text-5xl md:text-6xl font-bold mb-3">
-                  iPhone 14 Pro
-                </h1>
-                <p className="text-white/80 text-sm mb-6 max-w-md">
-                  Created to change everything for the better. For everyone
-                </p>
-                <Link
-                  href="/gadget1/products"
-                  className="inline-block w-fit px-10 py-3 bg-white text-black text-sm font-medium rounded hover:bg-gray-100 transition-colors"
-                >
-                  Shop Now
-                </Link>
+              <div className="flex flex-col justify-center items-center px-8 md:px-12 z-10">
+                <div className="text-left">
+                  <p className="text-white/60 text-sm uppercase tracking-[0.2em] mb-4">
+                    Pro.Beyond.
+                  </p>
+                  <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
+                    iPhone 14 Pro
+                  </h1>
+                  <p className="text-white/80 text-base mb-8 max-w-md leading-relaxed">
+                    Created to change everything for the better. For everyone
+                  </p>
+                  <Link
+                    href="/gadget1/products"
+                    className="inline-block px-8 py-3 border border-white text-white text-sm font-medium rounded hover:bg-white hover:text-black transition-colors"
+                  >
+                    Shop Now
+                  </Link>
+                </div>
               </div>
 
               {/* Right - iPhone Image */}
-              <div className="relative hidden md:flex items-center justify-center">
+              <div className="relative hidden md:flex items-center justify-center overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=800&h=800&fit=crop"
+                  src="/gadgets/iphone.png"
                   alt="iPhone 14 Pro"
-                  width={400}
-                  height={400}
-                  className="object-contain"
+                  width={500}
+                  height={500}
+                  className="object-contain w-full h-full"
                   priority
                 />
               </div>
             </div>
 
             {/* Right Arrow */}
-            <button className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
-              <ChevronRight size={24} />
-            </button>
+            <Link
+              href="#"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+            >
+              <svg
+                width="75"
+                height="75"
+                viewBox="0 0 75 75"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25.0001 10.1563C25.6222 10.1533 26.2192 10.4012 26.6563 10.8438L51.6564 35.8438C52.5703 36.7588 52.5703 38.2412 51.6564 39.1563L26.6563 64.1562C25.7329 65.0167 24.2938 64.9913 23.4013 64.0988C22.5087 63.2063 22.4834 61.7672 23.3438 60.8437L46.6876 37.5L23.3438 14.1563C22.4299 13.2412 22.4299 11.7588 23.3438 10.8438C23.781 10.4012 24.378 10.1533 25.0001 10.1563Z"
+                  fill="white"
+                />
+              </svg>
+            </Link>
           </div>
         </section>
 
         {/* Four Promotional Cards - Custom Grid Layout */}
-        <section className="w-full bg-white py-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4 px-4 md:px-6">
-            {/* A - PlayStation 5 (Row 1, Left) - Image LEFT, Text RIGHT */}
-            <div className="md:col-span-5 md:row-span-1">
-              <div className="relative bg-[#EDEDED] overflow-hidden h-full min-h-[240px] flex items-center p-6">
-                <div className="flex-shrink-0">
-                  <Image
-                    src="/gadgets/playstation.png"
-                    alt="PlayStation 5"
-                    width={180}
-                    height={180}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 ml-6">
-                  <h3 className="text-[33px] leading-[1.2] font-light text-black mb-2">
-                    Playstation 5
-                  </h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">
-                    Incredibly powerful CPUs, GPUs, and an SSD with integrated
-                    I/O will redefine your PlayStation experience.
-                  </p>
-                </div>
+        <section className="w-full bg-white">
+          <div
+            className="grid h-[560px]"
+            style={{
+              gridTemplateColumns: "1fr 1fr 2fr",
+              gridTemplateRows: "repeat(2, 1fr)",
+            }}
+          >
+            {/* PlayStation 5 - div1: spans 2 columns */}
+            <div
+              className="bg-[#FFFFFF] overflow-hidden h-full flex items-center pr-4 pl-0 pt-4 pb-0"
+              style={{ gridColumn: "span 2 / span 2" }}
+            >
+              <div className="flex-shrink-0 self-end ml-[-130px] mb-[-50px]">
+                <Image
+                  src="/gadgets/playstation.png"
+                  alt="PlayStation 5"
+                  width={450}
+                  height={450}
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex-1 ml-4">
+                <h3 className="text-[49px] leading-[40px] font-normal text-black mb-2 font-manrope">
+                  Playstation 5
+                </h3>
+                <p className="text-[14px] leading-[24px] font-normal text-gray-600 font-manrope">
+                  Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O
+                  will redefine your PlayStation experience.
+                </p>
               </div>
             </div>
 
-            {/* D - MacBook Air (Right, Spans 2 Rows) - Text LEFT, Image RIGHT */}
-            <div className="md:col-span-7 md:row-span-2">
-              <div className="relative bg-[#EDEDED] overflow-hidden h-full min-h-[500px] flex items-center justify-between p-8">
-                <div className="flex-1 max-w-sm">
-                  <h3 className="text-[64px] leading-[1.1] font-light text-black mb-3">
-                    Macbook
-                    <br />
-                    Air
-                  </h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed mb-4">
-                    The new 15-inch MacBook Air makes room for more of what you
-                    love with a spacious Liquid Retina display.
-                  </p>
-                  <button className="px-6 py-2.5 border border-black text-black text-[11px] font-normal rounded-md hover:bg-black hover:text-white transition-colors">
-                    Shop Now
-                  </button>
-                </div>
-                <div className="flex-shrink-0 ml-6">
-                  <Image
-                    src="/gadgets/macbook.png"
-                    alt="MacBook Air"
-                    width={450}
-                    height={360}
-                    className="object-contain"
-                  />
-                </div>
+            {/* MacBook Air - div4: spans 2 rows, column 3 */}
+            <div
+              className="bg-[#EDEDED] overflow-hidden h-full flex items-center py-6 pl-10 relative"
+              style={{
+                gridRow: "span 2 / span 2",
+                gridColumnStart: 3,
+                gridRowStart: 1,
+              }}
+            >
+              <div className="flex-shrink-0 max-w-sm px-6 z-10">
+                <h3 className="text-[64px] leading-[56px] font-normal text-black mb-3 font-manrope">
+                  Macbook
+                  <br />
+                  Air
+                </h3>
+                <p className="text-[14px] leading-[24px] font-normal text-gray-600 mb-4 font-manrope">
+                  The new 15-inch MacBook Air makes room for more of what you
+                  love with a spacious Liquid Retina display.
+                </p>
+                <button className="px-10 py-2 border border-black text-black text-[12px] font-medium hover:bg-black hover:text-white transition-colors rounded-sm">
+                  Shop Now
+                </button>
+              </div>
+              <div className="absolute right-0 top-0 bottom-0 flex items-center justify-end pr-0 py-6">
+                <Image
+                  src="/gadgets/macbook.png"
+                  alt="MacBook Air"
+                  width={400}
+                  height={320}
+                  className="object-contain h-full -mr-8"
+                  style={{ transform: "translateX(16px)" }}
+                />
               </div>
             </div>
 
-            {/* B - Apple AirPods Max (Row 2, Left) - Image LEFT, Text RIGHT */}
-            <div className="md:col-span-2 md:row-span-1">
-              <div className="relative bg-[#EDEDED] overflow-hidden h-full min-h-[240px] flex items-center p-4">
-                <div className="flex-shrink-0">
-                  <Image
-                    src="/gadgets/airpod.png"
-                    alt="Apple AirPods Max"
-                    width={90}
-                    height={90}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 ml-3">
-                  <h3 className="text-[21px] leading-[1.2] font-light text-black mb-1">
-                    Apple
-                    <br />
-                    AirPods
-                    <br />
-                    Max
-                  </h3>
-                  <p className="text-[9px] text-gray-500 leading-relaxed">
-                    Computational audio. Listen, it's powerful
-                  </p>
-                </div>
+            {/* Apple AirPods Max - div2: column 1, row 2 */}
+            <div
+              className="bg-[#EDEDED] overflow-hidden h-full flex items-center p-3"
+              style={{
+                gridColumnStart: 1,
+                gridRowStart: 2,
+              }}
+            >
+              <div className="flex-1 flex items-center justify-start">
+                <Image
+                  src="/gadgets/airpod.png"
+                  alt="Apple AirPods Max"
+                  width={600}
+                  height={680}
+                  className="object-contain"
+                  style={{
+                    transform: "scaleX(-1)",
+                    marginLeft: "-110px",
+                    marginRight: "30px",
+                    opacity: 1,
+                  }}
+                />
+              </div>
+              <div className="relative z-10 flex-1 pl-1">
+                <h3 className="text-[29px] leading-[40px] font-normal text-black mb-1 font-manrope">
+                  Apple
+                  <br />
+                  AirPods
+                  <br />
+                  Max
+                </h3>
+                <p className="text-[14px] leading-[24px] font-normal text-gray-600 font-manrope">
+                  Computational audio.
+                  <br />
+                  Listen, it's powerful
+                </p>
               </div>
             </div>
 
-            {/* C - Apple Vision Pro (Row 2, Middle) */}
-            <div className="md:col-span-3 md:row-span-1">
-              <div className="relative bg-[#2C2C2C] overflow-hidden h-full min-h-[240px] flex flex-col justify-between p-6">
-                <div className="flex-1 flex items-center justify-center">
-                  <Image
-                    src="/gadgets/vision.png"
-                    alt="Apple Vision Pro"
-                    width={220}
-                    height={180}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="relative z-10 mt-auto pt-4">
-                  <h3 className="text-[21px] leading-tight font-normal text-white mb-2">
-                    Apple
-                    <br />
-                    Vision Pro
-                  </h3>
-                  <p className="text-[11px] text-gray-400 leading-relaxed">
-                    An immersive way to experience entertainment
-                  </p>
-                </div>
+            {/* Apple Vision Pro - div3: column 2, row 2 */}
+            <div
+              className="bg-[#353535] overflow-hidden h-full flex items-center p-4"
+              style={{
+                gridColumnStart: 2,
+                gridRowStart: 2,
+              }}
+            >
+              <div className="shrink-0 w-[360px] md:w-[420px] ml-[-240px] flex items-center justify-center">
+                <Image
+                  src="/gadgets/vision.png"
+                  alt="Apple Vision Pro"
+                  width={400}
+                  height={420}
+                  className="object-contain"
+                  style={{ transform: "scaleX(-1)" }}
+                />
+              </div>
+              <div className="relative z-10 flex-1 pl-3">
+                <h3 className="text-[29px] leading-[40px] font-normal text-white mb-1 font-manrope">
+                  Apple
+                  <br />
+                  Vision Pro
+                </h3>
+                <p className="text-[14px] leading-[24px] font-normal text-gray-300 font-manrope">
+                  An immersive way to
+                  <br />
+                  experience
+                  <br />
+                  entertainment
+                </p>
               </div>
             </div>
           </div>
@@ -552,12 +620,12 @@ export default function Gadget1Page() {
           </div>
         </section>
 
-        {/* Four Banner Cards - Full Width */}
+        {/* Four Banner Cards - Custom Layout */}
         <section className="w-full bg-white py-8">
           <div className="max-w-[1400px] mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {/* Apple AirPods Max */}
-              <div className="bg-[#F5F5F5] rounded-lg p-6 h-[280px] flex flex-col">
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 h-[580px]">
+              {/* Apple AirPods Max - Top Left */}
+              <div className="bg-red-500 rounded-lg p-6 flex flex-col">
                 <div className="flex-1 flex items-center justify-center">
                   <Image
                     src="/gadgets/airpod.png"
@@ -577,8 +645,8 @@ export default function Gadget1Page() {
                 </div>
               </div>
 
-              {/* Apple Vision Pro */}
-              <div className="bg-[#353535] rounded-lg p-6 h-[280px] flex flex-col">
+              {/* Apple Vision Pro - Top Middle */}
+              <div className="bg-[#353535] rounded-lg p-6 flex flex-col">
                 <div className="flex-1 flex items-center justify-center">
                   <Image
                     src="/gadgets/vision.png"
@@ -598,8 +666,30 @@ export default function Gadget1Page() {
                 </div>
               </div>
 
-              {/* PlayStation 5 */}
-              <div className="bg-[#EDEDED] rounded-lg p-6 h-[280px] flex flex-col">
+              {/* MacBook Air - Top Right, spans 2 rows */}
+              <div className="bg-[#2C2C2C] rounded-lg p-6 flex flex-col row-span-2">
+                <div className="flex-1 flex items-center justify-center">
+                  <Image
+                    src="/gadgets/macbook.png"
+                    alt="MacBook Air"
+                    width={200}
+                    height={200}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="text-lg font-semibold mb-1 text-white">
+                    Macbook Air
+                  </h3>
+                  <p className="text-xs mb-2 text-gray-300 leading-relaxed">
+                    The new 15-inch MacBook Air makes room for more of what you
+                    love
+                  </p>
+                </div>
+              </div>
+
+              {/* PlayStation 5 - Bottom Left, spans 2 columns */}
+              <div className="bg-[#EDEDED] rounded-lg p-6 flex flex-col col-span-2">
                 <div className="flex-1 flex items-center justify-center">
                   <Image
                     src="/gadgets/playstation.png"
@@ -616,28 +706,6 @@ export default function Gadget1Page() {
                   <p className="text-xs mb-2 text-gray-600 leading-relaxed">
                     Incredibly powerful CPUs, GPUs, and an SSD with integrated
                     I/O
-                  </p>
-                </div>
-              </div>
-
-              {/* MacBook Air */}
-              <div className="bg-[#2C2C2C] rounded-lg p-6 h-[280px] flex flex-col">
-                <div className="flex-1 flex items-center justify-center">
-                  <Image
-                    src="/gadgets/macbook.png"
-                    alt="MacBook Air"
-                    width={160}
-                    height={160}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="mt-auto">
-                  <h3 className="text-lg font-semibold mb-1 text-white">
-                    Macbook Air
-                  </h3>
-                  <p className="text-xs mb-2 text-gray-300 leading-relaxed">
-                    The new 15-inch MacBook Air makes room for more of what you
-                    love
                   </p>
                 </div>
               </div>

@@ -126,7 +126,7 @@ export default function GadgetProductCard({
               </div>
               <button
                 onClick={handleAddToCart}
-                className="w-full py-2.5 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
+                className="w-full py-2.5 bg-white text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
               >
                 Add to Cart
               </button>
@@ -185,38 +185,17 @@ export default function GadgetProductCard({
           {/* Product Info */}
           <div className="p-4 space-y-2">
             {/* Product Name */}
-            <h3 className="text-sm font-normal text-black line-clamp-2 min-h-[40px]">
+            <h3 className="text-lg font-normal text-black line-clamp-2 font-manrope text-center">
               {product.name}
             </h3>
 
-            {/* Rating */}
-            {product.rating && product.reviews && (
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <span
-                    key={i}
-                    className={`text-sm ${
-                      i < Math.floor(product.rating || 0)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                  >
-                    ★
-                  </span>
-                ))}
-                <span className="text-xs text-gray-500 ml-1">
-                  ({product.reviews})
-                </span>
-              </div>
-            )}
-
             {/* Price */}
-            <div className="flex items-center gap-2 pt-1">
-              <span className="text-base font-bold text-black">
+            <div className="flex items-center justify-between gap-2 pt-1">
+              <span className="text-lg font-medium text-black">
                 {product.price.toLocaleString()} BDT
               </span>
               {product.originalPrice && (
-                <span className="text-sm text-gray-400 line-through">
+                <span className="text-base text-red-600 line-through">
                   {product.originalPrice.toLocaleString()} BDT
                 </span>
               )}
@@ -225,7 +204,7 @@ export default function GadgetProductCard({
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="w-full mt-3 py-2.5 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
+              className="w-full mt-3 py-2.5 bg-white text-black border border-black text-sm font-medium rounded hover:bg-gray-800 hover:text-white hover:cursor-pointer transition-colors"
             >
               Add to Cart
             </button>
