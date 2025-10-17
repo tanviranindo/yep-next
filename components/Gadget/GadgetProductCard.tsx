@@ -140,14 +140,14 @@ export default function GadgetProductCard({
   // Variant 1 - e-Gagdgets Design (Pixel Perfect)
   return (
     <article
-      className={`bg-white border border-gray-200 rounded-lg overflow-hidden group hover:shadow-md transition-shadow ${
+      className={`bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl overflow-hidden group hover:shadow-md transition-shadow h-full ${
         className || ""
       }`}
     >
-      <Link href={productUrl}>
-        <div className="relative">
+      <Link href={productUrl} className="block h-full">
+        <div className="relative flex flex-col h-full">
           {/* Product Image */}
-          <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+          <div className="relative w-full aspect-square bg-[#F9F9F9] overflow-hidden">
             <Image
               src={product.image || "/items/gadget1.jpg"}
               alt={product.name}
@@ -183,15 +183,14 @@ export default function GadgetProductCard({
           </div>
 
           {/* Product Info */}
-          <div className="p-4 space-y-2">
+          <div className="p-4 flex flex-col gap-3 flex-1">
             {/* Product Name */}
-            <h3 className="text-lg font-normal text-black line-clamp-2 font-manrope text-center">
+            <h3 className="text-lg font-normal text-black line-clamp-2 font-manrope text-center min-h-[56px]">
               {product.name}
             </h3>
-
             {/* Price */}
-            <div className="flex items-center justify-between gap-2 pt-1">
-              <span className="text-lg font-medium text-black">
+            <div className="flex items-center justify-between gap-2 mt-2">
+              <span className="text-xl font-semibold text-black">
                 {product.price.toLocaleString()} BDT
               </span>
               {product.originalPrice && (
@@ -204,7 +203,7 @@ export default function GadgetProductCard({
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="w-full mt-3 py-2.5 bg-white text-black border border-black text-sm font-medium rounded hover:bg-gray-800 hover:text-white hover:cursor-pointer transition-colors"
+              className="w-full mt-auto py-2.5 bg-white text-black border border-black text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-white hover:cursor-pointer transition-colors"
             >
               Add to Cart
             </button>

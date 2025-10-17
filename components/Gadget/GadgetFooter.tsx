@@ -13,30 +13,30 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
     return (
       <footer className="bg-black text-white">
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
             {/* Brand Section */}
-            <div className="lg:col-span-1 space-y-4">
-              <h2 className="text-xl font-bold">e-Gagdgets</h2>
-              <p className="text-sm text-gray-400 leading-relaxed">
+            <div className="lg:col-span-2 space-y-5">
+              <h2 className="text-2xl font-semibold">e-Gagdgets</h2>
+              <p className="text-sm text-white/70 leading-relaxed max-w-md">
                 We are a gadgets eCommerce store located in Bangladesh. Our
                 e-store offers more than your imagination.
               </p>
-              <div className="flex gap-3 pt-2">
+              <div className="flex gap-4 pt-2">
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
                   <Twitter size={18} />
                 </Link>
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
                   <Facebook size={18} />
                 </Link>
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
                   <Instagram size={18} />
                 </Link>
@@ -44,13 +44,13 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
             </div>
 
             {/* Company */}
-            <div>
-              <h3 className="text-base font-semibold mb-4">Company</h3>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold mb-6">Company</h3>
+              <ul className="space-y-5">
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     About Us
                   </Link>
@@ -58,7 +58,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Campaign
                   </Link>
@@ -67,44 +67,28 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
             </div>
 
             {/* Support */}
-            <div>
-              <h3 className="text-base font-semibold mb-4">Support</h3>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold mb-6">Support</h3>
+              <ul className="space-y-5">
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     FAQs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    Track Order
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    Wishlist
                   </Link>
                 </li>
               </ul>
             </div>
 
             {/* My Account */}
-            <div>
-              <h3 className="text-base font-semibold mb-4">My Account</h3>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold mb-6">My Account</h3>
+              <ul className="space-y-5">
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Order List
                   </Link>
@@ -112,7 +96,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Track Order
                   </Link>
@@ -120,7 +104,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Wishlist
                   </Link>
@@ -129,13 +113,13 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
             </div>
 
             {/* Pages */}
-            <div>
-              <h3 className="text-base font-semibold mb-4">Pages</h3>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold mb-6">Pages</h3>
+              <ul className="space-y-5">
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Privacy Policy
                   </Link>
@@ -143,7 +127,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Terms & Condition
                   </Link>
@@ -151,7 +135,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
                 <li>
                   <Link
                     href="#"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     Refund Policy
                   </Link>
@@ -168,9 +152,9 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
   return (
     <footer className="bg-black text-white">
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand Section */}
-          <div className="lg:col-span-1 space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <h2 className="text-xl font-bold">e-Gagdgets</h2>
             <p className="text-sm text-gray-400 leading-relaxed">
               We are a gadgets eCommerce store located in Bangladesh. Our
@@ -202,7 +186,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="lg:col-span-1">
             <h3 className="text-base font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
@@ -225,7 +209,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
           </div>
 
           {/* Support */}
-          <div>
+          <div className="lg:col-span-1">
             <h3 className="text-base font-semibold mb-4">Support</h3>
             <ul className="space-y-3">
               <li>
@@ -256,7 +240,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
           </div>
 
           {/* My Account */}
-          <div>
+          <div className="lg:col-span-1">
             <h3 className="text-base font-semibold mb-4">My Account</h3>
             <ul className="space-y-3">
               <li>
@@ -287,7 +271,7 @@ export default function GadgetFooter({ variant }: GadgetFooterProps) {
           </div>
 
           {/* Pages */}
-          <div>
+          <div className="lg:col-span-1">
             <h3 className="text-base font-semibold mb-4">Pages</h3>
             <ul className="space-y-3">
               <li>
